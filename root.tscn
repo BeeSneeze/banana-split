@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b37r8umnlun73"]
 
-[ext_resource type="Script" uid="uid://xbsm7dgj3745" path="res://Game.cs" id="1_pq8q7"]
+[ext_resource type="PackedScene" uid="uid://6ho0dfxec8r3" path="res://game.tscn" id="1_pq8q7"]
 
 [node name="Root" type="Control"]
 layout_mode = 3
@@ -10,8 +10,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Game" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("1_pq8q7")
+[node name="Game" parent="." instance=ExtResource("1_pq8q7")]
+layout_mode = 1
