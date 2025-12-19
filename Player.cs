@@ -25,18 +25,18 @@ public partial class Player : CharacterBody2D
         Velocity = direction * Speed;
         var collisionHappened = MoveAndSlide();
 
-        if(collisionHappened)
+        if (collisionHappened)
         {
             var res = GetLastSlideCollision();
 
             var collision = (Node2D)res.GetCollider();
-            if(collision.IsInGroup("DamagesPlayer"))
+            if (collision.IsInGroup("DamagesPlayer"))
             {
-                if(invincibilityFrames < 0)
+                if (invincibilityFrames < 0)
                 {
                     HealthPoints--;
                     AdjustHp(HealthPoints);
-                }   
+                }
             }
         }
     }
