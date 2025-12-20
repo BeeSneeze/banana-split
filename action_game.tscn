@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://ju5xdgsp4x80"]
+
+[ext_resource type="Script" uid="uid://bw53bx2uejnvw" path="res://ActionGame.cs" id="1_mmdi0"]
+[ext_resource type="PackedScene" uid="uid://cwpvfgiguahtt" path="res://player.tscn" id="2_h25cu"]
+[ext_resource type="PackedScene" uid="uid://b1rxaifpo3pbr" path="res://Box.tscn" id="3_aa1b0"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e2o6t"]
+distance = -1.0
+
+[node name="ActionGame" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 400.0
+offset_top = 150.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_mmdi0")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.22190201, 0.22190201, 0.22190201, 1)
+
+[node name="Player" parent="." instance=ExtResource("2_h25cu")]
+position = Vector2(1053, 609)
+scale = Vector2(0.5, 0.5)
+motion_mode = 1
+
+[node name="BorderDown" type="StaticBody2D" parent="."]
+position = Vector2(1520, 930)
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BorderDown"]
+shape = SubResource("WorldBoundaryShape2D_e2o6t")
+
+[node name="BorderRight" type="StaticBody2D" parent="."]
+position = Vector2(1520, 930)
+rotation = -1.5707964
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BorderRight"]
+shape = SubResource("WorldBoundaryShape2D_e2o6t")
+
+[node name="BorderLeft" type="StaticBody2D" parent="."]
+rotation = 1.5707964
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BorderLeft"]
+shape = SubResource("WorldBoundaryShape2D_e2o6t")
+
+[node name="BorderUp" type="StaticBody2D" parent="."]
+rotation = 3.1415927
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BorderUp"]
+shape = SubResource("WorldBoundaryShape2D_e2o6t")
+
+[node name="Box" parent="." instance=ExtResource("3_aa1b0")]
+position = Vector2(936, 410)
+
+[node name="Box2" parent="." instance=ExtResource("3_aa1b0")]
+position = Vector2(501, 496)

@@ -1,22 +1,58 @@
-[gd_scene load_steps=7 format=3 uid="uid://6ho0dfxec8r3"]
+[gd_scene load_steps=4 format=3 uid="uid://6ho0dfxec8r3"]
 
 [ext_resource type="Script" uid="uid://xbsm7dgj3745" path="res://Game.cs" id="1_80nbo"]
-[ext_resource type="PackedScene" uid="uid://cwpvfgiguahtt" path="res://player.tscn" id="2_e2o6t"]
-[ext_resource type="Script" uid="uid://bw53bx2uejnvw" path="res://ActionGame.cs" id="3_7jktm"]
+[ext_resource type="PackedScene" uid="uid://ju5xdgsp4x80" path="res://action_game.tscn" id="2_feb5d"]
 [ext_resource type="Theme" uid="uid://0kdxekgod83" path="res://Game.tres" id="3_feb5d"]
-[ext_resource type="PackedScene" uid="uid://b1rxaifpo3pbr" path="res://Box.tscn" id="4_fc0e3"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e2o6t"]
-distance = -1.0
 
 [node name="Game" type="Control"]
 layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_80nbo")
+
+[node name="InventoryBar" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 150.0
+
+[node name="ColorRect" type="ColorRect" parent="InventoryBar"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.30293474, 0.17663205, 0.16155422, 1)
+
+[node name="TypingScreen" type="Control" parent="."]
+anchors_preset = 0
+offset_top = 150.0
+offset_right = 400.0
+offset_bottom = 1080.0
+
+[node name="ColorRect" type="ColorRect" parent="TypingScreen"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_80nbo")
+color = Color(0.13333334, 0.14117648, 0.40392157, 1)
+
+[node name="ActionGame" parent="." instance=ExtResource("2_feb5d")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1520.0
+offset_top = -930.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="HP" type="Label" parent="."]
 unique_name_in_owner = true
@@ -27,45 +63,3 @@ offset_right = 1812.0
 offset_bottom = 150.0
 theme = ExtResource("3_feb5d")
 text = "15"
-
-[node name="ActionGame" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("3_7jktm")
-
-[node name="Player" parent="ActionGame" instance=ExtResource("2_e2o6t")]
-position = Vector2(1053, 609)
-scale = Vector2(0.7, 0.7)
-motion_mode = 1
-
-[node name="BorderDown" type="StaticBody2D" parent="ActionGame"]
-position = Vector2(1920, 1080)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionGame/BorderDown"]
-shape = SubResource("WorldBoundaryShape2D_e2o6t")
-
-[node name="BorderRight" type="StaticBody2D" parent="ActionGame"]
-position = Vector2(1920, 1080)
-rotation = -1.5707964
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionGame/BorderRight"]
-shape = SubResource("WorldBoundaryShape2D_e2o6t")
-
-[node name="BorderLeft" type="StaticBody2D" parent="ActionGame"]
-rotation = 1.5707964
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionGame/BorderLeft"]
-shape = SubResource("WorldBoundaryShape2D_e2o6t")
-
-[node name="BorderUp" type="StaticBody2D" parent="ActionGame"]
-rotation = 3.1415927
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionGame/BorderUp"]
-shape = SubResource("WorldBoundaryShape2D_e2o6t")
-
-[node name="Box" parent="ActionGame" instance=ExtResource("4_fc0e3")]
-position = Vector2(936, 410)
-
-[node name="Box2" parent="ActionGame" instance=ExtResource("4_fc0e3")]
-position = Vector2(501, 496)

@@ -11,4 +11,4 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Game" parent="." instance=ExtResource("1_pq8q7")]
-layout_mode = 1
+layout_mode = 0

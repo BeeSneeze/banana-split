@@ -2,9 +2,11 @@ using Godot;
 using System;
 using Common;
 
-public partial class Bullet : RigidBody2D
+public partial class Bullet : AnimatableBody2D
 {
     private Team team;
+
+    public Vector2 Velocity = new Vector2(0, 0);
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -15,6 +17,15 @@ public partial class Bullet : RigidBody2D
         }
     }
 
+    public override void _PhysicsProcess(double delta)
+    {
+        var collision = MoveAndCollide(Velocity);
+        if (collision != null)
+        {
+            QueueFree();
+        }
+    }
+
     public void SetTeam(Team setAllegiance)
     {
 
@@ -22,17 +33,12 @@ public partial class Bullet : RigidBody2D
         if (team == Team.ENEMY)
         {
             CollisionLayer = 16;
-            CollisionMask = 2;
+            CollisionMask = 2 + 32; // Player and walls
         }
         else if (team == Team.PLAYER)
         {
             CollisionLayer = 4;
-            CollisionMask = 8;
+            CollisionMask = 8 + 32;// Enemy and walls
         }
-    }
-
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-    {
     }
 }

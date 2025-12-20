@@ -9,4 +9,9 @@ namespace Common
         ENEMY,
         NEUTRAL
     }
+
+    public enum CollisionLayers
+    {
+
+    }
 }

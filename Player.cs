@@ -14,14 +14,16 @@ public partial class Player : CharacterBody2D
 
     private int HealthPoints = 10;
 
-    private const float PLAYER_SPEED = 330.0f;
-    private const float BULLET_SPEED = 650.0f;
+    private const float PLAYER_SPEED = 300.0f;
+    private const float BULLET_SPEED = 13.0f;
 
-    private const int I_FRAME_COUNT = 100;
-    private const int BULLET_SPAWN_TIME = 10;
+    private const int I_FRAME_COUNT = 60;
+    private const int BULLET_SPAWN_TIME = 8;
 
-    private const float RELOAD_TIME = 1f;
-    private float Reload = 0f;
+    private const double RELOAD_TIME = 1.5;
+    private double Reload = 0;
+    private int BulletsInChamber = 6;
+    private const int MAX_BULLETS_IN_CHAMBER = 6;
 
 
     public override void _Ready()
@@ -35,15 +37,23 @@ public partial class Player : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
     {
-        //Reload -= delta;
         invincibilityFrames--;
         shootFrames--;
         Vector2 direction = Input.GetVector("GameLeft", "GameRight", "GameUp", "GameDown");
 
+        if (BulletsInChamber == 0)
+        {
+            Reload -= delta;
+            if (Reload <= 0)
+            {
+                BulletsInChamber = MAX_BULLETS_IN_CHAMBER;
+            }
+        }
+
         // You can either shoot, or move, but not both!
         if (Input.IsActionPressed("GameShoot"))
         {
-            if (shootFrames < 0 && direction != new Vector2(0, 0))
+            if (shootFrames < 0 && direction != new Vector2(0, 0) && BulletsInChamber > 0)
             {
                 shootFrames = BULLET_SPAWN_TIME;
                 SpawnBullet(direction);
@@ -70,13 +80,15 @@ public partial class Player : CharacterBody2D
             }
         }
 
-
-
-
     }
 
     private void SpawnBullet(Vector2 direction)
     {
+        BulletsInChamber--;
+        if (BulletsInChamber == 0)
+        {
+            Reload = RELOAD_TIME;
+        }
         var newBullet = BulletScene.Instantiate<Bullet>();
         newBullet.SetTeam(Team.PLAYER);
         var aim = direction.Normalized();
@@ -84,10 +96,10 @@ public partial class Player : CharacterBody2D
         var random = new RandomNumberGenerator();
         random.Randomize();
 
-        aim = aim.Rotated(random.RandfRange(-0.1f, 0.1f));
+        aim = aim.Rotated(random.RandfRange(-0.05f, 0.05f));
 
-        newBullet.LinearVelocity = aim * BULLET_SPEED;
-        newBullet.GlobalPosition = GlobalPosition;
+        newBullet.Velocity = aim * BULLET_SPEED;
+        newBullet.Position = Position;
         ActionGame.SpawnBullet(newBullet);
     }
 

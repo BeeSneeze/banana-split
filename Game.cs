@@ -11,12 +11,6 @@ public partial class Game : Control
         HP = GetNode<Label>("%HP");
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-    {
-
-    }
-
     public void AdjustHp(int amount)
     {
         GD.Print("Damage taken: " + amount.ToString());
