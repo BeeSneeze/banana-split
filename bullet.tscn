@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxp37ccgsdir2"]
+
+[ext_resource type="Texture2D" uid="uid://7c5bh48x131o" path="res://Assets/Bullet.png" id="1_v7oki"]
+[ext_resource type="Script" uid="uid://k6lye3yjr8p4" path="res://Bullet.cs" id="1_v8qja"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rtl8c"]
+radius = 16.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v7oki"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_v7oki")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Bullet" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+mass = 0.001
+gravity_scale = 0.0
+script = ExtResource("1_v8qja")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rtl8c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_v7oki")

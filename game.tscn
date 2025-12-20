@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://6ho0dfxec8r3"]
+[gd_scene load_steps=7 format=3 uid="uid://6ho0dfxec8r3"]
 
 [ext_resource type="Script" uid="uid://xbsm7dgj3745" path="res://Game.cs" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://cwpvfgiguahtt" path="res://player.tscn" id="2_e2o6t"]
+[ext_resource type="Script" uid="uid://bw53bx2uejnvw" path="res://ActionGame.cs" id="3_7jktm"]
 [ext_resource type="Theme" uid="uid://0kdxekgod83" path="res://Game.tres" id="3_feb5d"]
 [ext_resource type="PackedScene" uid="uid://b1rxaifpo3pbr" path="res://Box.tscn" id="4_fc0e3"]
 
@@ -31,6 +32,7 @@ text = "15"
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("3_7jktm")
 
 [node name="Player" parent="ActionGame" instance=ExtResource("2_e2o6t")]
 position = Vector2(1053, 609)
