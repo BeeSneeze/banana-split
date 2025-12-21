@@ -35,7 +35,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.24890783, 0.29352352, 0.39525208, 1)
+color = Color(0.8156863, 0.50980395, 0.13725491, 1)
 
 [node name="TypingGameLayer" type="CanvasLayer" parent="."]
 
