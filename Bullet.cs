@@ -8,13 +8,14 @@ public partial class Bullet : AnimatableBody2D
 
     public Vector2 Velocity = new Vector2(0, 0);
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         if (CollisionLayer == 0)
         {
             throw new Exception("Bullet was created without a team!");
         }
+
+        GetNode<AnimatedSprite2D>("Visual").Rotation = Mathf.Atan2(Velocity.Y, Velocity.X);
     }
 
     public override void _PhysicsProcess(double delta)

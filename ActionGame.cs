@@ -3,18 +3,17 @@ using System;
 
 public partial class ActionGame : Control
 {
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        var playerScene = GD.Load<PackedScene>("res://player.tscn").Instantiate<Player>();
+        playerScene.Initiate(GetParent<Game>(), this);
+        playerScene.Position = new Vector2(200, 200);
+        AddChild(playerScene);
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
+    public void Spawn(Node2D levelObject, Vector2 pos)
     {
-    }
-
-    public void SpawnBullet(Bullet inBullet)
-    {
-        AddChild(inBullet);
+        levelObject.Position = pos;
+        AddChild(levelObject);
     }
 }

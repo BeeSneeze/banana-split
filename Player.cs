@@ -8,32 +8,43 @@ public partial class Player : CharacterBody2D
     private Game Game;
     private ActionGame ActionGame;
     private PackedScene BulletScene;
-
-    private int invincibilityFrames = 0;
-    private int shootFrames = 0;
+    private bool Initiated = false;
 
     private int HealthPoints = 10;
 
     private const float PLAYER_SPEED = 300.0f;
     private const float BULLET_SPEED = 13.0f;
-
     private const int I_FRAME_COUNT = 60;
     private const int BULLET_SPAWN_TIME = 8;
-
     private const double RELOAD_TIME = 1.5;
-    private double Reload = 0;
-    private int BulletsInChamber = 6;
     private const int MAX_BULLETS_IN_CHAMBER = 6;
 
+    private double Reload = 0;
+    private int BulletsInChamber = 6;
+    private int invincibilityFrames = 0;
+    private int shootFrames = 0;
+
+    [Signal]
+    public delegate void AdjustHPEventHandler(int HP);
 
     public override void _Ready()
     {
+        if (!Initiated)
+        {
+            throw new Exception("PLAYER WAS NOT INITIATED!");
+        }
         BulletScene = GD.Load<PackedScene>("res://bullet.tscn");
-        // TODO: Fix this reference to the game
-        Game = GetParent().GetParent<Game>();
-        ActionGame = GetParent<ActionGame>();
     }
 
+    public void Initiate(Game game, ActionGame actionGame)
+    {
+        Game = game;
+        ActionGame = actionGame;
+        Initiated = true;
+
+        // Connect signals to relevant places
+        this.AdjustHP += game.AdjustHp;
+    }
 
     public override void _PhysicsProcess(double delta)
     {
@@ -74,6 +85,7 @@ public partial class Player : CharacterBody2D
                     if (invincibilityFrames < 0)
                     {
                         HealthPoints--;
+
                         AdjustHp(HealthPoints);
                     }
                 }
@@ -91,21 +103,17 @@ public partial class Player : CharacterBody2D
         }
         var newBullet = BulletScene.Instantiate<Bullet>();
         newBullet.SetTeam(Team.PLAYER);
-        var aim = direction.Normalized();
 
         var random = new RandomNumberGenerator();
         random.Randomize();
 
-        aim = aim.Rotated(random.RandfRange(-0.05f, 0.05f));
-
-        newBullet.Velocity = aim * BULLET_SPEED;
-        newBullet.Position = Position;
-        ActionGame.SpawnBullet(newBullet);
+        newBullet.Velocity = BULLET_SPEED * direction.Normalized().Rotated(random.RandfRange(-0.05f, 0.05f));
+        ActionGame.Spawn(newBullet, Position);
     }
 
     private void AdjustHp(int amount)
     {
         invincibilityFrames = I_FRAME_COUNT;
-        Game.AdjustHp(amount);
+        EmitSignal("AdjustHP", HealthPoints);
     }
 }

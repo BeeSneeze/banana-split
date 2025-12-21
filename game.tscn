@@ -25,10 +25,13 @@ grow_vertical = 2
 color = Color(0.30293474, 0.17663205, 0.16155422, 1)
 
 [node name="TypingScreen" type="Control" parent="."]
-anchors_preset = 0
-offset_top = 150.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -930.0
 offset_right = 400.0
-offset_bottom = 1080.0
+grow_vertical = 0
 
 [node name="ColorRect" type="ColorRect" parent="TypingScreen"]
 layout_mode = 1
@@ -57,9 +60,9 @@ metadata/_edit_use_anchors_ = true
 [node name="HP" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 1728.0
-offset_top = 50.0
-offset_right = 1812.0
-offset_bottom = 150.0
+offset_left = 1788.0
+offset_top = 32.0
+offset_right = 1872.0
+offset_bottom = 132.0
 theme = ExtResource("3_feb5d")
 text = "15"
