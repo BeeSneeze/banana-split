@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ju5xdgsp4x80"]
 
-[ext_resource type="Script" uid="uid://bw53bx2uejnvw" path="res://ActionGame.cs" id="1_mmdi0"]
+[ext_resource type="Script" uid="uid://bw53bx2uejnvw" path="res://ActionGame/ActionGame.cs" id="1_mmdi0"]
 [ext_resource type="PackedScene" uid="uid://b1rxaifpo3pbr" path="res://Box.tscn" id="3_aa1b0"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e2o6t"]
@@ -9,7 +9,7 @@ distance = -1.0
 [node name="ActionGame" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 400.0
+offset_left = 500.0
 offset_top = 150.0
 offset_right = 1920.0
 offset_bottom = 1080.0

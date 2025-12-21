@@ -11,7 +11,7 @@ public partial class Player : CharacterBody2D
 
     private int HealthPoints = 10;
 
-    private const float PLAYER_SPEED = 300.0f;
+    private const float PLAYER_SPEED = 350.0f;
     private const float BULLET_SPEED = 13.0f;
     private const int I_FRAME_COUNT = 60;
     private const int BULLET_SPAWN_TIME = 8;
