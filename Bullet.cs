@@ -4,7 +4,7 @@ using Common;
 
 public partial class Bullet : AnimatableBody2D
 {
-    private Team team;
+    private Team Team;
 
     public Vector2 Velocity = new Vector2(0, 0);
 
@@ -12,7 +12,7 @@ public partial class Bullet : AnimatableBody2D
     {
         if (CollisionLayer == 0)
         {
-            throw new Exception("Bullet was created without a team!");
+            throw new Exception("Bullet was created without a Team!");
         }
 
         GetNode<AnimatedSprite2D>("Visual").Rotation = Mathf.Atan2(Velocity.Y, Velocity.X);
@@ -29,17 +29,16 @@ public partial class Bullet : AnimatableBody2D
 
     public void SetTeam(Team setAllegiance)
     {
-
-        team = setAllegiance;
-        if (team == Team.ENEMY)
+        Team = setAllegiance;
+        if (Team == Team.ENEMY)
         {
-            CollisionLayer = 16;
-            CollisionMask = 2 + 32; // Player and walls
+            CollisionLayer = ((uint)CollisionLayerDefs.ENEMY_BULLETS);
+            CollisionMask = ((uint)CollisionLayerDefs.PLAYER) + ((uint)CollisionLayerDefs.WALLS);
         }
-        else if (team == Team.PLAYER)
+        else if (Team == Team.PLAYER)
         {
-            CollisionLayer = 4;
-            CollisionMask = 8 + 32;// Enemy and walls
+            CollisionLayer = ((uint)CollisionLayerDefs.PLAYER_BULLETS);
+            CollisionMask = ((uint)CollisionLayerDefs.ENEMY) + ((uint)CollisionLayerDefs.WALLS);
         }
     }
 }

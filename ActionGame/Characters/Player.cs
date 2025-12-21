@@ -19,11 +19,11 @@ public partial class Player : CharacterBody2D
     private const int MAX_BULLETS_IN_CHAMBER = 6;
     private const int DODGE_I_FRAME_COUNT = 30;
 
-    private double Reload = 0;
+    private double ReloadCountdown = 0;
     private int BulletsInChamber = 6;
     private int invincibilityFrames = 0;
-    private int shootFrames = 0;
-    private int dodgeCountdown = 0;
+    private int BulletSpawnCountdown = 0;
+    private int DodgeCountdown = 0;
     private Vector2 DodgeDirection = new Vector2(0, 0);
 
     public override void _Ready()
@@ -74,45 +74,45 @@ public partial class Player : CharacterBody2D
     public override void _PhysicsProcess(double delta)
     {
         invincibilityFrames--;
-        shootFrames--;
-        dodgeCountdown--;
+        BulletSpawnCountdown--;
+        DodgeCountdown--;
         Vector2 direction = Input.GetVector("GameLeft", "GameRight", "GameUp", "GameDown");
-
+        Visual.FlipH = direction.X < 0;
 
         if (BulletsInChamber == 0)
         {
-            Reload -= delta;
-            if (Reload <= 0)
+            ReloadCountdown -= delta;
+            if (ReloadCountdown <= 0)
             {
                 BulletsInChamber = MAX_BULLETS_IN_CHAMBER;
             }
         }
 
         // You can't perform any actions in the middle of a dodge
-        if (dodgeCountdown > 0)
+        if (DodgeCountdown > 0)
         {
             Velocity = DodgeDirection * PLAYER_SPEED;
             MoveAndSlide();
             return;
         }
-        else if (dodgeCountdown == 0)
+        else if (DodgeCountdown == 0)
         {
-            Reload = -1;
+            ReloadCountdown = -1; // Always be ready for a ReloadCountdown after a dodge
         }
 
-        if (Input.IsActionPressed("GameDodge"))
+        if (Input.IsActionPressed("GameDodge") && direction != Vector2.Zero)
         {
             invincibilityFrames = DODGE_I_FRAME_COUNT;
-            dodgeCountdown = DODGE_I_FRAME_COUNT;
-            DodgeDirection = new Vector2(direction.X, direction.Y);
+            DodgeCountdown = DODGE_I_FRAME_COUNT;
+            DodgeDirection = direction.Normalized();
             SetVisual(Visuals.DODGING);
         }
         else if (Input.IsActionPressed("GameShoot"))
         {
             SetVisual(Visuals.GUNNING);
-            if (shootFrames < 0 && direction != new Vector2(0, 0) && BulletsInChamber > 0)
+            if (BulletSpawnCountdown < 0 && direction != new Vector2(0, 0) && BulletsInChamber > 0)
             {
-                shootFrames = BULLET_SPAWN_TIME;
+                BulletSpawnCountdown = BULLET_SPAWN_TIME;
                 SpawnBullet(direction);
             }
         }
@@ -133,15 +133,12 @@ public partial class Player : CharacterBody2D
             if (collisionHappened)
             {
                 var res = GetLastSlideCollision();
-
                 var collision = (Node2D)res.GetCollider();
-                if (collision.IsInGroup("DamagesPlayer"))
+
+                if (collision.IsInGroup("DamagesPlayer") && invincibilityFrames <= 0)
                 {
-                    if (invincibilityFrames < 0)
-                    {
-                        HealthPoints--;
-                        AdjustHp(HealthPoints);
-                    }
+                    HealthPoints--;
+                    AdjustHp(HealthPoints);
                 }
             }
         }
@@ -153,7 +150,7 @@ public partial class Player : CharacterBody2D
         BulletsInChamber--;
         if (BulletsInChamber == 0)
         {
-            Reload = RELOAD_TIME;
+            ReloadCountdown = RELOAD_TIME;
         }
         var newBullet = BulletScene.Instantiate<Bullet>();
         newBullet.SetTeam(Team.PLAYER);

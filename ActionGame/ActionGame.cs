@@ -10,7 +10,7 @@ public partial class ActionGame : Control
     public override void _Ready()
     {
         ParticleScene = GD.Load<PackedScene>("res://particle.tscn");
-        var playerScene = GD.Load<PackedScene>("res://player.tscn").Instantiate<Player>();
+        var playerScene = GD.Load<PackedScene>("res://ActionGame/Characters/player.tscn").Instantiate<Player>();
         playerScene.Initiate(this);
         playerScene.Position = new Vector2(200, 200);
         AddChild(playerScene);
@@ -35,6 +35,5 @@ public partial class ActionGame : Control
         }
 
         AddChild(newParticle);
-
     }
 }
