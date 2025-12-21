@@ -10,6 +10,12 @@ namespace Common
         NEUTRAL
     }
 
+    public enum ParticleNames
+    {
+        Explosion,
+
+    }
+
     public enum CollisionLayers
     {
 

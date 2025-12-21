@@ -4,8 +4,9 @@ using Common;
 
 public partial class Player : CharacterBody2D
 {
-    private ActionGame ActionGame;
+    private ActionGame Level;
     private PackedScene BulletScene;
+    private AnimatedSprite2D Visual;
     private bool Initiated = false;
 
     private int HealthPoints = 10;
@@ -16,11 +17,14 @@ public partial class Player : CharacterBody2D
     private const int BULLET_SPAWN_TIME = 8;
     private const double RELOAD_TIME = 1.5;
     private const int MAX_BULLETS_IN_CHAMBER = 6;
+    private const int DODGE_I_FRAME_COUNT = 30;
 
     private double Reload = 0;
     private int BulletsInChamber = 6;
     private int invincibilityFrames = 0;
     private int shootFrames = 0;
+    private int dodgeCountdown = 0;
+    private Vector2 DodgeDirection = new Vector2(0, 0);
 
     public override void _Ready()
     {
@@ -28,21 +32,52 @@ public partial class Player : CharacterBody2D
         {
             throw new Exception("PLAYER WAS NOT INITIATED!");
         }
+        Visual = GetNode<AnimatedSprite2D>("Visual");
         BulletScene = GD.Load<PackedScene>("res://bullet.tscn");
         AdjustHp(HealthPoints);
     }
 
-    public void Initiate(ActionGame actionGame)
+    public void Initiate(ActionGame level)
     {
-        ActionGame = actionGame;
+        Level = level;
         Initiated = true;
+    }
+
+    private enum Visuals
+    {
+        RUNNING,
+        GUNNING,
+        DODGING,
+        IDLING
+    }
+
+    private void SetVisual(Visuals vis)
+    {
+        switch (vis)
+        {
+            case Visuals.RUNNING:
+                Visual.Animation = "Running";
+                break;
+            case Visuals.GUNNING:
+                Visual.Animation = "Gunning";
+                break;
+            case Visuals.DODGING:
+                Visual.Animation = "Dodge";
+                break;
+            case Visuals.IDLING:
+                Visual.Animation = "Idle";
+                break;
+        }
+        Visual.Play();
     }
 
     public override void _PhysicsProcess(double delta)
     {
         invincibilityFrames--;
         shootFrames--;
+        dodgeCountdown--;
         Vector2 direction = Input.GetVector("GameLeft", "GameRight", "GameUp", "GameDown");
+
 
         if (BulletsInChamber == 0)
         {
@@ -53,9 +88,28 @@ public partial class Player : CharacterBody2D
             }
         }
 
-        // You can either shoot, or move, but not both!
-        if (Input.IsActionPressed("GameShoot"))
+        // You can't perform any actions in the middle of a dodge
+        if (dodgeCountdown > 0)
         {
+            Velocity = DodgeDirection * PLAYER_SPEED;
+            MoveAndSlide();
+            return;
+        }
+        else if (dodgeCountdown == 0)
+        {
+            Reload = -1;
+        }
+
+        if (Input.IsActionPressed("GameDodge"))
+        {
+            invincibilityFrames = DODGE_I_FRAME_COUNT;
+            dodgeCountdown = DODGE_I_FRAME_COUNT;
+            DodgeDirection = new Vector2(direction.X, direction.Y);
+            SetVisual(Visuals.DODGING);
+        }
+        else if (Input.IsActionPressed("GameShoot"))
+        {
+            SetVisual(Visuals.GUNNING);
             if (shootFrames < 0 && direction != new Vector2(0, 0) && BulletsInChamber > 0)
             {
                 shootFrames = BULLET_SPAWN_TIME;
@@ -67,6 +121,15 @@ public partial class Player : CharacterBody2D
             Velocity = direction * PLAYER_SPEED;
             var collisionHappened = MoveAndSlide();
 
+            if (direction != Vector2.Zero)
+            {
+                SetVisual(Visuals.RUNNING);
+            }
+            else
+            {
+                SetVisual(Visuals.IDLING);
+            }
+
             if (collisionHappened)
             {
                 var res = GetLastSlideCollision();
@@ -77,7 +140,6 @@ public partial class Player : CharacterBody2D
                     if (invincibilityFrames < 0)
                     {
                         HealthPoints--;
-
                         AdjustHp(HealthPoints);
                     }
                 }
@@ -100,12 +162,13 @@ public partial class Player : CharacterBody2D
         random.Randomize();
 
         newBullet.Velocity = BULLET_SPEED * direction.Normalized().Rotated(random.RandfRange(-0.05f, 0.05f));
-        ActionGame.Spawn(newBullet, Position);
+        Level.Spawn(newBullet, Position);
+        Level.SpawnParticle(ParticleNames.Explosion, Position);
     }
 
     private void AdjustHp(int amount)
     {
         invincibilityFrames = I_FRAME_COUNT;
-        CustomEvents.Instance.EmitSignal("AdjustHP", amount);
+        CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.AdjustHP, amount);
     }
 }

@@ -9,7 +9,10 @@ radius = 19.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4flbx"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
 "loop": true,
 "name": &"Dodge",
 "speed": 5.0
@@ -57,6 +60,6 @@ script = ExtResource("1_4flbx")
 position = Vector2(0, 30)
 shape = SubResource("CircleShape2D_4flbx")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Visual" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_4flbx")

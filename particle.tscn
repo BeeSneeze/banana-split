@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccjcvc61wq03i"]
+
+[ext_resource type="Texture2D" uid="uid://dl3tu0470i655" path="res://Assets/Explosion2.png" id="1_547df"]
+[ext_resource type="Texture2D" uid="uid://dir5yjf51d1y6" path="res://Assets/Explosion1.png" id="2_osap4"]
+[ext_resource type="Texture2D" uid="uid://clo1xoseeffjd" path="res://Assets/Explosion3.png" id="3_w28hp"]
+[ext_resource type="Script" uid="uid://coj7bxwlvhcap" path="res://Particle.cs" id="4_osap4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vjm4o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_547df")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_osap4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_w28hp")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Explosion",
+"speed": 12.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Particle" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_vjm4o")
+animation = &"Explosion"
+script = ExtResource("4_osap4")
