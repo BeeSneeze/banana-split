@@ -4,8 +4,6 @@ using Common;
 
 public partial class Player : CharacterBody2D
 {
-    [Export]
-    private Game Game;
     private ActionGame ActionGame;
     private PackedScene BulletScene;
     private bool Initiated = false;
@@ -24,9 +22,6 @@ public partial class Player : CharacterBody2D
     private int invincibilityFrames = 0;
     private int shootFrames = 0;
 
-    [Signal]
-    public delegate void AdjustHPEventHandler(int HP);
-
     public override void _Ready()
     {
         if (!Initiated)
@@ -34,16 +29,13 @@ public partial class Player : CharacterBody2D
             throw new Exception("PLAYER WAS NOT INITIATED!");
         }
         BulletScene = GD.Load<PackedScene>("res://bullet.tscn");
+        AdjustHp(HealthPoints);
     }
 
-    public void Initiate(Game game, ActionGame actionGame)
+    public void Initiate(ActionGame actionGame)
     {
-        Game = game;
         ActionGame = actionGame;
         Initiated = true;
-
-        // Connect signals to relevant places
-        this.AdjustHP += game.AdjustHp;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -114,6 +106,6 @@ public partial class Player : CharacterBody2D
     private void AdjustHp(int amount)
     {
         invincibilityFrames = I_FRAME_COUNT;
-        EmitSignal("AdjustHP", HealthPoints);
+        CustomEvents.Instance.EmitSignal("AdjustHP", amount);
     }
 }

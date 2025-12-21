@@ -6,7 +6,7 @@ public partial class ActionGame : Control
     public override void _Ready()
     {
         var playerScene = GD.Load<PackedScene>("res://player.tscn").Instantiate<Player>();
-        playerScene.Initiate(GetParent<Game>(), this);
+        playerScene.Initiate(this);
         playerScene.Position = new Vector2(200, 200);
         AddChild(playerScene);
     }

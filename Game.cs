@@ -8,6 +8,7 @@ public partial class Game : Control
     public override void _Ready()
     {
         HP = GetNode<Label>("%HP");
+        CustomEvents.Instance.AdjustHP += AdjustHp;
     }
 
     public void AdjustHp(int amount)
