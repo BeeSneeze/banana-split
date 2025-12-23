@@ -32,6 +32,9 @@ public partial class ActionGame : Control
             case ParticleNames.Explosion:
                 newParticle.Animation = "Explosion";
                 break;
+            case ParticleNames.Dust:
+                newParticle.Animation = "Dust";
+                break;
         }
 
         AddChild(newParticle);

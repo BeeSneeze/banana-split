@@ -1,21 +1,45 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccjcvc61wq03i"]
+[gd_scene load_steps=10 format=3 uid="uid://ccjcvc61wq03i"]
 
-[ext_resource type="Texture2D" uid="uid://dl3tu0470i655" path="res://Assets/Explosion2.png" id="1_547df"]
-[ext_resource type="Texture2D" uid="uid://dir5yjf51d1y6" path="res://Assets/Explosion1.png" id="2_osap4"]
-[ext_resource type="Texture2D" uid="uid://clo1xoseeffjd" path="res://Assets/Explosion3.png" id="3_w28hp"]
+[ext_resource type="Texture2D" uid="uid://jb5rp0xnmiot" path="res://Assets/Dust1.png" id="1_m3m3g"]
+[ext_resource type="Texture2D" uid="uid://chepxtctswn70" path="res://Assets/Dust2.png" id="2_dvt0t"]
+[ext_resource type="Texture2D" uid="uid://kf7m5faqrg22" path="res://Assets/Dust3.png" id="3_m6xhv"]
 [ext_resource type="Script" uid="uid://coj7bxwlvhcap" path="res://Particle.cs" id="4_osap4"]
+[ext_resource type="Texture2D" uid="uid://clo5x6x5yxpv1" path="res://Assets/Dust4.png" id="4_qqyiu"]
+[ext_resource type="Texture2D" uid="uid://dl3tu0470i655" path="res://ActionGame/Particles/Explosion2.png" id="5_m3m3g"]
+[ext_resource type="Texture2D" uid="uid://dir5yjf51d1y6" path="res://ActionGame/Particles/Explosion1.png" id="6_dvt0t"]
+[ext_resource type="Texture2D" uid="uid://clo1xoseeffjd" path="res://ActionGame/Particles/Explosion3.png" id="7_m6xhv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vjm4o"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_547df")
+"duration": 0.8,
+"texture": ExtResource("1_m3m3g")
+}, {
+"duration": 0.7,
+"texture": ExtResource("2_dvt0t")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_osap4")
+"texture": ExtResource("3_m6xhv")
+}, {
+"duration": 1.3,
+"texture": ExtResource("4_qqyiu")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_w28hp")
+"texture": null
+}],
+"loop": false,
+"name": &"Dust",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_m3m3g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dvt0t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_m6xhv")
 }, {
 "duration": 1.0,
 "texture": null
@@ -31,6 +55,7 @@ animations = [{
 }]
 
 [node name="Particle" type="AnimatedSprite2D"]
+scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_vjm4o")
-animation = &"Explosion"
+animation = &"Dust"
 script = ExtResource("4_osap4")

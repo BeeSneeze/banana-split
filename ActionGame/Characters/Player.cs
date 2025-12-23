@@ -12,8 +12,8 @@ public partial class Player : CharacterBody2D
 
     private int HealthPoints = 10;
 
-    private const float PLAYER_SPEED = 350.0f;
-    private const float BULLET_SPEED = 13.0f;
+    private const float PLAYER_SPEED = 400.0f;
+    private const float BULLET_SPEED = 15.0f;
     private const int I_FRAME_COUNT = 60;
     private const int BULLET_SPAWN_TIME = 8;
     private const double RELOAD_TIME = 1.5;
@@ -170,7 +170,7 @@ public partial class Player : CharacterBody2D
 
         newBullet.Velocity = BULLET_SPEED * direction.Normalized().Rotated(random.RandfRange(-0.05f, 0.05f));
         Level.Spawn(newBullet, Position);
-        Level.SpawnParticle(ParticleNames.Explosion, Position);
+        Level.SpawnParticle(ParticleNames.Dust, Position);
     }
 
     private void AdjustHp(int amount)
