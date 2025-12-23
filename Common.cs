@@ -13,7 +13,13 @@ namespace Common
     public enum ParticleNames
     {
         Explosion,
+        Dust
+    }
 
+    public enum TextBoxType
+    {
+        Normal,
+        Numbers
     }
 
     public enum CollisionLayerDefs : uint
