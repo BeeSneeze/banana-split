@@ -8,6 +8,7 @@ public partial class Player : CharacterBody2D
     private PackedScene BulletScene;
     private AnimatedSprite2D Visual;
     private bool Initiated = false;
+    private AnimatedSprite2D Crosshair;
 
     private int HealthPoints = 10;
 
@@ -33,6 +34,7 @@ public partial class Player : CharacterBody2D
             throw new Exception("PLAYER WAS NOT INITIATED!");
         }
         Visual = GetNode<AnimatedSprite2D>("Visual");
+        Crosshair = GetNode<AnimatedSprite2D>("Crosshair");
         BulletScene = GD.Load<PackedScene>("res://bullet.tscn");
         AdjustHp(HealthPoints);
     }
@@ -77,6 +79,14 @@ public partial class Player : CharacterBody2D
         BulletSpawnCountdown--;
         DodgeCountdown--;
         Vector2 direction = Input.GetVector("GameLeft", "GameRight", "GameUp", "GameDown");
+
+        var normVector = direction.Normalized();
+        if (normVector != Vector2.Zero)
+        {
+            var newTween = GetTree().CreateTween();
+            newTween.TweenProperty(Crosshair, "position", new Vector2(normVector.X * 200, normVector.Y * 200), 0.06);
+        }
+
         Visual.FlipH = direction.X < 0;
 
         if (BulletsInChamber == 0)

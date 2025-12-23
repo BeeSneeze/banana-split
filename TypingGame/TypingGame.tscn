@@ -17,7 +17,7 @@ offset_right = 1920.0
 offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.8509804, 0.7764706, 0.6509804, 1)
+color = Color(0.5294118, 0.3529412, 0.16470589, 0.8627451)
 
 [node name="TypingBackground" type="ColorRect" parent="."]
 offset_top = 150.0

@@ -41,6 +41,13 @@ public partial class TypingGame : CanvasLayer
         TypeScreen.AddChild(newBox);
         TypeScreen.MoveChild(newBox, 0);
         ActiveBoxes.Enqueue(newBox);
+
+        float intensity = 1f;
+        foreach (var box in ActiveBoxes)
+        {
+            box.SetIntensity(intensity);
+            intensity -= 0.2f;
+        }
     }
 
     private void ResetActiveBox()

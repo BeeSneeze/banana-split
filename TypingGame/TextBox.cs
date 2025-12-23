@@ -18,4 +18,10 @@ public partial class TextBox : ColorRect
         TypeText = textName.ToUpper();
         Type = type;
     }
+
+    public void SetIntensity(float intensity)
+    {
+        Modulate = new Color(1, 1, 1, intensity);
+        GetNode<Label>("Label").Scale = new Vector2(intensity, intensity);
+    }
 }
