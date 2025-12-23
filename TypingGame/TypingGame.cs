@@ -10,46 +10,66 @@ public partial class TypingGame : CanvasLayer
 
     private string HeldString = "";
     private int CharacterIndex = 0;
+    private string[] WordList;
+    private PackedScene TextBoxScene;
 
-    private string[] WordList = { "banana", "apple", "acorn", "fudge", "bee" };
+    private string LoadFromFile(string url)
+    {
+        using var file = FileAccess.Open(url, FileAccess.ModeFlags.Read);
+        string content = file.GetAsText();
+        return content;
+    }
 
     public override void _Ready()
     {
-        var TextBoxScene = GD.Load<PackedScene>("res://TypingGame/TextBox.tscn");
+        WordList = LoadFromFile("res://TypingGame/LeftWords.txt").Split(" ");
+        TextBoxScene = GD.Load<PackedScene>("res://TypingGame/TextBox.tscn");
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 3; i++)
         {
-            var newBox = TextBoxScene.Instantiate<TextBox>();
-            newBox.Initialize(WordList[i], TextBoxType.Normal);
-            GetNode("TypingScreen").AddChild(newBox);
-            ActiveBoxes.Enqueue(newBox);
+            CreateNewActiveBox(GD.RandRange(0, WordList.Length - 1));
         }
+    }
+
+    private void CreateNewActiveBox(int wordIndex)
+    {
+        var newBox = TextBoxScene.Instantiate<TextBox>();
+        newBox.Initialize(WordList[wordIndex], TextBoxType.Normal);
+
+        var TypeScreen = GetNode("TypingScreen");
+
+        TypeScreen.AddChild(newBox);
+        TypeScreen.MoveChild(newBox, 0);
+        ActiveBoxes.Enqueue(newBox);
+    }
+
+    private void ResetActiveBox()
+    {
+        CharacterIndex = 0;
+        HeldString = "";
+    }
+
+    private void FinishBox()
+    {
+        GD.Print("WORD FINISHED!");
+        var finishedBox = ActiveBoxes.Dequeue();
+        finishedBox.QueueFree();
+        ResetActiveBox();
+        CreateNewActiveBox(GD.RandRange(0, WordList.Length - 1));
     }
 
     public override void _UnhandledInput(InputEvent @event)
     {
-        if (@event is InputEventKey eventKey)
+        if (@event is InputEventKey eventKey && eventKey.Pressed)
         {
-            if (eventKey.Pressed)
+            if (ActiveBoxes.First().TypeText[CharacterIndex].ToString() == eventKey.AsTextKeycode())
             {
-                if (ActiveBoxes.First().TypeText[CharacterIndex].ToString() == eventKey.AsTextKeycode())
+                HeldString += eventKey.AsTextKeycode();
+                GD.Print(HeldString);
+                CharacterIndex++;
+                if (CharacterIndex == ActiveBoxes.First().TypeText.Length)
                 {
-                    HeldString += eventKey.AsTextKeycode();
-                    GD.Print(HeldString);
-                    CharacterIndex++;
-                    if (CharacterIndex == ActiveBoxes.First().TypeText.Length)
-                    {
-                        GD.Print("WORD FINISHED!");
-                        var finishedBox = ActiveBoxes.Dequeue();
-                        finishedBox.QueueFree();
-                        CharacterIndex = 0;
-                        HeldString = "";
-                    }
-                }
-                else
-                {
-                    HeldString = "";
-                    CharacterIndex = 0;
+                    FinishBox();
                 }
             }
         }
