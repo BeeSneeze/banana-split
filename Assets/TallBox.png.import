@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deccgg7ari8ok"
-path="res://.godot/imported/MC_TEST.png-913663037670e3a64bbeb500de419523.ctex"
+uid="uid://3estkytlcyfy"
+path="res://.godot/imported/TallBox.png-997be44be7f09778eb6db3093a8c6c93.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/MC_TEST.png"
-dest_files=["res://.godot/imported/MC_TEST.png-913663037670e3a64bbeb500de419523.ctex"]
+source_file="res://Assets/TallBox.png"
+dest_files=["res://.godot/imported/TallBox.png-997be44be7f09778eb6db3093a8c6c93.ctex"]
 
 [params]
 

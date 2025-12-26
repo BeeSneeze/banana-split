@@ -1,0 +1,69 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://jn13xj3pxrru"]
+
+[ext_resource type="Texture2D" uid="uid://c6h7u8kvjyu55" path="res://ActionGame/Characters/MC_TEST_DODGE_1.png" id="1_ktnjt"]
+[ext_resource type="Texture2D" uid="uid://c8a514jmtddl0" path="res://ActionGame/Characters/MC_TEST_DODGE_2.png" id="2_wju4o"]
+[ext_resource type="Texture2D" uid="uid://chvbgf5k2hg83" path="res://ActionGame/Characters/MC_TEST_DODGE_3.png" id="3_lhmlf"]
+[ext_resource type="Texture2D" uid="uid://btwxpi5ysruc2" path="res://ActionGame/Characters/MC_TEST_SHOOT.png" id="4_1778f"]
+[ext_resource type="Texture2D" uid="uid://bcyr6oi1j50sx" path="res://ActionGame/Characters/MC_TEST_IDLE.png" id="5_vr512"]
+[ext_resource type="Texture2D" uid="uid://hmlq860sgwdv" path="res://ActionGame/Characters/MC_TEST_RUN1.png" id="6_enpyu"]
+[ext_resource type="Texture2D" uid="uid://cgywonbffl2xg" path="res://ActionGame/Characters/MC_TEST_RUN2.png" id="7_32u1l"]
+[ext_resource type="Texture2D" uid="uid://dk3ush02vfnp8" path="res://ActionGame/Characters/MC_TEST_RUN3.png" id="8_rnj7q"]
+[ext_resource type="Texture2D" uid="uid://deccgg7ari8ok" path="res://ActionGame/Characters/MC_TEST.png" id="9_u5xt1"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ktnjt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_wju4o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lhmlf")
+}],
+"loop": false,
+"name": &"Dodge",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_1778f")
+}],
+"loop": true,
+"name": &"Gunning",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_vr512")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_enpyu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_32u1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_rnj7q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_32u1l")
+}],
+"loop": true,
+"name": &"Running",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_u5xt1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

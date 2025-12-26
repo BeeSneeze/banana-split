@@ -13,7 +13,7 @@ public partial class ActionGame : Control
         var playerScene = GD.Load<PackedScene>("res://ActionGame/Characters/player.tscn").Instantiate<Player>();
         playerScene.Initiate(this);
         playerScene.Position = new Vector2(200, 200);
-        AddChild(playerScene);
+        GetNode("EntityMap").AddChild(playerScene);
     }
 
     public void Spawn(Node2D levelObject, Vector2 pos)
