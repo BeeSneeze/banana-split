@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4m6jpir67lon"]
+
+[ext_resource type="Script" uid="uid://drdrfbtq3u137" path="res://ActionGame/RoomTeleport.cs" id="1_nt254"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t50ur"]
+size = Vector2(50, 50)
+
+[node name="RoomTeleport" type="Area2D"]
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("1_nt254")
+RoomID = -999
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_t50ur")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

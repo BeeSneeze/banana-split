@@ -22,7 +22,7 @@ animations = [{
 z_index = 100
 y_sort_enabled = true
 collision_layer = 2
-collision_mask = 120
+collision_mask = 248
 script = ExtResource("1_4flbx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

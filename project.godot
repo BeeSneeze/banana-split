@@ -74,6 +74,7 @@ GameDodge={
 2d_physics/layer_5="EnemyBullets"
 2d_physics/layer_6="Walls"
 2d_physics/layer_7="Obstacles"
+2d_physics/layer_8="RoomTeleports"
 
 [rendering]
 
