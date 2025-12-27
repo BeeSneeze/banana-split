@@ -2,6 +2,7 @@ using Godot;
 using System;
 using Common;
 using System.Net.Sockets;
+using System.Linq;
 
 public partial class ActionGame : Control
 {
@@ -14,11 +15,10 @@ public partial class ActionGame : Control
     public override void _Ready()
     {
         Player = GD.Load<PackedScene>("res://ActionGame/Characters/player.tscn").Instantiate<Player>();
-        Player.Initiate(this);
         Player.Position = new Vector2(0, 0);
         CurrentRoom = GetChild<Room>(0);
+        Player.CurrentRoom = CurrentRoom; // NOTE: Player needs to have current room before being added to the scene!
         CurrentRoom.AddChild(Player);
-
         CustomEvents.Instance.PlayerChangedRoom += ChangeRoom;
     }
 
@@ -35,36 +35,16 @@ public partial class ActionGame : Control
     private void ChangeRoom(int roomID)
     {
         CurrentRoomID = roomID;
-
-        foreach (var child in GetChildren())
-        {
-            if (child as Room != null)
-            {
-                var room = (Room)child;
-                if (room.RoomID == CurrentRoomID)
-                {
-                    CurrentRoom = room;
-                }
-            }
-
-        }
+        CurrentRoom = (Room)GetChildren().First(x => ((Room)x).RoomID == roomID);
 
         GD.Print("Changed to room: " + CurrentRoomID.ToString());
         if (!RecentReparent && Player.GetParent() != CurrentRoom)
         {
+            // Defer and delay to avoid crashing
             Player.CallDeferred(Node2D.MethodName.Reparent, CurrentRoom);
             RecentReparent = true;
+            Player.CurrentRoom = CurrentRoom;
         }
-    }
-
-    public void Spawn(Node2D levelObject, Vector2 pos)
-    {
-        CurrentRoom.Spawn(levelObject, pos);
-    }
-
-    public void SpawnParticle(ParticleNames particleName, Vector2 pos)
-    {
-        CurrentRoom.SpawnParticle(particleName, pos);
     }
 
 }

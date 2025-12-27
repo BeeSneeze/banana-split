@@ -4,12 +4,10 @@ using Common;
 
 public partial class Player : CharacterBody2D
 {
-    private ActionGame Level;
+    public Room CurrentRoom;
     private PackedScene BulletScene;
     private AnimatedSprite2D Visual;
-    private bool Initiated = false;
     private AnimatedSprite2D Crosshair;
-
     private int HealthPoints = 10;
 
     private const float PLAYER_SPEED = 400.0f;
@@ -29,7 +27,7 @@ public partial class Player : CharacterBody2D
 
     public override void _Ready()
     {
-        if (!Initiated)
+        if (CurrentRoom == null)
         {
             throw new Exception("PLAYER WAS NOT INITIATED!");
         }
@@ -37,12 +35,6 @@ public partial class Player : CharacterBody2D
         Crosshair = GetNode<AnimatedSprite2D>("Crosshair");
         BulletScene = GD.Load<PackedScene>("res://bullet.tscn");
         AdjustHp(HealthPoints);
-    }
-
-    public void Initiate(ActionGame level)
-    {
-        Level = level;
-        Initiated = true;
     }
 
     private enum Visuals
@@ -169,8 +161,8 @@ public partial class Player : CharacterBody2D
         random.Randomize();
 
         newBullet.Velocity = BULLET_SPEED * direction.Normalized().Rotated(random.RandfRange(-0.05f, 0.05f));
-        Level.Spawn(newBullet, Position);
-        Level.SpawnParticle(ParticleNames.Dust, Position);
+        CurrentRoom.Spawn(newBullet, Position);
+        CurrentRoom.SpawnParticle(ParticleNames.Dust, Position);
     }
 
     private void AdjustHp(int amount)
