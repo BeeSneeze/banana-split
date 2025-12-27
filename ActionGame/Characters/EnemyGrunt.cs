@@ -6,6 +6,8 @@ public partial class EnemyGrunt : CharacterBody2D
     public Room Room;
     public ActionGame Level;
 
+    public int KnockBackFrames = 0;
+
     public const float SPEED = 100.0f;
 
     public override void _Ready()
@@ -19,7 +21,15 @@ public partial class EnemyGrunt : CharacterBody2D
         if (Level.Player != null)
         {
             Vector2 direction = Level.Player.Position - Position;
-            Velocity = direction.Normalized() * SPEED;
+            if (KnockBackFrames > 0)
+            {
+                KnockBackFrames--;
+            }
+            else
+            {
+                Velocity = direction.Normalized() * SPEED;
+            }
+
             MoveAndSlide();
         }
 

@@ -24,6 +24,13 @@ public partial class Bullet : AnimatableBody2D
         var collision = MoveAndCollide(Velocity);
         if (collision != null)
         {
+            var collider = collision.GetCollider();
+            if (collider as EnemyGrunt != null)
+            {
+                var body = (EnemyGrunt)collider;
+                body.KnockBackFrames = 100;
+                body.Velocity += Velocity * 5;
+            }
             Room.SpawnParticle(ParticleNames.Explosion, Position);
             QueueFree();
         }

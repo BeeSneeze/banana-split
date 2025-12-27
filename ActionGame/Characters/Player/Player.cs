@@ -5,6 +5,7 @@ using Common;
 public partial class Player : CharacterBody2D
 {
     public Room CurrentRoom;
+
     private PackedScene BulletScene;
     private AnimatedSprite2D Visual;
     private AnimatedSprite2D Crosshair;

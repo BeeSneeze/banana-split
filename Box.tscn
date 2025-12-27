@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
 size = Vector2(50, 50)
 
-[node name="Box" type="StaticBody2D" groups=["DamagesPlayer"]]
+[node name="Box" type="StaticBody2D"]
 y_sort_enabled = true
 collision_layer = 64
 collision_mask = 0
