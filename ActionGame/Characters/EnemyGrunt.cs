@@ -10,7 +10,6 @@ public partial class EnemyGrunt : CharacterBody2D
 
     public override void _Ready()
     {
-        GD.Print("ENEMY GRUNT SPAWNED");
         Room = GetParent().GetParent<Room>();
         Level = Room.GetParent<ActionGame>();
     }
@@ -19,7 +18,6 @@ public partial class EnemyGrunt : CharacterBody2D
     {
         if (Level.Player != null)
         {
-            GD.Print("ENEMY GRUNT SPAWNED");
             Vector2 direction = Level.Player.Position - Position;
             Velocity = direction.Normalized() * SPEED;
             MoveAndSlide();

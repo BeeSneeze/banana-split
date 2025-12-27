@@ -160,11 +160,14 @@ sources/0 = SubResource("TileSetScenesCollectionSource_cbt12")
 sources/1 = SubResource("TileSetScenesCollectionSource_ruplu")
 
 [node name="Room" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_4pryp")
 RoomID = 55
 
 [node name="TerrainMap" type="TileMapLayer" parent="."]
+z_index = -1
 tile_set = SubResource("TileSet_y0cuo")
 
 [node name="EntityMap" type="TileMapLayer" parent="."]
+y_sort_enabled = true
 tile_set = SubResource("TileSet_cbt12")

@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://jb5rp0xnmiot" path="res://ActionGame/Particles/Dust1.png" id="1_m3m3g"]
 [ext_resource type="Texture2D" uid="uid://chepxtctswn70" path="res://ActionGame/Particles/Dust2.png" id="2_dvt0t"]
 [ext_resource type="Texture2D" uid="uid://kf7m5faqrg22" path="res://ActionGame/Particles/Dust3.png" id="3_m6xhv"]
-[ext_resource type="Script" uid="uid://coj7bxwlvhcap" path="res://Particle.cs" id="4_osap4"]
+[ext_resource type="Script" uid="uid://coj7bxwlvhcap" path="res://ActionGame/Particles/Particle.cs" id="4_osap4"]
 [ext_resource type="Texture2D" uid="uid://clo5x6x5yxpv1" path="res://ActionGame/Particles/Dust4.png" id="4_qqyiu"]
 [ext_resource type="Texture2D" uid="uid://dl3tu0470i655" path="res://ActionGame/Particles/Explosion2.png" id="5_m3m3g"]
 [ext_resource type="Texture2D" uid="uid://dir5yjf51d1y6" path="res://ActionGame/Particles/Explosion1.png" id="6_dvt0t"]
@@ -55,7 +55,7 @@ animations = [{
 }]
 
 [node name="Particle" type="AnimatedSprite2D"]
-scale = Vector2(0.7, 0.7)
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_vjm4o")
 animation = &"Dust"
 script = ExtResource("4_osap4")

@@ -161,6 +161,7 @@ public partial class Player : CharacterBody2D
         random.Randomize();
 
         newBullet.Velocity = BULLET_SPEED * direction.Normalized().Rotated(random.RandfRange(-0.05f, 0.05f));
+        newBullet.Room = CurrentRoom;
         CurrentRoom.Spawn(newBullet, Position);
         CurrentRoom.SpawnParticle(ParticleNames.Dust, Position);
     }

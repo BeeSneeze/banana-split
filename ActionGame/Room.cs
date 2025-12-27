@@ -13,7 +13,7 @@ public partial class Room : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        ParticleScene = GD.Load<PackedScene>("res://particle.tscn");
+        ParticleScene = GD.Load<PackedScene>("res://ActionGame/Particles/particle.tscn");
     }
 
     public override void _Process(double delta)

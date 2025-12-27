@@ -22,6 +22,7 @@ animations = [{
 }]
 
 [node name="EnemyGrunt" type="CharacterBody2D"]
+y_sort_enabled = true
 collision_layer = 8
 collision_mask = 106
 motion_mode = 1

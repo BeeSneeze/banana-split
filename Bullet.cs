@@ -4,9 +4,10 @@ using Common;
 
 public partial class Bullet : AnimatableBody2D
 {
-    private Team Team;
-
+    public Room Room;
     public Vector2 Velocity = new Vector2(0, 0);
+
+    private Team Team;
 
     public override void _Ready()
     {
@@ -23,6 +24,7 @@ public partial class Bullet : AnimatableBody2D
         var collision = MoveAndCollide(Velocity);
         if (collision != null)
         {
+            Room.SpawnParticle(ParticleNames.Explosion, Position);
             QueueFree();
         }
     }
