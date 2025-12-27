@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ehka00ds8ee8"]
+[gd_scene load_steps=5 format=3 uid="uid://dxp37ccgsdir2"]
 
-[ext_resource type="Texture2D" uid="uid://7c5bh48x131o" path="res://ActionGame/Assets/Bullet.png" id="1_v7oki"]
-[ext_resource type="Script" path="res://Bullet.cs" id="1_v8qja"]
+[ext_resource type="Texture2D" uid="uid://7c5bh48x131o" path="res://Assets/Bullet.png" id="1_v7oki"]
+[ext_resource type="Script" uid="uid://k6lye3yjr8p4" path="res://Bullet.cs" id="1_v8qja"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rtl8c"]
 radius = 12.165525

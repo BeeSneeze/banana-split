@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n3f6hxfqsynd"
-path="res://.godot/imported/TEST_WALLS.png-efeda688c99e2e78ec021a9fee8e0753.ctex"
+uid="uid://3estkytlcyfy"
+path="res://.godot/imported/TallBox.png-34216ae677e2f3343d5e98a5ebe9157b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/TEST_WALLS.png"
-dest_files=["res://.godot/imported/TEST_WALLS.png-efeda688c99e2e78ec021a9fee8e0753.ctex"]
+source_file="res://ActionGame/Assets/TallBox.png"
+dest_files=["res://.godot/imported/TallBox.png-34216ae677e2f3343d5e98a5ebe9157b.ctex"]
 
 [params]
 

@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://buoaap43wlm1k"
-path="res://.godot/imported/Drybrush-KV2wD.ttf-b16745d023cd9fad1a63ef5020f0295a.fontdata"
+path="res://.godot/imported/Drybrush-KV2wD.ttf-76c10e766583ead8333808538b71ec1f.fontdata"
 
 [deps]
 
-source_file="res://Assets/Drybrush-KV2wD.ttf"
-dest_files=["res://.godot/imported/Drybrush-KV2wD.ttf-b16745d023cd9fad1a63ef5020f0295a.fontdata"]
+source_file="res://ActionGame/Assets/Drybrush-KV2wD.ttf"
+dest_files=["res://.godot/imported/Drybrush-KV2wD.ttf-76c10e766583ead8333808538b71ec1f.fontdata"]
 
 [params]
 

@@ -33,7 +33,7 @@ public partial class Player : CharacterBody2D
         }
         Visual = GetNode<AnimatedSprite2D>("Visual");
         Crosshair = GetNode<AnimatedSprite2D>("Crosshair");
-        BulletScene = GD.Load<PackedScene>("res://bullet.tscn");
+        BulletScene = GD.Load<PackedScene>("res://ActionGame/bullet.tscn");
         AdjustHp(HealthPoints);
     }
 

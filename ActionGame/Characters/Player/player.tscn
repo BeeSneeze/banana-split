@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cewc0m0uvh0wk" path="res://ActionGame/Characters/Player/Player.cs" id="1_r7jum"]
 [ext_resource type="SpriteFrames" uid="uid://jn13xj3pxrru" path="res://ActionGame/Characters/Player/PlayerSpriteFrames.tres" id="2_x3qpf"]
-[ext_resource type="Texture2D" uid="uid://d1kpk3rwsu5g4" path="res://Assets/Crosshair.png" id="3_ucn10"]
+[ext_resource type="Texture2D" uid="uid://d1kpk3rwsu5g4" path="res://ActionGame/Characters/Player/Crosshair.png" id="3_ucn10"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4flbx"]
 radius = 15.033297

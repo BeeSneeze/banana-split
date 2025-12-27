@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3estkytlcyfy"
-path="res://.godot/imported/TallBox.png-997be44be7f09778eb6db3093a8c6c93.ctex"
+uid="uid://d1kpk3rwsu5g4"
+path="res://.godot/imported/Crosshair.png-45af6478afa0811f34018b27aa1f43a7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/TallBox.png"
-dest_files=["res://.godot/imported/TallBox.png-997be44be7f09778eb6db3093a8c6c93.ctex"]
+source_file="res://ActionGame/Characters/Player/Crosshair.png"
+dest_files=["res://.godot/imported/Crosshair.png-45af6478afa0811f34018b27aa1f43a7.ctex"]
 
 [params]
 

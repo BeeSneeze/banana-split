@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkpow6l6vqb4w"
-path="res://.godot/imported/TEST_FLOOR.png-86d50472184fca99aa27e3d668ff5c96.ctex"
+uid="uid://n3f6hxfqsynd"
+path="res://.godot/imported/TEST_WALLS.png-42fce6cfc6fef2cc9a753f1bf4dd2456.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/TEST_FLOOR.png"
-dest_files=["res://.godot/imported/TEST_FLOOR.png-86d50472184fca99aa27e3d668ff5c96.ctex"]
+source_file="res://ActionGame/Assets/TEST_WALLS.png"
+dest_files=["res://.godot/imported/TEST_WALLS.png-42fce6cfc6fef2cc9a753f1bf4dd2456.ctex"]
 
 [params]
 

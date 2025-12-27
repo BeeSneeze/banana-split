@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1kpk3rwsu5g4"
-path="res://.godot/imported/Crosshair.png-5a969940a5d5ec866896c3bee6b2447d.ctex"
+uid="uid://7c5bh48x131o"
+path="res://.godot/imported/Bullet.png-1e810c0e1350724445217b119fb2b9c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Crosshair.png"
-dest_files=["res://.godot/imported/Crosshair.png-5a969940a5d5ec866896c3bee6b2447d.ctex"]
+source_file="res://ActionGame/Assets/Bullet.png"
+dest_files=["res://.godot/imported/Bullet.png-1e810c0e1350724445217b119fb2b9c2.ctex"]
 
 [params]
 

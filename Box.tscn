@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b1rxaifpo3pbr"]
 
-[ext_resource type="Texture2D" uid="uid://3estkytlcyfy" path="res://Assets/TallBox.png" id="1_0bkxv"]
+[ext_resource type="Texture2D" uid="uid://3estkytlcyfy" path="res://ActionGame/Assets/TallBox.png" id="1_0bkxv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
 size = Vector2(50, 50)

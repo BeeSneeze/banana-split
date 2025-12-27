@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://0kdxekgod83"]
 
-[ext_resource type="FontFile" uid="uid://buoaap43wlm1k" path="res://Assets/Drybrush-KV2wD.ttf" id="1_lpjdn"]
+[ext_resource type="FontFile" uid="uid://buoaap43wlm1k" path="res://ActionGame/Assets/Drybrush-KV2wD.ttf" id="1_lpjdn"]
 
 [resource]
 Label/colors/font_color = Color(0, 0, 0, 1)
