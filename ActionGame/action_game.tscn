@@ -17,7 +17,7 @@ script = ExtResource("1_mmdi0")
 [node name="StartingRoom" parent="." instance=ExtResource("4_cbt12")]
 
 [node name="Room1" parent="." instance=ExtResource("2_whqo5")]
-position = Vector2(1300, -100)
+position = Vector2(2400, -950)
 
 [node name="Room2" parent="." instance=ExtResource("3_cbt12")]
-position = Vector2(700, -100)
+position = Vector2(1800, -950)

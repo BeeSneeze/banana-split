@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbuofob75nj4r"]
+
+[ext_resource type="Script" uid="uid://dhb686x7oml1d" path="res://ActionGame/Characters/EnemyGrunt.cs" id="1_51me4"]
+[ext_resource type="Texture2D" uid="uid://cnniegbkcpdjk" path="res://ActionGame/Characters/ENEMY_GRUNT_TEST1.png" id="2_51me4"]
+[ext_resource type="Texture2D" uid="uid://bxq0n8qw3pmin" path="res://ActionGame/Characters/ENEMY_GRUNT_TEST2.png" id="3_vngqb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_51me4"]
+size = Vector2(50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x6xrf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_51me4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vngqb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EnemyGrunt" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 106
+motion_mode = 1
+script = ExtResource("1_51me4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_51me4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_x6xrf")
+autoplay = "default"
+offset = Vector2(0, -25)

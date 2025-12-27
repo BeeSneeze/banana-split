@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dk3ush02vfnp8"
-path="res://.godot/imported/MC_TEST_RUN3.png-bd91fd4db75f313ef3fc93bfb0bc4859.ctex"
+uid="uid://bxq0n8qw3pmin"
+path="res://.godot/imported/ENEMY_GRUNT_TEST2.png-6ec9a585c09234831a79224aa8fc4942.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ActionGame/Characters/MC_TEST_RUN3.png"
-dest_files=["res://.godot/imported/MC_TEST_RUN3.png-bd91fd4db75f313ef3fc93bfb0bc4859.ctex"]
+source_file="res://ActionGame/Characters/ENEMY_GRUNT_TEST2.png"
+dest_files=["res://.godot/imported/ENEMY_GRUNT_TEST2.png-6ec9a585c09234831a79224aa8fc4942.ctex"]
 
 [params]
 

@@ -8,13 +8,13 @@ public partial class ActionGame : Control
 {
     private int CurrentRoomID = -1;
     private Room CurrentRoom;
-    private Player Player;
+    public Player Player { get; private set; }
     private bool RecentReparent = false;
 
 
     public override void _Ready()
     {
-        Player = GD.Load<PackedScene>("res://ActionGame/Characters/player.tscn").Instantiate<Player>();
+        Player = GD.Load<PackedScene>("res://ActionGame/Characters/Player/player.tscn").Instantiate<Player>();
         Player.Position = new Vector2(0, 0);
         CurrentRoom = GetChild<Room>(0);
         Player.CurrentRoom = CurrentRoom; // NOTE: Player needs to have current room before being added to the scene!

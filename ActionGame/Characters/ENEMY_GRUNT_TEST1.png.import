@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chvbgf5k2hg83"
-path="res://.godot/imported/MC_TEST_DODGE_3.png-9faaafc1d0fbd83aa1d2ed647cd22937.ctex"
+uid="uid://cnniegbkcpdjk"
+path="res://.godot/imported/ENEMY_GRUNT_TEST1.png-fb597c881a6d68e485f0ba4c19f50a2b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ActionGame/Characters/MC_TEST_DODGE_3.png"
-dest_files=["res://.godot/imported/MC_TEST_DODGE_3.png-9faaafc1d0fbd83aa1d2ed647cd22937.ctex"]
+source_file="res://ActionGame/Characters/ENEMY_GRUNT_TEST1.png"
+dest_files=["res://.godot/imported/ENEMY_GRUNT_TEST1.png-fb597c881a6d68e485f0ba4c19f50a2b.ctex"]
 
 [params]
 
