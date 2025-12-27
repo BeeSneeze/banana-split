@@ -4,16 +4,17 @@ using Common;
 
 public partial class ActionGame : Control
 {
-    private PackedScene ParticleScene;
     private int CurrentRoomID = -1;
+    private Room CurrentRoom;
+    private Player Player;
 
     public override void _Ready()
     {
-        ParticleScene = GD.Load<PackedScene>("res://particle.tscn");
-        var playerScene = GD.Load<PackedScene>("res://ActionGame/Characters/player.tscn").Instantiate<Player>();
-        playerScene.Initiate(this);
-        playerScene.Position = new Vector2(200, 200);
-        GetNode("EntityMap").AddChild(playerScene);
+        Player = GD.Load<PackedScene>("res://ActionGame/Characters/player.tscn").Instantiate<Player>();
+        Player.Initiate(this);
+        Player.Position = new Vector2(0, 0);
+        CurrentRoom = GetChild<Room>(0);
+        CurrentRoom.GetNode("EntityMap").AddChild(Player);
 
         CustomEvents.Instance.PlayerChangedRoom += ChangeRoom;
     }
@@ -21,30 +22,26 @@ public partial class ActionGame : Control
     private void ChangeRoom(int roomID)
     {
         CurrentRoomID = roomID;
+
+        foreach (Room room in GetChildren())
+        {
+            if (room.RoomID == CurrentRoomID)
+            {
+                CurrentRoom = room;
+            }
+        }
+
         GD.Print("Changed to room: " + CurrentRoomID.ToString());
     }
 
     public void Spawn(Node2D levelObject, Vector2 pos)
     {
-        levelObject.Position = pos;
-        AddChild(levelObject);
+        CurrentRoom.Spawn(levelObject, pos);
     }
 
     public void SpawnParticle(ParticleNames particleName, Vector2 pos)
     {
-        var newParticle = ParticleScene.Instantiate<AnimatedSprite2D>();
-        newParticle.Position = pos;
-
-        switch (particleName)
-        {
-            case ParticleNames.Explosion:
-                newParticle.Animation = "Explosion";
-                break;
-            case ParticleNames.Dust:
-                newParticle.Animation = "Dust";
-                break;
-        }
-
-        AddChild(newParticle);
+        CurrentRoom.SpawnParticle(particleName, pos);
     }
+
 }
