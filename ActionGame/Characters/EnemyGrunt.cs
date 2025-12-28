@@ -7,11 +7,12 @@ public partial class EnemyGrunt : CharacterBody2D
     public ActionGame Level;
     public int Knockbackframes = 0;
 
-    public const float ACCELERATION = 8.0f;
+    private const float ACCELERATION = 8.0f;
     private const float MAX_SPEED = 150f;
 
     public override void _Ready()
     {
+        // TODO: Fix references to room and level
         Room = GetParent().GetParent<Room>();
         Level = Room.GetParent<ActionGame>();
     }
