@@ -5,7 +5,7 @@ using System;
 public partial class CustomEvents : Node
 {
     [Signal]
-    public delegate void AdjustHPEventHandler(int HP);
+    public delegate void PlayerTookDamageEventHandler(int HP);
     [Signal]
     public delegate void PlayerChangedRoomEventHandler(int roomID);
 

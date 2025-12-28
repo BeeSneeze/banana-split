@@ -23,7 +23,7 @@ public partial class TypingGame : CanvasLayer
 
     public override void _Ready()
     {
-        CustomEvents.Instance.AdjustHP += AddBoxToInventory;
+        CustomEvents.Instance.PlayerTookDamage += AddBoxToInventory;
         WordList = LoadFromFile("res://TypingGame/LeftWords.txt").Split(" ");
         TextBoxScene = GD.Load<PackedScene>("res://TypingGame/TextBox.tscn");
         InventoryBoxScene = GD.Load<PackedScene>("res://TypingGame/queue_box.tscn");

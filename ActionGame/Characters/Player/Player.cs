@@ -9,7 +9,6 @@ public partial class Player : CharacterBody2D
     private PackedScene BulletScene;
     private AnimatedSprite2D Visual;
     private AnimatedSprite2D Crosshair;
-    private int HealthPoints = 10;
 
     private const float PLAYER_SPEED = 400.0f;
     private const float BULLET_SPEED = 15.0f;
@@ -35,7 +34,6 @@ public partial class Player : CharacterBody2D
         Visual = GetNode<AnimatedSprite2D>("Visual");
         Crosshair = GetNode<AnimatedSprite2D>("Crosshair");
         BulletScene = GD.Load<PackedScene>("res://ActionGame/bullet.tscn");
-        AdjustHp(HealthPoints);
     }
 
     private enum Visuals
@@ -140,8 +138,7 @@ public partial class Player : CharacterBody2D
 
                 if (collision.IsInGroup("DamagesPlayer") && invincibilityFrames <= 0)
                 {
-                    HealthPoints--;
-                    AdjustHp(HealthPoints);
+                    TakeDamage(1);
                 }
             }
         }
@@ -167,9 +164,9 @@ public partial class Player : CharacterBody2D
         CurrentRoom.SpawnParticle(ParticleNames.Dust, Position);
     }
 
-    private void AdjustHp(int amount)
+    private void TakeDamage(int amount)
     {
         invincibilityFrames = I_FRAME_COUNT;
-        CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.AdjustHP, amount);
+        CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.PlayerTookDamage, amount);
     }
 }
