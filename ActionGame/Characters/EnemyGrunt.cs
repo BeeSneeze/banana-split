@@ -1,20 +1,14 @@
 using Godot;
-using System;
 
-public partial class EnemyGrunt : CharacterBody2D
+public partial class EnemyGrunt : Enemy
 {
-    public Room Room;
-    public ActionGame Level;
-    public int Knockbackframes = 0;
-
     private const float ACCELERATION = 8.0f;
     private const float MAX_SPEED = 150f;
 
     public override void _Ready()
     {
-        // TODO: Fix references to room and level
-        Room = GetParent().GetParent<Room>();
-        Level = Room.GetParent<ActionGame>();
+        HealthPoints = 5;
+        base._Ready();
     }
 
     public override void _PhysicsProcess(double delta)

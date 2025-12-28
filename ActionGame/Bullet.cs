@@ -25,11 +25,9 @@ public partial class Bullet : AnimatableBody2D
         if (collision != null)
         {
             var collider = (Node)collision.GetCollider();
-            if (collider.IsInGroup("CanBeKnockedBack"))
+            if (collider.IsInGroup("CanBeKnockedBack") && collider as Enemy != null)
             {
-                var body = (EnemyGrunt)collider;
-                body.Knockbackframes = 10;
-                body.Velocity += Velocity * 25;
+                ((Enemy)collider).TakeHit(Velocity);
             }
             Room.SpawnParticle(ParticleNames.Explosion, Position);
             QueueFree();
