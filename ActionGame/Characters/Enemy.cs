@@ -1,13 +1,14 @@
 using Common;
 using Godot;
 
-public partial class Enemy : CharacterBody2D
+public abstract partial class Enemy : CharacterBody2D
 {
     public Room Room;
     public ActionGame Level;
     public int Knockbackframes = 0;
     protected int HealthPoints;
-    protected float BULLET_SPEED;
+    protected abstract float MAX_SPEED { get; }
+    protected abstract float BULLET_SPEED { get; }
     private PackedScene BulletScene;
 
     public override void _Ready()
@@ -25,9 +26,18 @@ public partial class Enemy : CharacterBody2D
         HealthPoints--;
         if (HealthPoints < 1)
         {
-            GD.Print("GRUNT DIED!");
+            GD.Print("ENEMY DIED!");
             QueueFree();
         }
+    }
+
+    protected void ResolveMovement()
+    {
+        if (Velocity.Length() > MAX_SPEED && Knockbackframes < 1)
+        {
+            Velocity = Velocity.Normalized() * MAX_SPEED;
+        }
+        MoveAndSlide();
     }
 
     protected void SpawnBullet(Vector2 direction)

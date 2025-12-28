@@ -1,12 +1,14 @@
 using Godot;
 
-public partial class EnemyGrunt : Enemy
+public partial class EnemyWimp : Enemy
 {
     protected override float MAX_SPEED => 150f;
     protected override float BULLET_SPEED => 10f;
 
     private int BulletCountdown;
     private const float ACCELERATION = 8.0f;
+
+    private const float WIMP_DISTANCE = 400f;
 
     public override void _Ready()
     {
@@ -39,9 +41,17 @@ public partial class EnemyGrunt : Enemy
         }
         else
         {
-            Velocity += direction.Normalized() * ACCELERATION;
+            if (direction.Length() > WIMP_DISTANCE)
+            {
+                Velocity += direction.Normalized() * ACCELERATION;
+            }
+            else
+            {
+                Velocity -= direction.Normalized() * ACCELERATION;
+            }
         }
 
         ResolveMovement();
     }
+
 }
