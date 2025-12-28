@@ -41,7 +41,9 @@ public partial class ActionGame : Control
         if (!RecentReparent && Player.GetParent() != CurrentRoom)
         {
             // Defer and delay to avoid crashing
+            Player.GetNode<PlayerCamera>("%Camera").PositionSmoothingEnabled = false;
             Player.CallDeferred(Node2D.MethodName.Reparent, CurrentRoom);
+            Player.GetNode("%Camera").CallDeferred(PlayerCamera.MethodName.TurnOnPositionSmoothing);
             RecentReparent = true;
             Player.CurrentRoom = CurrentRoom;
         }
