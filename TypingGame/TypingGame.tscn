@@ -1,23 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5dhnqbeerg6b"]
+[gd_scene load_steps=3 format=3 uid="uid://c5dhnqbeerg6b"]
 
 [ext_resource type="Script" uid="uid://ck0whjdcuambk" path="res://TypingGame/TypingGame.cs" id="1_nb7c1"]
+[ext_resource type="PackedScene" uid="uid://oog84yvlkm6v" path="res://TypingGame/queue_box.tscn" id="2_atfkp"]
 
 [node name="TypingGameLayer" type="CanvasLayer"]
 script = ExtResource("1_nb7c1")
 
-[node name="InventoryBar" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 150.0
-
-[node name="ColorRect" type="ColorRect" parent="InventoryBar"]
-layout_mode = 0
+[node name="InventoryBackground" type="ColorRect" parent="."]
 offset_right = 1920.0
 offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.5294118, 0.3529412, 0.16470589, 0.8627451)
+color = Color(0.4725194, 0.37469634, 0.2925193, 0.8627451)
+
+[node name="InventoryBar" type="HBoxContainer" parent="."]
+offset_left = 190.0
+offset_right = 1920.0
+offset_bottom = 120.0
+theme_override_constants/separation = 20
+
+[node name="QueueBox" parent="InventoryBar" instance=ExtResource("2_atfkp")]
+layout_mode = 2
+
+[node name="QueueBox2" parent="InventoryBar" instance=ExtResource("2_atfkp")]
+layout_mode = 2
+
+[node name="QueueBox3" parent="InventoryBar" instance=ExtResource("2_atfkp")]
+layout_mode = 2
+
+[node name="QueueBox4" parent="InventoryBar" instance=ExtResource("2_atfkp")]
+layout_mode = 2
+
+[node name="QueueBox5" parent="InventoryBar" instance=ExtResource("2_atfkp")]
+layout_mode = 2
 
 [node name="TypingBackground" type="ColorRect" parent="."]
 offset_top = 120.0

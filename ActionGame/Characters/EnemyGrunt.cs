@@ -5,10 +5,10 @@ public partial class EnemyGrunt : CharacterBody2D
 {
     public Room Room;
     public ActionGame Level;
+    public int Knockbackframes = 0;
 
-    public int KnockBackFrames = 0;
-
-    public const float SPEED = 100.0f;
+    public const float ACCELERATION = 8.0f;
+    private const float MAX_SPEED = 150f;
 
     public override void _Ready()
     {
@@ -21,13 +21,18 @@ public partial class EnemyGrunt : CharacterBody2D
         if (Level.Player != null)
         {
             Vector2 direction = Level.Player.Position - Position;
-            if (KnockBackFrames > 0)
+
+            if (Knockbackframes > 0)
             {
-                KnockBackFrames--;
+                Knockbackframes--;
             }
             else
             {
-                Velocity = direction.Normalized() * SPEED;
+                Velocity += direction.Normalized() * ACCELERATION;
+            }
+            if (Velocity.Length() > MAX_SPEED && Knockbackframes < 1)
+            {
+                Velocity = Velocity.Normalized() * MAX_SPEED;
             }
 
             MoveAndSlide();
