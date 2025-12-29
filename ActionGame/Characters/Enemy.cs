@@ -33,6 +33,7 @@ public abstract partial class Enemy : CharacterBody2D
 
     protected void ResolveMovement()
     {
+        GetNode<AnimatedSprite2D>("Visual").FlipH = Velocity.X < 0;
         if (Velocity.Length() > MAX_SPEED && Knockbackframes < 1)
         {
             Velocity = Velocity.Normalized() * MAX_SPEED;

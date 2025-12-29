@@ -29,11 +29,6 @@ window/stretch/mode="viewport"
 
 project/assembly_name="Banana Split"
 
-[global_group]
-
-DamagesPlayer="Objects that damage the player upon collision"
-CanBeKnockedBack=""
-
 [input]
 
 GameLeft={

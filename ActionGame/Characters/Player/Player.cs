@@ -133,12 +133,15 @@ public partial class Player : CharacterBody2D
 
             if (collisionHappened)
             {
-                var res = GetLastSlideCollision();
-                var collision = (Node2D)res.GetCollider();
-
-                if (collision.IsInGroup("DamagesPlayer") && invincibilityFrames <= 0)
+                // This handles contact damage to enemies
+                // Enemy bullets resolve damage themselves
+                var collision = GetLastSlideCollision().GetCollider();
+                if (collision as PhysicsBody2D != null)
                 {
-                    TakeDamage(1);
+                    if (((PhysicsBody2D)collision).CollisionLayer == (uint)CollisionLayerDefs.ENEMY)
+                    {
+                        TakeDamage(1);
+                    }
                 }
             }
         }
@@ -164,8 +167,13 @@ public partial class Player : CharacterBody2D
         CurrentRoom.SpawnParticle(ParticleNames.Dust, Position);
     }
 
-    private void TakeDamage(int amount)
+    public void TakeDamage(int amount)
     {
+        if (invincibilityFrames > 0)
+        {
+            return;
+        }
+
         invincibilityFrames = I_FRAME_COUNT;
         CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.PlayerTookDamage, amount);
     }

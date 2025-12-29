@@ -25,11 +25,18 @@ public partial class Bullet : AnimatableBody2D
         if (collision != null)
         {
             var collider = (Node)collision.GetCollider();
-            if (collider.IsInGroup("CanBeKnockedBack") && collider as Enemy != null)
+            if (collider as Enemy != null)
             {
                 ((Enemy)collider).TakeHit(Velocity);
             }
+            else if (collider as Player != null)
+            {
+                GD.Print("DAMAGING PLAYER");
+                ((Player)collider).TakeDamage(1);
+            }
+
             Room.SpawnParticle(ParticleNames.Explosion, Position);
+
             QueueFree();
         }
     }
