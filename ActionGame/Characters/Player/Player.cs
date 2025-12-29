@@ -23,6 +23,7 @@ public partial class Player : CharacterBody2D
     private int invincibilityFrames = 0;
     private int BulletSpawnCountdown = 0;
     private int DodgeCountdown = 0;
+    private bool Dodging = false;
     private Vector2 DodgeDirection = new Vector2(0, 0);
 
     public override void _Ready()
@@ -80,6 +81,15 @@ public partial class Player : CharacterBody2D
 
         Visual.FlipH = direction.X < 0;
 
+        if (invincibilityFrames > 0 && !Dodging)
+        {
+            Visual.Visible = !Visual.Visible;
+        }
+        else if (invincibilityFrames == 0)
+        {
+            Visual.Visible = true;
+        }
+
         if (BulletsInChamber == 0)
         {
             ReloadCountdown -= delta;
@@ -98,11 +108,13 @@ public partial class Player : CharacterBody2D
         }
         else if (DodgeCountdown == 0)
         {
+            Dodging = false;
             ReloadCountdown = -1; // Always be ready for a ReloadCountdown after a dodge
         }
 
         if (Input.IsActionPressed("GameDodge") && direction != Vector2.Zero)
         {
+            Dodging = true;
             invincibilityFrames = DODGE_I_FRAME_COUNT;
             DodgeCountdown = DODGE_I_FRAME_COUNT;
             DodgeDirection = direction.Normalized();
