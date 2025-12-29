@@ -30,6 +30,7 @@ namespace Common
         ENEMY = 8,
         ENEMY_BULLETS = 16,
         WALLS = 32,
-        OBSTACLES = 64
+        OBSTACLES = 64,
+        PICKUPS = 128
     }
 }

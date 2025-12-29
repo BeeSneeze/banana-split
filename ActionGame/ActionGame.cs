@@ -20,6 +20,8 @@ public partial class ActionGame : Control
         Player.CurrentRoom = CurrentRoom; // NOTE: Player needs to have current room before being added to the scene!
         CurrentRoom.AddChild(Player);
         CustomEvents.Instance.PlayerChangedRoom += ChangeRoom;
+        CustomEvents.Instance.GameOver += GameOver;
+        CustomEvents.Instance.GameWon += GameWon;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -31,6 +33,15 @@ public partial class ActionGame : Control
         }
     }
 
+    private void GameOver()
+    {
+        GD.Print("GAME OVER!");
+    }
+
+    private void GameWon()
+    {
+        GD.Print("GAME WIN! Yay ^-^");
+    }
 
     private void ChangeRoom(int roomID)
     {

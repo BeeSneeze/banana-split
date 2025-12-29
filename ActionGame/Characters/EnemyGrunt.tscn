@@ -21,7 +21,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="EnemyGrunt" type="CharacterBody2D" groups=["CanBeKnockedBack", "DamagesPlayer"]]
+[node name="EnemyGrunt" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 8
 collision_mask = 106

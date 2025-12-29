@@ -64,6 +64,11 @@ public partial class TypingGame : CanvasLayer
         InventoryBar.MoveChild(newBox, 0);
         InventoryBoxes.Enqueue(newBox);
 
+        if (InventoryBoxes.Count > 7)
+        {
+            CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.GameOver);
+        }
+
         if (ActiveBoxes.Count < 3)
         {
             RemoveBoxFromInventory();

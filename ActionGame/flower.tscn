@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://gqai34v1p45x"]
+
+[ext_resource type="Texture2D" uid="uid://cvd6l2x04ocxo" path="res://ActionGame/Flower.png" id="1_ao7y2"]
+[ext_resource type="Script" uid="uid://ckhykcqoqj40q" path="res://ActionGame/Flower.cs" id="1_bl3ey"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bl3ey"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ao7y2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jynrg"]
+size = Vector2(50, 50)
+
+[node name="Flower" type="Area2D"]
+collision_layer = 256
+collision_mask = 2
+script = ExtResource("1_bl3ey")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bl3ey")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jynrg")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEnter"]
