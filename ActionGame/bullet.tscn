@@ -1,13 +1,34 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxp37ccgsdir2"]
+[gd_scene load_steps=7 format=3 uid="uid://uuh0fvsqcrm0"]
 
-[ext_resource type="Texture2D" uid="uid://7c5bh48x131o" path="res://Assets/Bullet.png" id="1_v7oki"]
-[ext_resource type="Script" uid="uid://k6lye3yjr8p4" path="res://Bullet.cs" id="1_v8qja"]
+[ext_resource type="Texture2D" uid="uid://7c5bh48x131o" path="res://ActionGame/Assets/Bullet.png" id="1_v7oki"]
+[ext_resource type="Script" uid="uid://k6lye3yjr8p4" path="res://ActionGame/Bullet.cs" id="1_v8qja"]
+[ext_resource type="Texture2D" uid="uid://cxxjtjehccsvc" path="res://ActionGame/Characters/Player/Player_Bullet_1.png" id="2_0g0bc"]
+[ext_resource type="Texture2D" uid="uid://caxs5hc5kjsmu" path="res://ActionGame/Characters/Player/Player_Bullet_2.png" id="3_0iu8t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rtl8c"]
 radius = 12.165525
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v7oki"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_v7oki")
+}],
+"loop": true,
+"name": &"Enemy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0g0bc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0iu8t")
+}],
+"loop": true,
+"name": &"Player",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_v7oki")
@@ -28,5 +49,6 @@ shape = SubResource("CircleShape2D_rtl8c")
 
 [node name="Visual" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_v7oki")
+animation = &"Enemy"

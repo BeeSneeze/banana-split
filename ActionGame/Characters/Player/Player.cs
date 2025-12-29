@@ -10,11 +10,11 @@ public partial class Player : CharacterBody2D
     private AnimatedSprite2D Visual;
     private AnimatedSprite2D Crosshair;
 
-    private const float PLAYER_SPEED = 400.0f;
-    private const float BULLET_SPEED = 15.0f;
+    private const float PLAYER_SPEED = 360.0f;
+    private const float BULLET_SPEED = 13.0f;
     private const int I_FRAME_COUNT = 60;
-    private const int BULLET_SPAWN_TIME = 8;
-    private const double RELOAD_TIME = 1.5;
+    private const int BULLET_SPAWN_TIME = 9;
+    private const double RELOAD_TIME = 1.0;
     private const int MAX_BULLETS_IN_CHAMBER = 6;
     private const int DODGE_I_FRAME_COUNT = 30;
 

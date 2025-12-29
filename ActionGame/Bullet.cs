@@ -43,16 +43,21 @@ public partial class Bullet : AnimatableBody2D
 
     public void SetTeam(Team setAllegiance)
     {
+
+        var visual = GetNode<AnimatedSprite2D>("Visual");
         Team = setAllegiance;
         if (Team == Team.ENEMY)
         {
+            visual.Animation = "Enemy";
             CollisionLayer = ((uint)CollisionLayerDefs.ENEMY_BULLETS);
             CollisionMask = ((uint)CollisionLayerDefs.PLAYER) + ((uint)CollisionLayerDefs.WALLS);
         }
         else if (Team == Team.PLAYER)
         {
+            visual.Animation = "Player";
             CollisionLayer = ((uint)CollisionLayerDefs.PLAYER_BULLETS);
             CollisionMask = ((uint)CollisionLayerDefs.ENEMY) + ((uint)CollisionLayerDefs.WALLS);
         }
+        visual.Play();
     }
 }
