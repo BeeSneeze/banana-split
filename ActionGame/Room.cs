@@ -58,6 +58,9 @@ public partial class Room : Node2D
             case ParticleNames.Dust:
                 newParticle.Animation = "Dust";
                 break;
+            case ParticleNames.Splash:
+                newParticle.Animation = "Splash";
+                break;
         }
 
         AddChild(newParticle);

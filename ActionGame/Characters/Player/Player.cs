@@ -19,7 +19,7 @@ public partial class Player : CharacterBody2D
     private const int DODGE_I_FRAME_COUNT = 30;
 
     private double ReloadCountdown = 0;
-    private int BulletsInChamber = 6;
+    private int BulletsInChamber = MAX_BULLETS_IN_CHAMBER;
     private int invincibilityFrames = 0;
     private int BulletSpawnCountdown = 0;
     private int DodgeCountdown = 0;
@@ -35,34 +35,6 @@ public partial class Player : CharacterBody2D
         Visual = GetNode<AnimatedSprite2D>("Visual");
         Crosshair = GetNode<AnimatedSprite2D>("Crosshair");
         BulletScene = GD.Load<PackedScene>("res://ActionGame/bullet.tscn");
-    }
-
-    private enum Visuals
-    {
-        RUNNING,
-        GUNNING,
-        DODGING,
-        IDLING
-    }
-
-    private void SetVisual(Visuals vis)
-    {
-        switch (vis)
-        {
-            case Visuals.RUNNING:
-                Visual.Animation = "Running";
-                break;
-            case Visuals.GUNNING:
-                Visual.Animation = "Gunning";
-                break;
-            case Visuals.DODGING:
-                Visual.Animation = "Dodge";
-                break;
-            case Visuals.IDLING:
-                Visual.Animation = "Idle";
-                break;
-        }
-        Visual.Play();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -189,5 +161,33 @@ public partial class Player : CharacterBody2D
 
         invincibilityFrames = I_FRAME_COUNT;
         CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.PlayerTookDamage, amount);
+    }
+
+    private enum Visuals
+    {
+        RUNNING,
+        GUNNING,
+        DODGING,
+        IDLING
+    }
+
+    private void SetVisual(Visuals vis)
+    {
+        switch (vis)
+        {
+            case Visuals.RUNNING:
+                Visual.Animation = "Running";
+                break;
+            case Visuals.GUNNING:
+                Visual.Animation = "Gunning";
+                break;
+            case Visuals.DODGING:
+                Visual.Animation = "Dodge";
+                break;
+            case Visuals.IDLING:
+                Visual.Animation = "Idle";
+                break;
+        }
+        Visual.Play();
     }
 }

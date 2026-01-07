@@ -35,7 +35,14 @@ public partial class Bullet : AnimatableBody2D
                 ((Player)collider).TakeDamage(1);
             }
 
-            Room.SpawnParticle(ParticleNames.Explosion, Position);
+            if (Team == Team.PLAYER)
+            {
+                Room.SpawnParticle(ParticleNames.Splash, Position);
+            }
+            else
+            {
+                Room.SpawnParticle(ParticleNames.Explosion, Position);
+            }
 
             QueueFree();
         }

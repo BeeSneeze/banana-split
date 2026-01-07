@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccjcvc61wq03i"]
+[gd_scene load_steps=14 format=3 uid="uid://ccjcvc61wq03i"]
 
 [ext_resource type="Texture2D" uid="uid://jb5rp0xnmiot" path="res://ActionGame/Particles/Dust1.png" id="1_m3m3g"]
 [ext_resource type="Texture2D" uid="uid://chepxtctswn70" path="res://ActionGame/Particles/Dust2.png" id="2_dvt0t"]
@@ -8,6 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://dl3tu0470i655" path="res://ActionGame/Particles/Explosion2.png" id="5_m3m3g"]
 [ext_resource type="Texture2D" uid="uid://dir5yjf51d1y6" path="res://ActionGame/Particles/Explosion1.png" id="6_dvt0t"]
 [ext_resource type="Texture2D" uid="uid://clo1xoseeffjd" path="res://ActionGame/Particles/Explosion3.png" id="7_m6xhv"]
+[ext_resource type="Texture2D" uid="uid://iroi8v7n3q4n" path="res://ActionGame/Particles/Splash1.png" id="8_3g8we"]
+[ext_resource type="Texture2D" uid="uid://bl2qp5nx2x7cx" path="res://ActionGame/Particles/Splash2.png" id="9_itlxe"]
+[ext_resource type="Texture2D" uid="uid://bobfr2wunkxqp" path="res://ActionGame/Particles/Splash3.png" id="10_ha1wp"]
+[ext_resource type="Texture2D" uid="uid://najxoe2ffms1" path="res://ActionGame/Particles/Splash4.png" id="11_fr6n4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vjm4o"]
 animations = [{
@@ -48,6 +52,26 @@ animations = [{
 "name": &"Explosion",
 "speed": 12.0
 }, {
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("8_3g8we")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_itlxe")
+}, {
+"duration": 0.8,
+"texture": ExtResource("10_ha1wp")
+}, {
+"duration": 0.7,
+"texture": ExtResource("11_fr6n4")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Splash",
+"speed": 10.0
+}, {
 "frames": [],
 "loop": true,
 "name": &"default",
@@ -57,5 +81,7 @@ animations = [{
 [node name="Particle" type="AnimatedSprite2D"]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_vjm4o")
-animation = &"Dust"
+animation = &"Splash"
+frame = 4
+frame_progress = 1.0
 script = ExtResource("4_osap4")

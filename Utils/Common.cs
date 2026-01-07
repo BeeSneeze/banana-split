@@ -13,7 +13,8 @@ namespace Common
     public enum ParticleNames
     {
         Explosion,
-        Dust
+        Dust,
+        Splash
     }
 
     public enum TextBoxType
