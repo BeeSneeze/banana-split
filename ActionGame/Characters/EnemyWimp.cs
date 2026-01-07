@@ -4,16 +4,15 @@ public partial class EnemyWimp : Enemy
 {
     protected override float MAX_SPEED => 150f;
     protected override float BULLET_SPEED => 10f;
+    protected override int MAX_HEALTH => 5;
 
     private int BulletCountdown;
     private const float ACCELERATION = 8.0f;
-
     private const float WIMP_DISTANCE = 400f;
 
     public override void _Ready()
     {
         BulletCountdown = 200 + GD.RandRange(-40, 40);
-        HealthPoints = 5;
         base._Ready();
     }
 

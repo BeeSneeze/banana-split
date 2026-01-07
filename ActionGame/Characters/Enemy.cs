@@ -7,12 +7,14 @@ public abstract partial class Enemy : CharacterBody2D
     public ActionGame Level;
     public int Knockbackframes = 0;
     protected int HealthPoints;
+    protected abstract int MAX_HEALTH { get; }
     protected abstract float MAX_SPEED { get; }
     protected abstract float BULLET_SPEED { get; }
     private PackedScene BulletScene;
 
     public override void _Ready()
     {
+        HealthPoints = MAX_HEALTH;
         BulletScene = GD.Load<PackedScene>("res://ActionGame/bullet.tscn");
         // TODO: Fix references to room and level
         Room = GetParent().GetParent<Room>();

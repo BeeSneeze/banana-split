@@ -4,16 +4,9 @@ public partial class EnemyGrunt : Enemy
 {
     protected override float MAX_SPEED => 150f;
     protected override float BULLET_SPEED => 10f;
+    protected override int MAX_HEALTH => 4;
 
-    private int BulletCountdown;
     private const float ACCELERATION = 8.0f;
-
-    public override void _Ready()
-    {
-        BulletCountdown = 200 + GD.RandRange(-40, 40);
-        HealthPoints = 5;
-        base._Ready();
-    }
 
     public override void _PhysicsProcess(double delta)
     {
@@ -21,16 +14,6 @@ public partial class EnemyGrunt : Enemy
         if (Level.Player != null)
         {
             direction = Level.Player.Position - Position;
-        }
-
-        if (BulletCountdown > 0)
-        {
-            BulletCountdown--;
-        }
-        else
-        {
-            SpawnBullet(direction);
-            BulletCountdown = 200 + GD.RandRange(-40, 40);
         }
 
         if (Knockbackframes > 0)
