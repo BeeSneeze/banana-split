@@ -181,6 +181,9 @@ public partial class Player : CharacterBody2D
                 Visual.Animation = "Running";
                 break;
             case Visuals.GUNNING:
+                var newTween = GetTree().CreateTween();
+                Visual.Scale = new Vector2(0.35f, 0.29f);
+                newTween.TweenProperty(Visual, "scale", new Vector2(0.35f, 0.35f), 0.06);
                 Visual.Animation = "Gunning";
                 break;
             case Visuals.DODGING:
