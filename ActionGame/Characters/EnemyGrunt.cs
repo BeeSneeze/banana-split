@@ -15,6 +15,7 @@ public partial class EnemyGrunt : Enemy
         if (Level.Player != null)
         {
             direction = Level.Player.Position - Position;
+            GetNode<AnimatedSprite2D>("Visual").FlipH = direction.X < 0;
         }
 
         if (Knockbackframes > 0)

@@ -3,7 +3,7 @@ using Godot;
 public partial class EnemyWimp : Enemy
 {
     protected override float MAX_SPEED => 150f;
-    protected override float BULLET_SPEED => 10f;
+    protected override float BULLET_SPEED => 8f;
     protected override int MAX_HEALTH => 5;
     protected override int MAX_KNOCKBACK_FRAMES => 20;
 
@@ -23,6 +23,7 @@ public partial class EnemyWimp : Enemy
         if (Level.Player != null)
         {
             direction = Level.Player.Position - Position;
+            GetNode<AnimatedSprite2D>("Visual").FlipH = direction.X < 0;
         }
 
         if (BulletCountdown > 0)

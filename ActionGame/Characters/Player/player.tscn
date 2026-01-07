@@ -22,7 +22,7 @@ animations = [{
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 2
-collision_mask = 504
+collision_mask = 104
 script = ExtResource("1_r7jum")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

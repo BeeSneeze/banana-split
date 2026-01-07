@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://chja7sv73hhak"]
+[gd_scene load_steps=17 format=3 uid="uid://chja7sv73hhak"]
 
 [ext_resource type="Texture2D" uid="uid://n3f6hxfqsynd" path="res://ActionGame/Assets/TEST_WALLS.png" id="1_02ayl"]
 [ext_resource type="Script" uid="uid://dimqfrt0pmmmq" path="res://ActionGame/Room.cs" id="1_4pryp"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c4m6jpir67lon" path="res://ActionGame/room_teleport.tscn" id="4_jpqgi"]
 [ext_resource type="PackedScene" uid="uid://bbuofob75nj4r" path="res://ActionGame/Characters/EnemyGrunt.tscn" id="5_i17fd"]
 [ext_resource type="PackedScene" uid="uid://cv8es1nly5ed8" path="res://ActionGame/Characters/enemy_wimp.tscn" id="5_nwa7v"]
+[ext_resource type="PackedScene" uid="uid://cf6tb1ciuxej8" path="res://ActionGame/Characters/enemy_blaster.tscn" id="7_oc4rj"]
 [ext_resource type="PackedScene" uid="uid://gqai34v1p45x" path="res://ActionGame/flower.tscn" id="8_um5ve"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_5hite"]
@@ -152,6 +153,7 @@ resource_name = "Enemies"
 scenes/1/scene = ExtResource("3_b0qb2")
 scenes/2/scene = ExtResource("5_nwa7v")
 scenes/3/scene = ExtResource("5_i17fd")
+scenes/4/scene = ExtResource("7_oc4rj")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ruplu"]
 resource_name = "Other"

@@ -37,6 +37,9 @@ public abstract partial class Enemy : CharacterBody2D
             GD.Print("ENEMY DIED!");
             QueueFree();
         }
+        Modulate = new Color(0.5f, 1.5f, 4.0f);
+        var newTween = GetTree().CreateTween();
+        newTween.TweenProperty(this, "modulate", new Color(1, 1, 1), 0.2);
     }
 
     protected void ResolveKnockback()
@@ -54,7 +57,6 @@ public abstract partial class Enemy : CharacterBody2D
 
     protected void ResolveMovement()
     {
-        GetNode<AnimatedSprite2D>("Visual").FlipH = Velocity.X < 0;
         if (Velocity.Length() > MAX_SPEED && Knockbackframes < 1)
         {
             Velocity = Velocity.Normalized() * MAX_SPEED;
