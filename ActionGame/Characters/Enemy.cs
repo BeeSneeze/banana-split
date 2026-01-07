@@ -11,7 +11,6 @@ public abstract partial class Enemy : CharacterBody2D
     protected Vector2 KnockBackVelocity;
 
     protected abstract int MAX_KNOCKBACK_FRAMES { get; }
-
     protected abstract int MAX_HEALTH { get; }
     protected abstract float MAX_SPEED { get; }
     protected abstract float BULLET_SPEED { get; }

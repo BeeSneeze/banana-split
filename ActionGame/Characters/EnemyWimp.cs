@@ -47,7 +47,7 @@ public partial class EnemyWimp : Enemy
             }
             else
             {
-                Velocity -= direction.Normalized() * ACCELERATION;
+                Velocity -= direction.Normalized() * ACCELERATION * 0.4f;
             }
         }
 

@@ -81,7 +81,9 @@ public partial class Player : CharacterBody2D
         else if (DodgeCountdown == 0)
         {
             Dodging = false;
-            ReloadCountdown = -1; // Always be ready for a ReloadCountdown after a dodge
+            // Always reload after a dodge roll
+            ReloadCountdown = -1;
+            BulletsInChamber = MAX_BULLETS_IN_CHAMBER;
         }
 
         if (Input.IsActionPressed("GameDodge") && direction != Vector2.Zero)
@@ -146,7 +148,7 @@ public partial class Player : CharacterBody2D
         var random = new RandomNumberGenerator();
         random.Randomize();
 
-        newBullet.Velocity = BULLET_SPEED * direction.Normalized().Rotated(random.RandfRange(-0.05f, 0.05f));
+        newBullet.Velocity = BULLET_SPEED * direction.Normalized().Rotated(random.RandfRange(-0.09f, 0.09f));
         newBullet.Room = CurrentRoom;
         CurrentRoom.Spawn(newBullet, Position);
         CurrentRoom.SpawnParticle(ParticleNames.Dust, Position);

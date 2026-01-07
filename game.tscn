@@ -11,8 +11,22 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 script = ExtResource("1_80nbo")
 
-[node name="ActionGame" parent="." instance=ExtResource("2_feb5d")]
-layout_mode = 1
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="BackgroundLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.8156863, 0.50980395, 0.13725491, 1)
+
+[node name="ActionGameLayer" type="CanvasLayer" parent="."]
+layer = 0
+follow_viewport_enabled = true
+
+[node name="ActionGame" parent="ActionGameLayer" instance=ExtResource("2_feb5d")]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -25,16 +39,5 @@ offset_bottom = 0.0
 grow_horizontal = 0
 grow_vertical = 0
 metadata/_edit_use_anchors_ = true
-
-[node name="BackgroundLayer" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="ColorRect" type="ColorRect" parent="BackgroundLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.8156863, 0.50980395, 0.13725491, 1)
 
 [node name="TypingGameLayer" parent="." instance=ExtResource("3_feb5d")]

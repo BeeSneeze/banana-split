@@ -21,13 +21,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="EnemyWimp" type="CharacterBody2D" groups=["CanBeKnockedBack"]]
+[node name="EnemyWimp" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 106
 motion_mode = 1
 script = ExtResource("1_neigc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_p40wr")
 
 [node name="Visual" type="AnimatedSprite2D" parent="."]

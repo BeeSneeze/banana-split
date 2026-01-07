@@ -29,6 +29,7 @@ motion_mode = 1
 script = ExtResource("1_51me4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_51me4")
 
 [node name="Visual" type="AnimatedSprite2D" parent="."]
