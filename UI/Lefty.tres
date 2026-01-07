@@ -1,12 +1,16 @@
-[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://vuhp7gk72yw7"]
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://vuhp7gk72yw7"]
 
 [ext_resource type="Texture2D" uid="uid://6mfpl5mskq41" path="res://UI/Lefty.png" id="1_2iudr"]
+[ext_resource type="Texture2D" uid="uid://co6b78lffj33q" path="res://UI/Lefty2.png" id="2_5vff7"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_2iudr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_5vff7")
 }],
 "loop": true,
 "name": &"default",

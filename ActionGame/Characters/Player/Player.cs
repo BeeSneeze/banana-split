@@ -142,6 +142,9 @@ public partial class Player : CharacterBody2D
         {
             ReloadCountdown = RELOAD_TIME;
         }
+
+        Input.StartJoyVibration(0, 0.2f, 0.2f, 0.06f);
+
         var newBullet = BulletScene.Instantiate<Bullet>();
         newBullet.SetTeam(Team.PLAYER);
 
@@ -160,6 +163,8 @@ public partial class Player : CharacterBody2D
         {
             return;
         }
+
+        Input.StartJoyVibration(0, 0.9f, 0.9f, 0.4f);
 
         invincibilityFrames = I_FRAME_COUNT;
         CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.PlayerTookDamage, amount);

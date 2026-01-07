@@ -14,10 +14,11 @@ offset_bottom = 590.0
 theme = ExtResource("1_yjwqv")
 text = "Game Over"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Lefty" type="AnimatedSprite2D" parent="."]
 position = Vector2(467, 528)
 sprite_frames = ExtResource("1_50k4i")
+frame_progress = 0.5129039
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+[node name="RB" type="AnimatedSprite2D" parent="."]
 position = Vector2(1531, 538)
 sprite_frames = ExtResource("2_ftyas")
