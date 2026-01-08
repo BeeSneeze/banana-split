@@ -1,17 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://ju5xdgsp4x80"]
+[gd_scene load_steps=6 format=3 uid="uid://ju5xdgsp4x80"]
 
 [ext_resource type="Script" uid="uid://bw53bx2uejnvw" path="res://ActionGame/ActionGame.cs" id="1_mmdi0"]
 [ext_resource type="PackedScene" uid="uid://p4sufjiqlcde" path="res://ActionGame/Rooms/room_1.tscn" id="2_whqo5"]
 [ext_resource type="PackedScene" uid="uid://c0dohuw66gk7b" path="res://ActionGame/Rooms/room_2.tscn" id="3_cbt12"]
 [ext_resource type="PackedScene" uid="uid://byds75jncybx7" path="res://ActionGame/Rooms/starting_room.tscn" id="4_cbt12"]
+[ext_resource type="PackedScene" uid="uid://l7ppmjhschju" path="res://ActionGame/Rooms/room_3.tscn" id="5_ruplu"]
 
 [node name="ActionGame" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 500.0
-offset_top = 150.0
-offset_right = 1920.0
-offset_bottom = 1080.0
 script = ExtResource("1_mmdi0")
 
 [node name="StartingRoom" parent="." instance=ExtResource("4_cbt12")]
@@ -21,3 +18,6 @@ position = Vector2(2400, -950)
 
 [node name="Room2" parent="." instance=ExtResource("3_cbt12")]
 position = Vector2(1800, -950)
+
+[node name="Room3" parent="." instance=ExtResource("5_ruplu")]
+position = Vector2(3400, -1450)

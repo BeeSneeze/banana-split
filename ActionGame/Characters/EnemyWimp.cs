@@ -42,7 +42,11 @@ public partial class EnemyWimp : Enemy
         }
         else
         {
-            if (direction.Length() > WIMP_DISTANCE)
+            if (direction.Length() > WIMP_DISTANCE * 2.5)
+            {
+                Velocity += direction.Normalized() * ACCELERATION * 0.2f;
+            }
+            else if (direction.Length() > WIMP_DISTANCE)
             {
                 Velocity += direction.Normalized() * ACCELERATION;
             }

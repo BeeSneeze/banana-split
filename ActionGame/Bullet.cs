@@ -21,31 +21,27 @@ public partial class Bullet : AnimatableBody2D
 
     public override void _PhysicsProcess(double delta)
     {
+        // Generally speaking, entities listen to bullets to resolve collisions
+        // The exception are walls which the bullet keeps track of itself
         var collision = MoveAndCollide(Velocity);
         if (collision != null)
         {
-            var collider = (Node)collision.GetCollider();
-            if (collider as Enemy != null)
-            {
-                ((Enemy)collider).TakeHit(Velocity);
-            }
-            else if (collider as Player != null)
-            {
-                GD.Print("DAMAGING PLAYER");
-                ((Player)collider).TakeDamage(1);
-            }
-
-            if (Team == Team.PLAYER)
-            {
-                Room.SpawnParticle(ParticleNames.Splash, Position);
-            }
-            else
-            {
-                Room.SpawnParticle(ParticleNames.Explosion, Position);
-            }
-
-            QueueFree();
+            ExplodeBullet();
         }
+    }
+
+    // To be used by entities when they get hit by bullets
+    public void ExplodeBullet()
+    {
+        if (Team == Team.PLAYER)
+        {
+            Room.SpawnParticle(ParticleNames.Splash, Position);
+        }
+        else
+        {
+            Room.SpawnParticle(ParticleNames.Explosion, Position);
+        }
+        QueueFree();
     }
 
     public void SetTeam(Team setAllegiance)
@@ -57,13 +53,11 @@ public partial class Bullet : AnimatableBody2D
         {
             visual.Animation = "Enemy";
             CollisionLayer = ((uint)CollisionLayerDefs.ENEMY_BULLETS);
-            CollisionMask = ((uint)CollisionLayerDefs.PLAYER) + ((uint)CollisionLayerDefs.WALLS);
         }
         else if (Team == Team.PLAYER)
         {
             visual.Animation = "Player";
             CollisionLayer = ((uint)CollisionLayerDefs.PLAYER_BULLETS);
-            CollisionMask = ((uint)CollisionLayerDefs.ENEMY) + ((uint)CollisionLayerDefs.WALLS);
         }
         visual.Play();
     }

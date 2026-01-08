@@ -23,7 +23,7 @@ animations = [{
 
 [node name="EnemyWimp" type="CharacterBody2D"]
 collision_layer = 8
-collision_mask = 106
+collision_mask = 110
 motion_mode = 1
 script = ExtResource("1_neigc")
 

@@ -27,7 +27,7 @@ public abstract partial class Enemy : CharacterBody2D
         Level = Room.GetParent<ActionGame>();
     }
 
-    public void TakeHit(Vector2 incomingVelocity)
+    private void TakeHit(Vector2 incomingVelocity)
     {
         KnockBackVelocity = incomingVelocity * 25;
         Knockbackframes = MAX_KNOCKBACK_FRAMES;
@@ -62,6 +62,18 @@ public abstract partial class Enemy : CharacterBody2D
             Velocity = Velocity.Normalized() * MAX_SPEED;
         }
         MoveAndSlide();
+
+        var collision = GetLastSlideCollision();
+        if (collision != null)
+        {
+            var collider = collision.GetCollider();
+            if (collider as Bullet != null)
+            {
+                var bullet = (Bullet)collider;
+                TakeHit(bullet.Velocity);
+                bullet.ExplodeBullet();
+            }
+        }
     }
 
     protected void SpawnBullet(Vector2 direction)

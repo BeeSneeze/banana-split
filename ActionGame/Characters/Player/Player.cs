@@ -119,13 +119,17 @@ public partial class Player : CharacterBody2D
 
             if (collisionHappened)
             {
-                // This handles contact damage to enemies
-                // Enemy bullets resolve damage themselves
+                // Generally speaking, the player resolves collisions rather than other entities
                 var collision = GetLastSlideCollision().GetCollider();
                 if (collision as PhysicsBody2D != null)
                 {
                     if (((PhysicsBody2D)collision).CollisionLayer == (uint)CollisionLayerDefs.ENEMY)
                     {
+                        TakeDamage(1);
+                    }
+                    if (((PhysicsBody2D)collision).CollisionLayer == (uint)CollisionLayerDefs.ENEMY_BULLETS)
+                    {
+                        ((Bullet)collision).ExplodeBullet();
                         TakeDamage(1);
                     }
                 }
