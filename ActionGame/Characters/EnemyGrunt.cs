@@ -7,8 +7,6 @@ public partial class EnemyGrunt : Enemy
     protected override int MAX_HEALTH => 4;
     protected override int MAX_KNOCKBACK_FRAMES => 15;
 
-    private const float ACCELERATION = 8.0f;
-
     public override void _PhysicsProcess(double delta)
     {
         Vector2 direction = new Vector2(0, 0);

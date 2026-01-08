@@ -8,12 +8,11 @@ public partial class EnemyWimp : Enemy
     protected override int MAX_KNOCKBACK_FRAMES => 20;
 
     private int BulletCountdown;
-    private const float ACCELERATION = 8.0f;
     private const float WIMP_DISTANCE = 400f;
 
     public override void _Ready()
     {
-        BulletCountdown = 200 + GD.RandRange(-40, 40);
+        BulletCountdown = 150 + GD.RandRange(-40, 40);
         base._Ready();
     }
 
@@ -33,7 +32,7 @@ public partial class EnemyWimp : Enemy
         else
         {
             SpawnBullet(direction);
-            BulletCountdown = 200 + GD.RandRange(-40, 40);
+            BulletCountdown = 150 + GD.RandRange(-40, 40);
         }
 
         if (Knockbackframes > 0)

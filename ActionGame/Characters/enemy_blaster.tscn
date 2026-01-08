@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cf6tb1ciuxej8"]
+[gd_scene load_steps=7 format=3 uid="uid://cf6tb1ciuxej8"]
 
 [ext_resource type="Script" uid="uid://c5dyygabwqjux" path="res://ActionGame/Characters/EnemyBlaster.cs" id="1_oid0x"]
 [ext_resource type="Texture2D" uid="uid://diy4i2yfdqpt0" path="res://ActionGame/Characters/ENEMY_BLAST_TEST1.png" id="2_oid0x"]
 [ext_resource type="Texture2D" uid="uid://ttcuexnrmwev" path="res://ActionGame/Characters/ENEMY_BLAST_TEST2.png" id="3_egc0s"]
+[ext_resource type="PackedScene" uid="uid://melmaj6ma46q" path="res://ActionGame/Characters/personal_space.tscn" id="4_egc0s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p40wr"]
 size = Vector2(50, 50)
@@ -36,3 +37,5 @@ sprite_frames = SubResource("SpriteFrames_n7vu1")
 autoplay = "default"
 frame_progress = 0.8134135
 offset = Vector2(0, -25)
+
+[node name="PersonalSpace" parent="." instance=ExtResource("4_egc0s")]

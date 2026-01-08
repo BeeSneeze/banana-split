@@ -15,6 +15,8 @@ public abstract partial class Enemy : CharacterBody2D
     protected abstract float MAX_SPEED { get; }
     protected abstract float BULLET_SPEED { get; }
 
+    protected virtual float ACCELERATION { get; } = 8.0f;
+
     private const int KNOCKBACK_DELAY = 3;
     private PackedScene BulletScene;
 
@@ -74,6 +76,12 @@ public abstract partial class Enemy : CharacterBody2D
                 bullet.ExplodeBullet();
             }
         }
+    }
+
+    public void CreatePersonalSpace(Enemy otherEnemy)
+    {
+        var directionVector = otherEnemy.Position - Position;
+        Velocity -= directionVector.Normalized() * ACCELERATION;
     }
 
     protected void SpawnBullet(Vector2 direction)
