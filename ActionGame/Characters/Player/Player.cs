@@ -18,6 +18,7 @@ public partial class Player : CharacterBody2D
     private const int MAX_BULLETS_IN_CHAMBER = 6;
     private const int DODGE_I_FRAME_COUNT = 30;
 
+    private float TemporarySpeed = 0;
     private double ReloadCountdown = 0;
     private int BulletsInChamber = MAX_BULLETS_IN_CHAMBER;
     private int invincibilityFrames = 0;
@@ -25,6 +26,7 @@ public partial class Player : CharacterBody2D
     private int DodgeCountdown = 0;
     private bool Dodging = false;
     private Vector2 DodgeDirection = new Vector2(0, 0);
+    private uint normalCollisions = (uint)CollisionLayerDefs.WALLS + (uint)CollisionLayerDefs.ENEMY + (uint)CollisionLayerDefs.OBSTACLES;
 
     public override void _Ready()
     {
@@ -71,19 +73,19 @@ public partial class Player : CharacterBody2D
             }
         }
 
-        // You can't perform any actions in the middle of a dodge
         if (DodgeCountdown > 0)
         {
             Velocity = DodgeDirection * PLAYER_SPEED;
             MoveAndSlide();
-            return;
+            return; // You can't perform any actions in the middle of a dodge
         }
         else if (DodgeCountdown == 0)
         {
             Dodging = false;
-            // Always reload after a dodge roll
-            ReloadCountdown = -1;
+            ReloadCountdown = -1; // Always reload after a dodge roll
             BulletsInChamber = MAX_BULLETS_IN_CHAMBER;
+            CollisionMask = normalCollisions + (uint)CollisionLayerDefs.ENEMY_BULLETS;
+            TemporarySpeed = 0;
         }
 
         if (Input.IsActionPressed("GameDodge") && direction != Vector2.Zero)
@@ -92,6 +94,8 @@ public partial class Player : CharacterBody2D
             invincibilityFrames = DODGE_I_FRAME_COUNT;
             DodgeCountdown = DODGE_I_FRAME_COUNT;
             DodgeDirection = direction.Normalized();
+            CollisionMask = normalCollisions;
+            TemporarySpeed = 100;
             SetVisual(Visuals.DODGING);
         }
         else if (Input.IsActionPressed("GameShoot"))
@@ -105,7 +109,7 @@ public partial class Player : CharacterBody2D
         }
         else
         {
-            Velocity = direction * PLAYER_SPEED;
+            Velocity = direction * (PLAYER_SPEED + TemporarySpeed);
             var collisionHappened = MoveAndSlide();
 
             if (direction != Vector2.Zero)
@@ -161,7 +165,7 @@ public partial class Player : CharacterBody2D
         CurrentRoom.SpawnParticle(ParticleNames.Dust, Position);
     }
 
-    public void TakeDamage(int amount)
+    private void TakeDamage(int amount)
     {
         if (invincibilityFrames > 0)
         {

@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://caxs5hc5kjsmu" path="res://ActionGame/Characters/Player/Player_Bullet_2.png" id="3_0iu8t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rtl8c"]
-radius = 12.165525
+radius = 11.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v7oki"]
 animations = [{
@@ -48,6 +48,6 @@ script = ExtResource("1_v8qja")
 shape = SubResource("CircleShape2D_rtl8c")
 
 [node name="Visual" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_v7oki")
 animation = &"Enemy"
