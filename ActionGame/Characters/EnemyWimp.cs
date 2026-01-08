@@ -2,7 +2,7 @@ using Godot;
 
 public partial class EnemyWimp : Enemy
 {
-    protected override float MAX_SPEED => 150f;
+    protected override float MAX_SPEED => 100f;
     protected override float BULLET_SPEED => 8f;
     protected override int MAX_HEALTH => 5;
     protected override int MAX_KNOCKBACK_FRAMES => 20;
@@ -41,9 +41,9 @@ public partial class EnemyWimp : Enemy
         }
         else
         {
-            if (direction.Length() > WIMP_DISTANCE * 2.5)
+            if (direction.Length() > WIMP_DISTANCE * 2)
             {
-                Velocity += direction.Normalized() * ACCELERATION * 0.2f;
+                Velocity += direction.Normalized() * ACCELERATION * 0.1f;
             }
             else if (direction.Length() > WIMP_DISTANCE)
             {
@@ -51,7 +51,7 @@ public partial class EnemyWimp : Enemy
             }
             else
             {
-                Velocity -= direction.Normalized() * ACCELERATION * 0.4f;
+                Velocity -= direction.Normalized() * ACCELERATION * 0.7f;
             }
         }
 

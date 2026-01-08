@@ -29,7 +29,6 @@ public partial class Room : Node2D
     {
         foreach (var entity in GetNode("EntityMap").GetChildren())
         {
-            GD.Print(entity.Name);
             if (entity as RoomTeleport != null)
             {
                 ((RoomTeleport)entity).RoomID = RoomID;

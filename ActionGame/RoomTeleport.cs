@@ -3,7 +3,6 @@ using System;
 
 public partial class RoomTeleport : Area2D
 {
-    [Export]
     public int RoomID;
 
     public void OnBodyEntered(Node2D body)

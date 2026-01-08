@@ -5,8 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://d1kpk3rwsu5g4" path="res://ActionGame/Characters/Player/Crosshair.png" id="3_ucn10"]
 [ext_resource type="Script" uid="uid://crnarwd4goahb" path="res://ActionGame/Characters/Player/PlayerCamera.cs" id="4_x3qpf"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4flbx"]
-radius = 15.033297
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x3qpf"]
+radius = 14.0
+height = 52.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tmsbd"]
 animations = [{
@@ -26,16 +27,14 @@ collision_mask = 120
 script = ExtResource("1_r7jum")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 26)
-shape = SubResource("CircleShape2D_4flbx")
+position = Vector2(0, 12)
+shape = SubResource("CapsuleShape2D_x3qpf")
 
 [node name="Visual" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
 scale = Vector2(0.35, 0.35)
 sprite_frames = ExtResource("2_x3qpf")
-animation = &"Dodge"
-frame = 3
-frame_progress = 1.0
+animation = &"Idle"
 
 [node name="Crosshair" type="AnimatedSprite2D" parent="."]
 position = Vector2(200, 0)

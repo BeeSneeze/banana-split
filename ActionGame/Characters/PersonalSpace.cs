@@ -19,7 +19,6 @@ public partial class PersonalSpace : Area2D
                 var otherEnemy = (Enemy)body;
                 if (otherEnemy != ParentEnemy)
                 {
-                    GD.Print("Created personal space");
                     ParentEnemy.CreatePersonalSpace(otherEnemy);
                 }
             }

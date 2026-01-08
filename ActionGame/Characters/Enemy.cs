@@ -81,7 +81,7 @@ public abstract partial class Enemy : CharacterBody2D
     public void CreatePersonalSpace(Enemy otherEnemy)
     {
         var directionVector = otherEnemy.Position - Position;
-        Velocity -= directionVector.Normalized() * ACCELERATION;
+        Velocity -= directionVector.Normalized() * ACCELERATION * 1.3f;
     }
 
     protected void SpawnBullet(Vector2 direction)

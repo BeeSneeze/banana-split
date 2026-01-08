@@ -110,7 +110,7 @@ public partial class Player : CharacterBody2D
         else
         {
             Velocity = direction * (PLAYER_SPEED + TemporarySpeed);
-            var collisionHappened = MoveAndSlide();
+
 
             if (direction != Vector2.Zero)
             {
@@ -120,26 +120,28 @@ public partial class Player : CharacterBody2D
             {
                 SetVisual(Visuals.IDLING);
             }
+        }
 
-            if (collisionHappened)
+
+        if (MoveAndCollide(Velocity * (float)delta, true) != null)
+        {
+            // Generally speaking, the player resolves collisions rather than other entities
+            var collision = MoveAndCollide(Velocity, true).GetCollider();
+            if (collision as PhysicsBody2D != null)
             {
-                // Generally speaking, the player resolves collisions rather than other entities
-                var collision = GetLastSlideCollision().GetCollider();
-                if (collision as PhysicsBody2D != null)
+                if (((PhysicsBody2D)collision).CollisionLayer == (uint)CollisionLayerDefs.ENEMY)
                 {
-                    if (((PhysicsBody2D)collision).CollisionLayer == (uint)CollisionLayerDefs.ENEMY)
-                    {
-                        TakeDamage(1);
-                    }
-                    if (((PhysicsBody2D)collision).CollisionLayer == (uint)CollisionLayerDefs.ENEMY_BULLETS)
-                    {
-                        ((Bullet)collision).ExplodeBullet();
-                        TakeDamage(1);
-                    }
+                    TakeDamage(1);
                 }
-
+                if (((PhysicsBody2D)collision).CollisionLayer == (uint)CollisionLayerDefs.ENEMY_BULLETS)
+                {
+                    ((Bullet)collision).ExplodeBullet();
+                    TakeDamage(1);
+                }
             }
         }
+
+        MoveAndSlide();
 
     }
 
@@ -151,7 +153,7 @@ public partial class Player : CharacterBody2D
             ReloadCountdown = RELOAD_TIME;
         }
 
-        Input.StartJoyVibration(0, 0.2f, 0.2f, 0.06f);
+        //Input.StartJoyVibration(0, 0.2f, 0.2f, 0.06f);
 
         var newBullet = BulletScene.Instantiate<Bullet>();
         newBullet.SetTeam(Team.PLAYER);
@@ -172,7 +174,7 @@ public partial class Player : CharacterBody2D
             return;
         }
 
-        Input.StartJoyVibration(0, 0.9f, 0.9f, 0.4f);
+        //Input.StartJoyVibration(0, 0.9f, 0.9f, 0.4f);
 
         invincibilityFrames = I_FRAME_COUNT;
         CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.PlayerTookDamage, amount);
