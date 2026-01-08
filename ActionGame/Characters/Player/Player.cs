@@ -75,7 +75,7 @@ public partial class Player : CharacterBody2D
 
         if (DodgeCountdown > 0)
         {
-            Velocity = DodgeDirection * PLAYER_SPEED;
+            Velocity = DodgeDirection * (PLAYER_SPEED + TemporarySpeed);
             MoveAndSlide();
             return; // You can't perform any actions in the middle of a dodge
         }

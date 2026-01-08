@@ -56,6 +56,7 @@ public partial class Bullet : AnimatableBody2D
         }
         else if (Team == Team.PLAYER)
         {
+            GetNode<PointLight2D>("Light").Visible = false;
             visual.Animation = "Player";
             CollisionLayer = ((uint)CollisionLayerDefs.PLAYER_BULLETS);
         }

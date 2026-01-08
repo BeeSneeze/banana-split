@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://uuh0fvsqcrm0"]
+[gd_scene load_steps=9 format=3 uid="uid://uuh0fvsqcrm0"]
 
 [ext_resource type="Texture2D" uid="uid://7c5bh48x131o" path="res://ActionGame/Assets/Bullet.png" id="1_v7oki"]
 [ext_resource type="Script" uid="uid://k6lye3yjr8p4" path="res://ActionGame/Bullet.cs" id="1_v8qja"]
 [ext_resource type="Texture2D" uid="uid://cxxjtjehccsvc" path="res://ActionGame/Characters/Player/Player_Bullet_1.png" id="2_0g0bc"]
+[ext_resource type="Texture2D" uid="uid://ccjyagegmwska" path="res://ActionGame/Characters/BulletRound.png" id="2_0iu8t"]
 [ext_resource type="Texture2D" uid="uid://caxs5hc5kjsmu" path="res://ActionGame/Characters/Player/Player_Bullet_2.png" id="3_0iu8t"]
+[ext_resource type="Texture2D" uid="uid://dvdaiw627q2pr" path="res://ActionGame/Characters/LightMask.png" id="6_h0p42"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rtl8c"]
 radius = 11.0
@@ -12,7 +14,7 @@ radius = 11.0
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_v7oki")
+"texture": ExtResource("2_0iu8t")
 }],
 "loop": true,
 "name": &"Enemy",
@@ -48,6 +50,15 @@ script = ExtResource("1_v8qja")
 shape = SubResource("CircleShape2D_rtl8c")
 
 [node name="Visual" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.6, 0.6)
+light_mask = 0
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_v7oki")
 animation = &"Enemy"
+
+[node name="Light" type="PointLight2D" parent="."]
+z_index = 5
+color = Color(1, 0.43181998, 0.36313254, 1)
+blend_mode = 2
+range_layer_max = 2048
+texture = ExtResource("6_h0p42")
+texture_scale = 0.5
