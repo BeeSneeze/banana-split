@@ -2,7 +2,7 @@ using Godot;
 
 public partial class EnemyGrunt : Enemy
 {
-    protected override float MAX_SPEED => 150f;
+    protected override float MAX_SPEED => 190f;
     protected override float BULLET_SPEED => 10f;
     protected override int MAX_HEALTH => 4;
     protected override int MAX_KNOCKBACK_FRAMES => 15;

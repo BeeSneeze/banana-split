@@ -12,7 +12,7 @@ public partial class EnemyWimp : Enemy
 
     public override void _Ready()
     {
-        BulletCountdown = 150 + GD.RandRange(-40, 40);
+        BulletCountdown = 150 + GD.RandRange(-100, 0);
         base._Ready();
     }
 
@@ -31,8 +31,8 @@ public partial class EnemyWimp : Enemy
         }
         else
         {
-            SpawnBullet(direction);
-            BulletCountdown = 150 + GD.RandRange(-40, 40);
+            SpawnBullet(direction.Rotated((float)GD.RandRange(-0.2, 0.2)));
+            BulletCountdown = 150 + GD.RandRange(-100, 0);
         }
 
         if (Knockbackframes > 0)
