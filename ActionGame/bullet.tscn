@@ -40,10 +40,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Bullet" type="AnimatableBody2D"]
+[node name="Bullet" type="StaticBody2D"]
 collision_layer = 0
 collision_mask = 32
-sync_to_physics = false
+collision_priority = 0.1
 script = ExtResource("1_v8qja")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

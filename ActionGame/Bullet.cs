@@ -2,7 +2,7 @@ using Godot;
 using System;
 using Common;
 
-public partial class Bullet : AnimatableBody2D
+public partial class Bullet : StaticBody2D
 {
     public Room Room;
     public Vector2 Velocity = new Vector2(0, 0);

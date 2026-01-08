@@ -24,7 +24,7 @@ public partial class Player : CharacterBody2D
     private int invincibilityFrames = 0;
     private int BulletSpawnCountdown = 0;
     private int DodgeCountdown = 0;
-    private bool Dodging = false;
+    private State ActiveState = State.IDLING;
     private Vector2 DodgeDirection = new Vector2(0, 0);
     private uint normalCollisions = (uint)CollisionLayerDefs.WALLS + (uint)CollisionLayerDefs.ENEMY + (uint)CollisionLayerDefs.OBSTACLES;
 
@@ -55,7 +55,7 @@ public partial class Player : CharacterBody2D
 
         Visual.FlipH = direction.X < 0;
 
-        if (invincibilityFrames > 0 && !Dodging)
+        if (invincibilityFrames > 0 && DodgeCountdown <= 0)
         {
             Visual.Visible = !Visual.Visible;
         }
@@ -81,7 +81,6 @@ public partial class Player : CharacterBody2D
         }
         else if (DodgeCountdown == 0)
         {
-            Dodging = false;
             ReloadCountdown = -1; // Always reload after a dodge roll
             BulletsInChamber = MAX_BULLETS_IN_CHAMBER;
             CollisionMask = normalCollisions + (uint)CollisionLayerDefs.ENEMY_BULLETS;
@@ -90,17 +89,20 @@ public partial class Player : CharacterBody2D
 
         if (Input.IsActionPressed("GameDodge") && direction != Vector2.Zero)
         {
-            Dodging = true;
             invincibilityFrames = DODGE_I_FRAME_COUNT;
             DodgeCountdown = DODGE_I_FRAME_COUNT;
             DodgeDirection = direction.Normalized();
             CollisionMask = normalCollisions;
             TemporarySpeed = 100;
-            SetVisual(Visuals.DODGING);
+            SetState(State.DODGING);
         }
         else if (Input.IsActionPressed("GameShoot"))
         {
-            SetVisual(Visuals.GUNNING);
+            if (ActiveState == State.RUNNING)
+            {
+                Velocity = Vector2.Zero;
+            }
+            SetState(State.GUNNING);
             if (BulletSpawnCountdown < 0 && direction != new Vector2(0, 0) && BulletsInChamber > 0)
             {
                 BulletSpawnCountdown = BULLET_SPAWN_TIME;
@@ -111,14 +113,13 @@ public partial class Player : CharacterBody2D
         {
             Velocity = direction * (PLAYER_SPEED + TemporarySpeed);
 
-
             if (direction != Vector2.Zero)
             {
-                SetVisual(Visuals.RUNNING);
+                SetState(State.RUNNING);
             }
             else
             {
-                SetVisual(Visuals.IDLING);
+                SetState(State.IDLING);
             }
         }
 
@@ -180,7 +181,7 @@ public partial class Player : CharacterBody2D
         CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.PlayerTookDamage, amount);
     }
 
-    private enum Visuals
+    private enum State
     {
         RUNNING,
         GUNNING,
@@ -188,23 +189,24 @@ public partial class Player : CharacterBody2D
         IDLING
     }
 
-    private void SetVisual(Visuals vis)
+    private void SetState(State state)
     {
-        switch (vis)
+        ActiveState = state;
+        switch (state)
         {
-            case Visuals.RUNNING:
+            case State.RUNNING:
                 Visual.Animation = "Running";
                 break;
-            case Visuals.GUNNING:
+            case State.GUNNING:
                 var newTween = GetTree().CreateTween();
                 Visual.Scale = new Vector2(0.35f, 0.29f);
                 newTween.TweenProperty(Visual, "scale", new Vector2(0.35f, 0.35f), 0.06);
                 Visual.Animation = "Gunning";
                 break;
-            case Visuals.DODGING:
+            case State.DODGING:
                 Visual.Animation = "Dodge";
                 break;
-            case Visuals.IDLING:
+            case State.IDLING:
                 Visual.Animation = "Idle";
                 break;
         }
