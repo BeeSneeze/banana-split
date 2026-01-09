@@ -35,7 +35,7 @@ shape = SubResource("CapsuleShape2D_x3qpf")
 y_sort_enabled = true
 scale = Vector2(0.35, 0.35)
 sprite_frames = ExtResource("2_x3qpf")
-animation = &"Idle"
+animation = &"Slide"
 offset = Vector2(0, -30)
 
 [node name="Crosshair" type="AnimatedSprite2D" parent="."]

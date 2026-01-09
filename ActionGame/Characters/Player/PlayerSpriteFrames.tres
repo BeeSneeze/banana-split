@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://jn13xj3pxrru"]
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://jn13xj3pxrru"]
 
 [ext_resource type="Texture2D" uid="uid://c6h7u8kvjyu55" path="res://ActionGame/Characters/Player/MC_TEST_DODGE_1.png" id="1_ktnjt"]
 [ext_resource type="Texture2D" uid="uid://c8a514jmtddl0" path="res://ActionGame/Characters/Player/MC_TEST_DODGE_2.png" id="2_wju4o"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://hmlq860sgwdv" path="res://ActionGame/Characters/Player/MC_TEST_RUN1.png" id="6_enpyu"]
 [ext_resource type="Texture2D" uid="uid://cgywonbffl2xg" path="res://ActionGame/Characters/Player/MC_TEST_RUN2.png" id="7_32u1l"]
 [ext_resource type="Texture2D" uid="uid://dk3ush02vfnp8" path="res://ActionGame/Characters/Player/MC_TEST_RUN3.png" id="8_rnj7q"]
+[ext_resource type="Texture2D" uid="uid://bp4c51r373cw5" path="res://ActionGame/Characters/Player/MC_TEST_SLIDE.png" id="10_tua06"]
 
 [resource]
 animations = [{
@@ -60,7 +61,15 @@ animations = [{
 }],
 "loop": true,
 "name": &"Running",
-"speed": 8.0
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_tua06")
+}],
+"loop": true,
+"name": &"Slide",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,

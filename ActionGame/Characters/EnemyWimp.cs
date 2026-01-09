@@ -3,11 +3,10 @@ using Godot;
 public partial class EnemyWimp : Enemy
 {
     protected override float MAX_SPEED => 100f;
-    protected override float BULLET_SPEED => 8f;
+    protected override float BULLET_SPEED => 7f;
     protected override int MAX_HEALTH => 5;
     protected override int MAX_KNOCKBACK_FRAMES => 20;
 
-    private int BulletCountdown;
     private const float WIMP_DISTANCE = 400f;
 
     public override void _Ready()

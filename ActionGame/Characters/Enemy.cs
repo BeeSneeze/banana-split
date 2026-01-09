@@ -8,6 +8,7 @@ public abstract partial class Enemy : CharacterBody2D
 
     protected int Knockbackframes = 0;
     protected int HealthPoints;
+    protected int BulletCountdown;
     protected Vector2 KnockBackVelocity;
 
     protected abstract int MAX_KNOCKBACK_FRAMES { get; }

@@ -10,21 +10,23 @@ public partial class Player : CharacterBody2D
     private AnimatedSprite2D Visual;
     private AnimatedSprite2D Crosshair;
 
-    private const float PLAYER_SPEED = 360.0f;
+    private const float PLAYER_SPEED = 350.0f;
     private const float BULLET_SPEED = 13.0f;
     private const int I_FRAME_COUNT = 60;
-    private const int BULLET_SPAWN_TIME = 9;
+    private const int BULLET_SPAWN_TIME = 10;
     private const double RELOAD_TIME = 1.0;
     private const int MAX_BULLETS_IN_CHAMBER = 6;
-    private const int DODGE_I_FRAME_COUNT = 30;
+    private const int DODGE_FRAME_COUNT = 40;
+    private const float DODGE_SPEED_BONUS = 50;
 
-    private float TemporarySpeed = 0;
-    private double ReloadCountdown = 0;
     private int BulletsInChamber = MAX_BULLETS_IN_CHAMBER;
-    private int invincibilityFrames = 0;
+    private float TemporarySpeed = 0;
+    private int TemporaryBulletSpawnReduction = 0;
+    private double ReloadCountdown = 0;
+    private int InvincibilityFrames = 0;
     private int BulletSpawnCountdown = 0;
     private int DodgeCountdown = 0;
-    private State ActiveState = State.IDLING;
+    private State ActiveState = State.IDLE;
     private Vector2 DodgeDirection = new Vector2(0, 0);
     private uint normalCollisions = (uint)CollisionLayerDefs.WALLS + (uint)CollisionLayerDefs.ENEMY + (uint)CollisionLayerDefs.OBSTACLES;
 
@@ -41,7 +43,7 @@ public partial class Player : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
     {
-        invincibilityFrames--;
+        InvincibilityFrames--;
         BulletSpawnCountdown--;
         DodgeCountdown--;
         Vector2 direction = Input.GetVector("GameLeft", "GameRight", "GameUp", "GameDown");
@@ -55,11 +57,11 @@ public partial class Player : CharacterBody2D
 
         Visual.FlipH = direction.X < 0;
 
-        if (invincibilityFrames > 0 && DodgeCountdown <= 0)
+        if (InvincibilityFrames > 0 && DodgeCountdown <= 0)
         {
             Visual.Visible = !Visual.Visible;
         }
-        else if (invincibilityFrames == 0)
+        else if (InvincibilityFrames == 0)
         {
             Visual.Visible = true;
         }
@@ -89,41 +91,45 @@ public partial class Player : CharacterBody2D
 
         if (Input.IsActionPressed("GameDodge") && direction != Vector2.Zero)
         {
-            invincibilityFrames = DODGE_I_FRAME_COUNT;
-            DodgeCountdown = DODGE_I_FRAME_COUNT;
             DodgeDirection = direction.Normalized();
-            CollisionMask = normalCollisions;
-            TemporarySpeed = 100;
-            SetState(State.DODGING);
+            SetState(State.DODGE);
         }
         else if (Input.IsActionPressed("GameShoot"))
         {
-            if (ActiveState == State.RUNNING)
+            if (ActiveState == State.SLIDE)
             {
-                Velocity = Vector2.Zero;
+                Velocity *= 0.97f;
+                if (Velocity.Length() < 50.0f)
+                {
+                    SetState(State.RUNNING);
+                }
             }
-            SetState(State.GUNNING);
-            if (BulletSpawnCountdown < 0 && direction != new Vector2(0, 0) && BulletsInChamber > 0)
+            else if (ActiveState == State.DODGE && direction != new Vector2(0, 0))
             {
-                BulletSpawnCountdown = BULLET_SPAWN_TIME;
-                SpawnBullet(direction);
+                SetState(State.SLIDE);
+            }
+            else if (ActiveState != State.GUNNING)
+            {
+                SetState(State.GUNNING);
+            }
+
+            if (BulletSpawnCountdown < 0 && BulletsInChamber > 0)
+            {
+                if (direction != new Vector2(0, 0) || ActiveState == State.SLIDE)
+                {
+                    BulletSpawnCountdown = BULLET_SPAWN_TIME - TemporaryBulletSpawnReduction;
+                    SpawnBullet(direction);
+                }
             }
         }
         else
         {
             Velocity = direction * (PLAYER_SPEED + TemporarySpeed);
-
-            if (direction != Vector2.Zero)
-            {
-                SetState(State.RUNNING);
-            }
-            else
-            {
-                SetState(State.IDLING);
-            }
+            var newState = (direction != Vector2.Zero) ? State.RUNNING : State.IDLE;
+            SetState(newState);
         }
 
-
+        // TODO: The player can completely avoid damage by standing still
         if (MoveAndCollide(Velocity * (float)delta, true) != null)
         {
             // Generally speaking, the player resolves collisions rather than other entities
@@ -154,7 +160,7 @@ public partial class Player : CharacterBody2D
             ReloadCountdown = RELOAD_TIME;
         }
 
-        //Input.StartJoyVibration(0, 0.2f, 0.2f, 0.06f);
+        Input.StartJoyVibration(0, 0.2f, 0.2f, 0.06f);
 
         var newBullet = BulletScene.Instantiate<Bullet>();
         newBullet.SetTeam(Team.PLAYER);
@@ -170,14 +176,13 @@ public partial class Player : CharacterBody2D
 
     private void TakeDamage(int amount)
     {
-        if (invincibilityFrames > 0)
+        if (InvincibilityFrames > 0)
         {
             return;
         }
+        Input.StartJoyVibration(0, 0.9f, 0.9f, 0.4f);
 
-        //Input.StartJoyVibration(0, 0.9f, 0.9f, 0.4f);
-
-        invincibilityFrames = I_FRAME_COUNT;
+        InvincibilityFrames = I_FRAME_COUNT;
         CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.PlayerTookDamage, amount);
     }
 
@@ -185,8 +190,9 @@ public partial class Player : CharacterBody2D
     {
         RUNNING,
         GUNNING,
-        DODGING,
-        IDLING
+        DODGE,
+        IDLE,
+        SLIDE
     }
 
     private void SetState(State state)
@@ -195,19 +201,30 @@ public partial class Player : CharacterBody2D
         switch (state)
         {
             case State.RUNNING:
+                TemporaryBulletSpawnReduction = 0;
                 Visual.Animation = "Running";
                 break;
             case State.GUNNING:
+                Velocity = Vector2.Zero;
                 var newTween = GetTree().CreateTween();
                 Visual.Scale = new Vector2(0.35f, 0.29f);
                 newTween.TweenProperty(Visual, "scale", new Vector2(0.35f, 0.35f), 0.06);
                 Visual.Animation = "Gunning";
                 break;
-            case State.DODGING:
+            case State.DODGE:
+                TemporarySpeed += DODGE_SPEED_BONUS;
+                InvincibilityFrames = DODGE_FRAME_COUNT;
+                DodgeCountdown = DODGE_FRAME_COUNT;
+                CollisionMask = normalCollisions;
                 Visual.Animation = "Dodge";
                 break;
-            case State.IDLING:
+            case State.IDLE:
                 Visual.Animation = "Idle";
+                break;
+            case State.SLIDE:
+                Velocity *= 1.7f;
+                TemporaryBulletSpawnReduction = 2;
+                Visual.Animation = "Slide";
                 break;
         }
         Visual.Play();

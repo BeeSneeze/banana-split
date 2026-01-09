@@ -8,8 +8,6 @@ public partial class EnemyBlaster : Enemy
     protected override int MAX_HEALTH => 4;
     protected override int MAX_KNOCKBACK_FRAMES => 15;
 
-    private int BulletCountdown;
-
     public override void _Ready()
     {
         BulletCountdown = 20;
