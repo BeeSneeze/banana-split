@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7c5bh48x131o"
-path="res://.godot/imported/Bullet.png-1e810c0e1350724445217b119fb2b9c2.ctex"
+uid="uid://7mm1m38r5m7r"
+path="res://.godot/imported/ENEMY_PAPER_TEST2.png-75915f73216d98566fcbb1467e42d8b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ActionGame/Assets/Bullet.png"
-dest_files=["res://.godot/imported/Bullet.png-1e810c0e1350724445217b119fb2b9c2.ctex"]
+source_file="res://ActionGame/Characters/ENEMY_PAPER_TEST2.png"
+dest_files=["res://.godot/imported/ENEMY_PAPER_TEST2.png-75915f73216d98566fcbb1467e42d8b3.ctex"]
 
 [params]
 

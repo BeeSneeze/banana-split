@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://uuh0fvsqcrm0"]
 
-[ext_resource type="Texture2D" uid="uid://7c5bh48x131o" path="res://ActionGame/Assets/Bullet.png" id="1_v7oki"]
+[ext_resource type="Texture2D" uid="uid://ccjyagegmwska" path="res://ActionGame/Characters/BulletRound.png" id="1_v7oki"]
 [ext_resource type="Script" uid="uid://k6lye3yjr8p4" path="res://ActionGame/Bullet.cs" id="1_v8qja"]
 [ext_resource type="Texture2D" uid="uid://cxxjtjehccsvc" path="res://ActionGame/Characters/Player/Player_Bullet_1.png" id="2_0g0bc"]
 [ext_resource type="Texture2D" uid="uid://ccjyagegmwska" path="res://ActionGame/Characters/BulletRound.png" id="2_0iu8t"]
