@@ -45,6 +45,7 @@ public partial class TypingGame : CanvasLayer
             if (ActiveBoxes.First().TypeText[CharacterIndex].ToString() == eventKey.AsTextKeycode())
             {
                 HeldString += eventKey.AsTextKeycode();
+                ActiveBoxes.First().SetHighlight(HeldString);
                 GD.Print(HeldString);
                 CharacterIndex++;
                 if (CharacterIndex == ActiveBoxes.First().TypeText.Length)

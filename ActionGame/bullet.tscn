@@ -61,4 +61,4 @@ color = Color(1, 0.43181998, 0.36313254, 1)
 blend_mode = 2
 range_layer_max = 2048
 texture = ExtResource("6_h0p42")
-texture_scale = 0.5
+texture_scale = 0.4
