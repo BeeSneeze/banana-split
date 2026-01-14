@@ -28,15 +28,10 @@ public partial class Room : Node2D
 
     public void DeactivateRoom()
     {
-        Modulate = new Color(0.8f, 0.8f, 0.8f);
-        foreach (var entity in GetNode("EntityMap").GetChildren())
-        {
-            if (entity as RoomExitArea != null)
-            {
-                ((RoomExitArea)entity).OnPlayerLeave();
-            }
-        }
+        var tween = GetTree().CreateTween();
+        tween.TweenProperty(this, "modulate", new Color(1, 1, 1, 0.0f), 0.3);
         GetNode("EntityMap").QueueFree();
+        tween.Finished += () => QueueFree();
     }
 
     private void PlayerChangedRoom(int roomID)
@@ -49,7 +44,12 @@ public partial class Room : Node2D
                 {
                     ((Enemy)entity).SetPhysicsProcess(true);
                 }
+                if (entity as RoomExitArea != null)
+                {
+                    ((RoomExitArea)entity).OnPlayerLeave();
+                }
             }
+
         }
     }
 
