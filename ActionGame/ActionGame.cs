@@ -8,7 +8,6 @@ public partial class ActionGame : Control
     public Player Player { get; private set; }
     private bool RecentReparent = false;
 
-
     public override void _Ready()
     {
         Player = GD.Load<PackedScene>("res://ActionGame/Characters/Player/player.tscn").Instantiate<Player>();
@@ -16,6 +15,7 @@ public partial class ActionGame : Control
         CurrentRoom = GetChild<Room>(0);
         Player.CurrentRoom = CurrentRoom; // NOTE: Player needs to have current room before being added to the scene!
         CurrentRoom.AddChild(Player);
+
         CustomEvents.Instance.PlayerChangedRoom += ChangeRoom;
         CustomEvents.Instance.GameOver += GameOver;
         CustomEvents.Instance.GameWon += GameWon;

@@ -118,15 +118,15 @@ public partial class Player : CharacterBody2D
         {
             // Generally speaking, the player resolves collisions rather than other entities
             var collision = MoveAndCollide(Velocity, true).GetCollider();
-            if (collision as PhysicsBody2D != null)
+            if (collision is PhysicsBody2D body)
             {
-                if (((PhysicsBody2D)collision).CollisionLayer == (uint)CollisionLayerDefs.ENEMY)
+                if (body.CollisionLayer == (uint)CollisionLayerDefs.ENEMY)
                 {
                     TakeDamage(1);
                 }
-                if (((PhysicsBody2D)collision).CollisionLayer == (uint)CollisionLayerDefs.ENEMY_BULLETS)
+                if (body.CollisionLayer == (uint)CollisionLayerDefs.ENEMY_BULLETS)
                 {
-                    ((Bullet)collision).ExplodeBullet();
+                    ((Bullet)body).ExplodeBullet();
                     TakeDamage(1);
                 }
             }

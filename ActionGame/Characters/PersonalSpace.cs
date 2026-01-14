@@ -14,9 +14,8 @@ public partial class PersonalSpace : Area2D
     {
         foreach (var body in GetOverlappingBodies())
         {
-            if (body as Enemy != null)
+            if (body is Enemy otherEnemy)
             {
-                var otherEnemy = (Enemy)body;
                 if (otherEnemy != ParentEnemy)
                 {
                     ParentEnemy.CreatePersonalSpace(otherEnemy);

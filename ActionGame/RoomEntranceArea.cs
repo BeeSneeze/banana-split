@@ -7,7 +7,7 @@ public partial class RoomEntranceArea : Area2D
 
     public void OnBodyEntered(Node2D body)
     {
-        if (body as Player != null)
+        if (body is Player)
         {
             CustomEvents.Instance.EmitSignal("PlayerChangedRoom", Room.RoomID);
         }

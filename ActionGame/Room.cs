@@ -40,13 +40,13 @@ public partial class Room : Node2D
         {
             foreach (var entity in GetNode("EntityMap").GetChildren())
             {
-                if (entity as Enemy != null)
+                if (entity is Enemy enemy)
                 {
-                    ((Enemy)entity).SetPhysicsProcess(true);
+                    enemy.SetPhysicsProcess(true);
                 }
-                if (entity as RoomExitArea != null)
+                if (entity is RoomExitArea roomExit)
                 {
-                    ((RoomExitArea)entity).OnPlayerLeave();
+                    roomExit.OnPlayerLeave();
                 }
             }
 
@@ -57,13 +57,13 @@ public partial class Room : Node2D
     {
         foreach (var entity in GetNode("EntityMap").GetChildren())
         {
-            if (entity as RoomEntranceArea != null)
+            if (entity is RoomEntranceArea roomEntrance)
             {
-                ((RoomEntranceArea)entity).Room = this;
+                roomEntrance.Room = this;
             }
-            if (entity as RoomExitArea != null)
+            if (entity is RoomExitArea roomExit)
             {
-                ((RoomExitArea)entity).Room = this;
+                roomExit.Room = this;
             }
         }
         Initiated = true;

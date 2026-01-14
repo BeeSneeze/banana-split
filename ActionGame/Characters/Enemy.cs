@@ -71,9 +71,8 @@ public abstract partial class Enemy : CharacterBody2D
         if (collision != null)
         {
             var collider = collision.GetCollider();
-            if (collider as Bullet != null)
+            if (collider is Bullet bullet)
             {
-                var bullet = (Bullet)collider;
                 TakeHit(bullet.Velocity);
                 bullet.ExplodeBullet();
             }
