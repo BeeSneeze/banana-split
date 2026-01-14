@@ -29,7 +29,7 @@ public partial class Room : Node2D
     public void DeactivateRoom()
     {
         var tween = GetTree().CreateTween();
-        tween.TweenProperty(this, "modulate", new Color(1, 1, 1, 0.0f), 0.3);
+        tween.TweenProperty(this, "modulate", new Color(1, 1, 1, 0.0f), 0.2);
         GetNode("EntityMap").QueueFree();
         tween.Finished += () => QueueFree();
     }
