@@ -28,6 +28,7 @@ public abstract partial class Enemy : CharacterBody2D
         // TODO: Fix references to room and level
         Room = GetParent().GetParent<Room>();
         Level = Room.GetParent<ActionGame>();
+        SetPhysicsProcess(false);
     }
 
     private void TakeHit(Vector2 incomingVelocity)

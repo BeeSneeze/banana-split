@@ -18,7 +18,7 @@ public partial class Player : CharacterBody2D
     private const int MAX_BULLETS_IN_CHAMBER = 6;
     private const int DODGE_FRAME_COUNT = 35;
     private const float DODGE_SPEED_BONUS = 50;
-    private const int DODGE_BUFFER_FRAMES = 10;
+    private const int DODGE_BUFFER_FRAMES = 15;
 
     private int BulletsInChamber = MAX_BULLETS_IN_CHAMBER;
     private float TemporarySpeed;

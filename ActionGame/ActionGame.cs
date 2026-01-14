@@ -42,6 +42,16 @@ public partial class ActionGame : Control
 
     private void ChangeRoom(int roomID)
     {
+        if (roomID == CurrentRoomID)
+        {
+            return; // Don't keep changing to the same room
+        }
+
+        if (CurrentRoom != null)
+        {
+            CurrentRoom.DeactivateRoom();
+        }
+
         CurrentRoomID = roomID;
         CurrentRoom = (Room)GetChildren().First(x => ((Room)x).RoomID == roomID);
 

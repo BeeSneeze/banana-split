@@ -14,6 +14,7 @@ public partial class Room : Node2D
     public override void _Ready()
     {
         ParticleScene = GD.Load<PackedScene>("res://ActionGame/Particles/particle.tscn");
+        CustomEvents.Instance.PlayerChangedRoom += PlayerChangedRoom;
     }
 
     public override void _Process(double delta)
@@ -21,17 +22,48 @@ public partial class Room : Node2D
         // Tilemap entities are sadly initiated *after* the ready function
         if (GetChildCount() > 1 && !Initiated)
         {
-            SetRoomID();
+            SetRoomReference();
         }
     }
 
-    private void SetRoomID()
+    public void DeactivateRoom()
+    {
+        Modulate = new Color(0.8f, 0.8f, 0.8f);
+        foreach (var entity in GetNode("EntityMap").GetChildren())
+        {
+            if (entity as RoomExitArea != null)
+            {
+                ((RoomExitArea)entity).OnPlayerLeave();
+            }
+        }
+        GetNode("EntityMap").QueueFree();
+    }
+
+    private void PlayerChangedRoom(int roomID)
+    {
+        if (roomID == RoomID)
+        {
+            foreach (var entity in GetNode("EntityMap").GetChildren())
+            {
+                if (entity as Enemy != null)
+                {
+                    ((Enemy)entity).SetPhysicsProcess(true);
+                }
+            }
+        }
+    }
+
+    private void SetRoomReference()
     {
         foreach (var entity in GetNode("EntityMap").GetChildren())
         {
-            if (entity as RoomTeleport != null)
+            if (entity as RoomEntranceArea != null)
             {
-                ((RoomTeleport)entity).RoomID = RoomID;
+                ((RoomEntranceArea)entity).Room = this;
+            }
+            if (entity as RoomExitArea != null)
+            {
+                ((RoomExitArea)entity).Room = this;
             }
         }
         Initiated = true;
