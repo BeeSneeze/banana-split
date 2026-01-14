@@ -182,8 +182,13 @@ public partial class Player : CharacterBody2D
 
         newBullet.Velocity = BULLET_SPEED * direction.Normalized().Rotated(random.RandfRange(-0.09f, 0.09f));
         newBullet.Room = CurrentRoom;
-        CurrentRoom.Spawn(newBullet, Position);
-        CurrentRoom.SpawnParticle(ParticleNames.Dust, Position);
+        CurrentRoom.Spawn(newBullet, GlobalPosition - CurrentRoom.GlobalPosition);
+        CurrentRoom.SpawnParticle(ParticleNames.Dust, GlobalPosition - CurrentRoom.GlobalPosition);
+    }
+
+    public Vector2 GetPositionRelativeToRoom()
+    {
+        return GlobalPosition - CurrentRoom.GlobalPosition;
     }
 
     private void TakeDamage(int amount)

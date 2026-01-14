@@ -1,33 +1,72 @@
 using Godot;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Xml.Schema;
 
 public partial class ActionGame : Control
 {
     private int CurrentRoomID = -1;
     private Room CurrentRoom;
     public Player Player { get; private set; }
-    private bool RecentReparent = false;
+
+    private bool RoomsInitialized = false;
 
     public override void _Ready()
     {
         Player = GD.Load<PackedScene>("res://ActionGame/Characters/Player/player.tscn").Instantiate<Player>();
-        Player.Position = new Vector2(0, 0);
         CurrentRoom = GetChild<Room>(0);
         Player.CurrentRoom = CurrentRoom; // NOTE: Player needs to have current room before being added to the scene!
-        CurrentRoom.AddChild(Player);
+        AddChild(Player);
 
         CustomEvents.Instance.PlayerChangedRoom += ChangeRoom;
         CustomEvents.Instance.GameOver += GameOver;
         CustomEvents.Instance.GameWon += GameWon;
+
+        AddNewRoom();
+    }
+
+    private void AddNewRoom()
+    {
+        var roomScene = GD.Load<PackedScene>("res://ActionGame/Rooms/room_" + GD.RandRange(1, 4).ToString() + ".tscn").Instantiate<Room>();
+        roomScene.RoomID = CurrentRoomID + 1000;
+        AddChild(roomScene);
+        MoveRooms();
+    }
+
+    private void MoveRooms()
+    {
+        var childCount = 0;
+        var rooms = GetChildren().Where(x => x is Room).Select(x => (Room)x).ToArray();
+
+        for (int i = 0; i < rooms.Length - 1; i++)
+        {
+            childCount += rooms[i].GetNode("EntityMap").GetChildCount();
+        }
+
+        if (childCount > 0)
+        {
+            RoomsInitialized = true;
+            for (int i = 0; i < rooms.Length - 1; i++)
+            {
+                foreach (var entity in rooms[i].GetNode("EntityMap").GetChildren())
+                {
+                    if (entity is RoomSpawnMarker marker)
+                    {
+                        GD.Print(marker.GlobalPosition);
+                        rooms[i + 1].GlobalPosition = marker.GlobalPosition + new Vector2(-25, 25);
+                    }
+                }
+            }
+        }
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        // This check is needed or else the game crashes
-        if (RecentReparent)
+        if (!RoomsInitialized)
         {
-            RecentReparent = false;
+            MoveRooms();
         }
+
     }
 
     private void GameOver()
@@ -53,18 +92,16 @@ public partial class ActionGame : Control
         }
 
         CurrentRoomID = roomID;
-        CurrentRoom = (Room)GetChildren().First(x => ((Room)x).RoomID == roomID);
+
+        CurrentRoom = (Room)GetChildren().Where(x => x is Room).First(x => ((Room)x).RoomID == roomID);
 
         GD.Print("Changed to room: " + CurrentRoomID.ToString());
-        if (!RecentReparent && Player.GetParent() != CurrentRoom)
+        if (Player.CurrentRoom != CurrentRoom)
         {
-            // Defer and delay to avoid crashing
-            Player.GetNode<PlayerCamera>("%Camera").PositionSmoothingEnabled = false;
-            Player.CallDeferred(Node2D.MethodName.Reparent, CurrentRoom);
-            Player.GetNode("%Camera").CallDeferred(PlayerCamera.MethodName.TurnOnPositionSmoothing);
-            RecentReparent = true;
             Player.CurrentRoom = CurrentRoom;
         }
+
+        AddNewRoom();
     }
 
 }

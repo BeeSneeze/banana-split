@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddvcnfwvb1qfw"]
+
+[ext_resource type="Texture2D" uid="uid://cvd6l2x04ocxo" path="res://ActionGame/Flower.png" id="1_q3pdp"]
+[ext_resource type="Script" uid="uid://c5jro81r5lm8j" path="res://ActionGame/RoomSpawnMarker.cs" id="2_q3pdp"]
+
+[node name="RoomSpawnMarker" type="Sprite2D"]
+modulate = Color(1, 0.30588236, 1, 1)
+texture = ExtResource("1_q3pdp")
+script = ExtResource("2_q3pdp")

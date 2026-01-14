@@ -12,7 +12,7 @@ public partial class EnemyGrunt : Enemy
         Vector2 direction = new Vector2(0, 0);
         if (Level.Player != null)
         {
-            direction = Level.Player.Position - Position;
+            direction = Level.Player.GetPositionRelativeToRoom() - Position;
             GetNode<AnimatedSprite2D>("Visual").FlipH = direction.X < 0;
         }
 
