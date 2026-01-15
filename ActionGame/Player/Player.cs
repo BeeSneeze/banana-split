@@ -1,6 +1,8 @@
 using Godot;
 using System;
 using Common;
+using System.Security.AccessControl;
+using Microsoft.VisualBasic;
 
 public partial class Player : CharacterBody2D
 {
@@ -28,7 +30,13 @@ public partial class Player : CharacterBody2D
     private int DodgeCountdown, DodgeBuffer;
     private State ActiveState = State.IDLE;
     private Vector2 DodgeDirection = new Vector2(0, 0);
+    private Area2D AutoAimArea;
     private uint normalCollisions = (uint)CollisionLayerDefs.WALLS + (uint)CollisionLayerDefs.ENEMY + (uint)CollisionLayerDefs.OBSTACLES;
+
+    public Vector2 GetPositionRelativeToRoom()
+    {
+        return GlobalPosition - CurrentRoom.GlobalPosition;
+    }
 
     public override void _Ready()
     {
@@ -39,14 +47,17 @@ public partial class Player : CharacterBody2D
         Visual = GetNode<AnimatedSprite2D>("Visual");
         Crosshair = GetNode<AnimatedSprite2D>("Crosshair");
         BulletScene = GD.Load<PackedScene>("res://ActionGame/bullet.tscn");
+        AutoAimArea = GetNode<Area2D>("AutoAimArea");
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        Vector2 direction = Input.GetVector("GameLeft", "GameRight", "GameUp", "GameDown");
-        var normVector = direction.Normalized();
-        if (normVector != Vector2.Zero)
+        Vector2 inputDirection = Input.GetVector("GameLeft", "GameRight", "GameUp", "GameDown");
+        Vector2 direction = ApplyAutoAim(inputDirection);
+
+        if (inputDirection != Vector2.Zero)
         {
+            var normVector = inputDirection.Normalized();
             var newTween = GetTree().CreateTween();
             newTween.TweenProperty(Crosshair, "position", new Vector2(normVector.X * 200, normVector.Y * 200), 0.06);
         }
@@ -135,6 +146,30 @@ public partial class Player : CharacterBody2D
         MoveAndSlide();
     }
 
+    private Vector2 ApplyAutoAim(Vector2 inputVector)
+    {
+        AutoAimArea.Rotation = Mathf.Atan2(inputVector.Y, inputVector.X);
+
+        var shortestDistance = 100000000.0;
+        Node2D closestBody = null;
+
+        foreach (var body in AutoAimArea.GetOverlappingBodies())
+        {
+            if ((body.GlobalPosition - GlobalPosition).Length() < shortestDistance)
+            {
+                shortestDistance = (body.GlobalPosition - GlobalPosition).Length();
+                closestBody = body;
+            }
+        }
+
+        if (closestBody != null)
+        {
+            return (closestBody.GlobalPosition - GlobalPosition).Normalized() * inputVector.Length();
+        }
+
+        return inputVector;
+    }
+
     private void Shoot(Vector2 direction)
     {
         if (ActiveState == State.SLIDE)
@@ -184,11 +219,6 @@ public partial class Player : CharacterBody2D
         newBullet.Room = CurrentRoom;
         CurrentRoom.Spawn(newBullet, GlobalPosition - CurrentRoom.GlobalPosition);
         CurrentRoom.SpawnParticle(ParticleNames.Dust, GlobalPosition - CurrentRoom.GlobalPosition);
-    }
-
-    public Vector2 GetPositionRelativeToRoom()
-    {
-        return GlobalPosition - CurrentRoom.GlobalPosition;
     }
 
     private void TakeDamage(int amount)

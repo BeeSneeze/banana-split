@@ -41,9 +41,12 @@ public abstract partial class Enemy : CharacterBody2D
             GD.Print("ENEMY DIED!");
             QueueFree();
         }
-        Modulate = new Color(0.5f, 1.5f, 4.0f);
+        Modulate = new Color(0.5f, 1.5f, 5.0f);
+        Scale = new Vector2(0.8f, 0.8f);
         var newTween = GetTree().CreateTween();
-        newTween.TweenProperty(this, "modulate", new Color(1, 1, 1), 0.2);
+        newTween.TweenProperty(this, "modulate", new Color(1, 1, 1), 0.12);
+        var newTween2 = GetTree().CreateTween();
+        newTween2.TweenProperty(this, "scale", new Vector2(1, 1), 0.12);
     }
 
     protected void ResolveKnockback()
