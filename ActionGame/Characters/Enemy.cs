@@ -38,7 +38,6 @@ public abstract partial class Enemy : CharacterBody2D
         HealthPoints--;
         if (HealthPoints < 1)
         {
-            GD.Print("ENEMY DIED!");
             QueueFree();
         }
         Modulate = new Color(0.5f, 1.5f, 5.0f);

@@ -46,7 +46,7 @@ public partial class TypingGame : CanvasLayer
             {
                 HeldString += eventKey.AsTextKeycode();
                 ActiveBoxes.First().SetHighlight(HeldString);
-                GD.Print(HeldString);
+                ActiveBoxes.First().RightAnswer();
                 CharacterIndex++;
                 if (CharacterIndex == ActiveBoxes.First().TypeText.Length)
                 {
@@ -118,7 +118,6 @@ public partial class TypingGame : CanvasLayer
 
     private void FinishBox()
     {
-        GD.Print("WORD FINISHED!");
         var finishedBox = ActiveBoxes.Dequeue();
         finishedBox.CompleteAnswer();
         ResetActiveBox();

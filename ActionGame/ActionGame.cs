@@ -62,7 +62,6 @@ public partial class ActionGame : Control
                 {
                     if (entity is RoomSpawnMarker marker)
                     {
-                        GD.Print(marker.GlobalPosition);
                         rooms[i + 1].GlobalPosition = marker.GlobalPosition + new Vector2(-25, 25);
                     }
                 }

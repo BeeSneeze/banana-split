@@ -33,6 +33,13 @@ public partial class TextBox : ColorRect
         BoxShakeCountdown = BOX_SHAKE_TIME;
     }
 
+    public void RightAnswer()
+    {
+        var tween = GetTree().CreateTween();
+        tween.TweenProperty(this, "scale", new Vector2(0.98f, 0.98f), 0.1);
+        tween.Finished += () => Scale = new Vector2(1, 1);
+    }
+
     public void CompleteAnswer()
     {
         GetNode<RichTextLabel>("Label").Text = "[b]" + TypeText + "[/b]";

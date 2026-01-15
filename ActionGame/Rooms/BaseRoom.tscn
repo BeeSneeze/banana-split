@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://chja7sv73hhak"]
+[gd_scene load_steps=23 format=3 uid="uid://chja7sv73hhak"]
 
 [ext_resource type="Texture2D" uid="uid://n3f6hxfqsynd" path="res://ActionGame/Assets/TEST_WALLS.png" id="1_02ayl"]
 [ext_resource type="Script" uid="uid://dimqfrt0pmmmq" path="res://ActionGame/Room.cs" id="1_4pryp"]
 [ext_resource type="Texture2D" uid="uid://dkpow6l6vqb4w" path="res://ActionGame/Assets/TEST_FLOOR.png" id="2_4pryp"]
+[ext_resource type="Texture2D" uid="uid://d3afwn5tcpg3y" path="res://ActionGame/Assets/Carpet.png" id="2_hnjkh"]
 [ext_resource type="PackedScene" uid="uid://b1rxaifpo3pbr" path="res://ActionGame/Box.tscn" id="3_b0qb2"]
 [ext_resource type="PackedScene" uid="uid://c4m6jpir67lon" path="res://ActionGame/RoomEntranceArea.tscn" id="4_jpqgi"]
 [ext_resource type="PackedScene" uid="uid://bbuofob75nj4r" path="res://ActionGame/Characters/EnemyGrunt.tscn" id="5_i17fd"]
@@ -17,6 +18,26 @@ tile_data = PackedInt32Array(0, 65539, 0, 65536, 65539, 0, 131072, 65538, 3, 196
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_jjne7"]
 tile_data = PackedInt32Array(0, 65538, 2)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_815yh"]
+texture = ExtResource("2_hnjkh")
+texture_region_size = Vector2i(50, 50)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 2
+0:0/0/probability = 0.1
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 2
+1:0/0/probability = 0.5
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrain = 2
+0:1/0/probability = 0.2
+1:1/0 = 0
+1:1/0/terrain_set = 0
+1:1/0/terrain = 2
+1:1/0/probability = 0.2
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ruplu"]
 texture = ExtResource("1_02ayl")
@@ -149,8 +170,11 @@ terrain_set_0/terrain_0/name = "Wall"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 terrain_set_0/terrain_1/name = "Floor"
 terrain_set_0/terrain_1/color = Color(0.71221286, 0.6347316, 0.4043132, 1)
+terrain_set_0/terrain_2/name = "Carpet"
+terrain_set_0/terrain_2/color = Color(0.28043944, 0.54682875, 0.32110134, 1)
 sources/2 = SubResource("TileSetAtlasSource_ruplu")
 sources/3 = SubResource("TileSetAtlasSource_5hite")
+sources/0 = SubResource("TileSetAtlasSource_815yh")
 pattern_0 = SubResource("TileMapPattern_5hite")
 pattern_1 = SubResource("TileMapPattern_jjne7")
 

@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5dhnqbeerg6b"]
+[gd_scene load_steps=5 format=3 uid="uid://c5dhnqbeerg6b"]
 
 [ext_resource type="Script" uid="uid://ck0whjdcuambk" path="res://TypingGame/TypingGame.cs" id="1_nb7c1"]
+[ext_resource type="Texture2D" uid="uid://o3ytbt6wscrn" path="res://TypingGame/Worker1.png" id="2_jex5s"]
+[ext_resource type="Texture2D" uid="uid://djssridcjnrkn" path="res://TypingGame/Worker2.png" id="3_5n8ro"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jex5s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jex5s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5n8ro")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [node name="TypingGameLayer" type="CanvasLayer"]
 script = ExtResource("1_nb7c1")
@@ -29,4 +45,8 @@ color = Color(0.63021594, 0.29634118, 0.34623125, 0.5882353)
 [node name="TypingScreen" type="VBoxContainer" parent="."]
 offset_top = 120.0
 offset_right = 500.0
-offset_bottom = 416.0
+offset_bottom = 420.0
+
+[node name="Worker" type="AnimatedSprite2D" parent="."]
+position = Vector2(250, 750)
+sprite_frames = SubResource("SpriteFrames_jex5s")
