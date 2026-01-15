@@ -79,6 +79,11 @@ public abstract partial class Enemy : CharacterBody2D
                 TakeHit(bullet.Velocity);
                 bullet.ExplodeBullet();
             }
+
+            if (collider is Player player)
+            {
+                player.TakeDamage(1);
+            }
         }
     }
 

@@ -221,7 +221,7 @@ public partial class Player : CharacterBody2D
         CurrentRoom.SpawnParticle(ParticleNames.Dust, GlobalPosition - CurrentRoom.GlobalPosition);
     }
 
-    private void TakeDamage(int amount)
+    public void TakeDamage(int amount)
     {
         if (InvincibilityFrames > 0)
         {
