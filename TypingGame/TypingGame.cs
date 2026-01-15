@@ -53,6 +53,10 @@ public partial class TypingGame : CanvasLayer
                     FinishBox();
                 }
             }
+            else
+            {
+                ActiveBoxes.First().WrongAnswer();
+            }
         }
     }
 
@@ -116,7 +120,7 @@ public partial class TypingGame : CanvasLayer
     {
         GD.Print("WORD FINISHED!");
         var finishedBox = ActiveBoxes.Dequeue();
-        finishedBox.QueueFree();
+        finishedBox.CompleteAnswer();
         ResetActiveBox();
         UpdateIntensity();
         if (InventoryBoxes.Count > 0)

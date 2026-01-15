@@ -53,6 +53,14 @@ animations = [{
 "speed": 12.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Sparkle",
+"speed": 5.0
+}, {
+"frames": [{
 "duration": 0.5,
 "texture": ExtResource("8_3g8we")
 }, {
@@ -81,7 +89,5 @@ animations = [{
 [node name="Particle" type="AnimatedSprite2D"]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_vjm4o")
-animation = &"Splash"
-frame = 4
-frame_progress = 1.0
+animation = &"Sparkle"
 script = ExtResource("4_osap4")

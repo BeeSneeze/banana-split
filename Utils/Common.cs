@@ -11,7 +11,8 @@ namespace Common
     {
         Explosion,
         Dust,
-        Splash
+        Splash,
+        Sparkle
     }
 
     public enum TextBoxType
