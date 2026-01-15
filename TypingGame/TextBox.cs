@@ -6,7 +6,7 @@ public partial class TextBox : ColorRect
 {
     public string TypeText = "UNINITIALIZED";
     private TextBoxType Type;
-    private const double BOX_SHAKE_TIME = 0.5;
+    private const double BOX_SHAKE_TIME = 0.3;
     private double BoxShakeCountdown;
     private Vector2 BasePosition;
     private PackedScene Particle;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://chja7sv73hhak"]
+[gd_scene load_steps=21 format=3 uid="uid://chja7sv73hhak"]
 
 [ext_resource type="Texture2D" uid="uid://n3f6hxfqsynd" path="res://ActionGame/Assets/TEST_WALLS.png" id="1_02ayl"]
 [ext_resource type="Script" uid="uid://dimqfrt0pmmmq" path="res://ActionGame/Room.cs" id="1_4pryp"]
@@ -168,10 +168,14 @@ scenes/2/scene = ExtResource("8_um5ve")
 scenes/4/scene = ExtResource("10_jjne7")
 scenes/5/scene = ExtResource("11_1ppml")
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_1ppml"]
+resource_name = "NPCs"
+
 [sub_resource type="TileSet" id="TileSet_cbt12"]
 tile_size = Vector2i(50, 50)
 sources/0 = SubResource("TileSetScenesCollectionSource_cbt12")
 sources/1 = SubResource("TileSetScenesCollectionSource_ruplu")
+sources/2 = SubResource("TileSetScenesCollectionSource_1ppml")
 
 [node name="Room" type="Node2D"]
 y_sort_enabled = true

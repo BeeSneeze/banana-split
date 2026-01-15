@@ -46,6 +46,7 @@ sprite_frames = SubResource("SpriteFrames_tmsbd")
 unique_name_in_owner = true
 offset = Vector2(-240, -80)
 process_callback = 0
+limit_left = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 2.5
 drag_left_margin = 0.1

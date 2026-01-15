@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Xml.Schema;
@@ -28,6 +29,11 @@ public partial class ActionGame : Control
     private void AddNewRoom()
     {
         var roomScene = GD.Load<PackedScene>("res://ActionGame/Rooms/room_" + GD.RandRange(1, 4).ToString() + ".tscn").Instantiate<Room>();
+        if (GD.Randf() > 0.9)
+        {
+            roomScene = GD.Load<PackedScene>("res://ActionGame/Rooms/break_room.tscn").Instantiate<Room>();
+        }
+
         roomScene.RoomID = CurrentRoomID + 1000;
         AddChild(roomScene);
         MoveRooms();
@@ -99,6 +105,21 @@ public partial class ActionGame : Control
         if (Player.CurrentRoom != CurrentRoom)
         {
             Player.CurrentRoom = CurrentRoom;
+
+            var roomRectangle = CurrentRoom.GetNode<TileMapLayer>("TerrainMap").GetUsedRect();
+            var cellsize = CurrentRoom.GetNode<TileMapLayer>("TerrainMap").TileSet.TileSize;
+
+            var playerCamera = Player.GetNode<Camera2D>("%Camera");
+
+            var zoomAmount = (float)Mathf.Clamp(30 / roomRectangle.Size.Length(), 1, 1.3);
+            playerCamera.Zoom = Vector2.One * zoomAmount;
+
+
+            // TODO: Figure out how to limit the camera to specific rooms
+            //playerCamera.LimitLeft = roomRectangle.Position.X + (int)CurrentRoom.Position.X + 240;
+            //playerCamera.LimitBottom = roomRectangle.Position.Y + (int)CurrentRoom.Position.Y;
+            //playerCamera.LimitRight = roomRectangle.End.X * cellsize.X + (int)CurrentRoom.Position.X + 240;
+            //playerCamera.LimitTop = roomRectangle.End.Y * cellsize. + (int)CurrentRoom.Position.Y;
         }
 
         AddNewRoom();
