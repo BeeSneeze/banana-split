@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1kpk3rwsu5g4"
-path="res://.godot/imported/Crosshair.png-45af6478afa0811f34018b27aa1f43a7.ctex"
+uid="uid://deccgg7ari8ok"
+path="res://.godot/imported/MC_TEST.png-ebbf05d074f94b472a2e8a6b8900c120.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ActionGame/Characters/Player/Crosshair.png"
-dest_files=["res://.godot/imported/Crosshair.png-45af6478afa0811f34018b27aa1f43a7.ctex"]
+source_file="res://ActionGame/Player/MC_TEST.png"
+dest_files=["res://.godot/imported/MC_TEST.png-ebbf05d074f94b472a2e8a6b8900c120.ctex"]
 
 [params]
 

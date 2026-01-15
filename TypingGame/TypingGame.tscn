@@ -27,9 +27,6 @@ grow_vertical = 2
 color = Color(0.63021594, 0.29634118, 0.34623125, 0.5882353)
 
 [node name="TypingScreen" type="VBoxContainer" parent="."]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -960.0
+offset_top = 120.0
 offset_right = 500.0
-grow_vertical = 0
+offset_bottom = 416.0

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dk3ush02vfnp8"
-path="res://.godot/imported/MC_TEST_RUN3.png-9979558036ec8884e975942a89eebb0e.ctex"
+uid="uid://hmlq860sgwdv"
+path="res://.godot/imported/MC_TEST_RUN1.png-c64857dca9df73e3a0a03b721a837136.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ActionGame/Characters/Player/MC_TEST_RUN3.png"
-dest_files=["res://.godot/imported/MC_TEST_RUN3.png-9979558036ec8884e975942a89eebb0e.ctex"]
+source_file="res://ActionGame/Player/MC_TEST_RUN1.png"
+dest_files=["res://.godot/imported/MC_TEST_RUN1.png-c64857dca9df73e3a0a03b721a837136.ctex"]
 
 [params]
 

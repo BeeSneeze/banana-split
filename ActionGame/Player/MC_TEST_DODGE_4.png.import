@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hmlq860sgwdv"
-path="res://.godot/imported/MC_TEST_RUN1.png-8e77bb3d31b66146c4cc8b777e27d2f8.ctex"
+uid="uid://b07ku2v8lv0nb"
+path="res://.godot/imported/MC_TEST_DODGE_4.png-81be62723dadbdb0cf28d59636003081.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ActionGame/Characters/Player/MC_TEST_RUN1.png"
-dest_files=["res://.godot/imported/MC_TEST_RUN1.png-8e77bb3d31b66146c4cc8b777e27d2f8.ctex"]
+source_file="res://ActionGame/Player/MC_TEST_DODGE_4.png"
+dest_files=["res://.godot/imported/MC_TEST_DODGE_4.png-81be62723dadbdb0cf28d59636003081.ctex"]
 
 [params]
 

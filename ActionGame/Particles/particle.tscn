@@ -33,7 +33,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Dust",
-"speed": 10.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -89,5 +89,5 @@ animations = [{
 [node name="Particle" type="AnimatedSprite2D"]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_vjm4o")
-animation = &"Sparkle"
+animation = &"Dust"
 script = ExtResource("4_osap4")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://caxs5hc5kjsmu"
-path="res://.godot/imported/Player_Bullet_2.png-7876270a4bd4ce01f3f386e4b64dfab9.ctex"
+uid="uid://c8a514jmtddl0"
+path="res://.godot/imported/MC_TEST_DODGE_2.png-20f42f600b422faa9e09fab60f02c486.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ActionGame/Characters/Player/Player_Bullet_2.png"
-dest_files=["res://.godot/imported/Player_Bullet_2.png-7876270a4bd4ce01f3f386e4b64dfab9.ctex"]
+source_file="res://ActionGame/Player/MC_TEST_DODGE_2.png"
+dest_files=["res://.godot/imported/MC_TEST_DODGE_2.png-20f42f600b422faa9e09fab60f02c486.ctex"]
 
 [params]
 

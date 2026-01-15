@@ -9,12 +9,14 @@ public partial class ActionGame : Control
     private int CurrentRoomID = -1;
     private Room CurrentRoom;
     public Player Player { get; private set; }
+    private const int BREAK_ROOM_INTERVAL = 7;
+    private int RoomsUntilBreak = BREAK_ROOM_INTERVAL;
 
     private bool RoomsInitialized = false;
 
     public override void _Ready()
     {
-        Player = GD.Load<PackedScene>("res://ActionGame/Characters/Player/player.tscn").Instantiate<Player>();
+        Player = GD.Load<PackedScene>("res://ActionGame/Player/player.tscn").Instantiate<Player>();
         CurrentRoom = GetChild<Room>(0);
         Player.CurrentRoom = CurrentRoom; // NOTE: Player needs to have current room before being added to the scene!
         AddChild(Player);
@@ -28,9 +30,11 @@ public partial class ActionGame : Control
 
     private void AddNewRoom()
     {
+        RoomsUntilBreak--;
         var roomScene = GD.Load<PackedScene>("res://ActionGame/Rooms/room_" + GD.RandRange(1, 4).ToString() + ".tscn").Instantiate<Room>();
-        if (GD.Randf() > 0.9)
+        if (RoomsUntilBreak == 0)
         {
+            RoomsUntilBreak = BREAK_ROOM_INTERVAL;
             roomScene = GD.Load<PackedScene>("res://ActionGame/Rooms/break_room.tscn").Instantiate<Room>();
         }
 
