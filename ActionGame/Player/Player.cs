@@ -20,7 +20,8 @@ public partial class Player : CharacterBody2D
     private const int MAX_BULLETS_IN_CHAMBER = 6;
     private const int DODGE_FRAME_COUNT = 35;
     private const float DODGE_SPEED_BONUS = 50;
-    private const int DODGE_BUFFER_FRAMES = 15;
+    private const int DODGE_BUFFER_FRAMES = 20;
+    private const float BULLET_SPREAD = 0.07f;
 
     private int BulletsInChamber = MAX_BULLETS_IN_CHAMBER;
     private float TemporarySpeed;
@@ -215,7 +216,7 @@ public partial class Player : CharacterBody2D
         var random = new RandomNumberGenerator();
         random.Randomize();
 
-        newBullet.Velocity = BULLET_SPEED * direction.Normalized().Rotated(random.RandfRange(-0.09f, 0.09f));
+        newBullet.Velocity = BULLET_SPEED * direction.Normalized().Rotated(random.RandfRange(-BULLET_SPREAD, BULLET_SPREAD));
         newBullet.Room = CurrentRoom;
         CurrentRoom.Spawn(newBullet, GlobalPosition - CurrentRoom.GlobalPosition);
         CurrentRoom.SpawnParticle(ParticleNames.Dust, GlobalPosition - CurrentRoom.GlobalPosition);
