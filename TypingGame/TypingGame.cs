@@ -13,6 +13,7 @@ public partial class TypingGame : CanvasLayer
     private string[] WordList;
     private PackedScene TextBoxScene;
     private PackedScene InventoryBoxScene;
+    private AnimatedSprite2D WorkerAnimation;
 
     private string LoadFromFile(string url)
     {
@@ -23,6 +24,8 @@ public partial class TypingGame : CanvasLayer
 
     public override void _Ready()
     {
+        WorkerAnimation = GetNode<AnimatedSprite2D>("Worker");
+        WorkerAnimation.AnimationFinished += () => WorkerAnimation.Animation = "Idle";
         CustomEvents.Instance.PlayerTookDamage += AddBoxToInventory;
         WordList = LoadFromFile("res://TypingGame/LeftWords.txt").Split(" ");
         TextBoxScene = GD.Load<PackedScene>("res://TypingGame/TextBox.tscn");
@@ -48,6 +51,8 @@ public partial class TypingGame : CanvasLayer
                 ActiveBoxes.First().SetHighlight(HeldString);
                 ActiveBoxes.First().RightAnswer();
                 CharacterIndex++;
+                WorkerAnimation.Animation = "Work";
+                WorkerAnimation.Play();
                 if (CharacterIndex == ActiveBoxes.First().TypeText.Length)
                 {
                     FinishBox();
@@ -118,6 +123,8 @@ public partial class TypingGame : CanvasLayer
 
     private void FinishBox()
     {
+        WorkerAnimation.Animation = "NewPackage";
+        WorkerAnimation.Play();
         var finishedBox = ActiveBoxes.Dequeue();
         finishedBox.CompleteAnswer();
         ResetActiveBox();

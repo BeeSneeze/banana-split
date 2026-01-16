@@ -1,21 +1,76 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5dhnqbeerg6b"]
+[gd_scene load_steps=9 format=3 uid="uid://c5dhnqbeerg6b"]
 
 [ext_resource type="Script" uid="uid://ck0whjdcuambk" path="res://TypingGame/TypingGame.cs" id="1_nb7c1"]
-[ext_resource type="Texture2D" uid="uid://o3ytbt6wscrn" path="res://TypingGame/Worker1.png" id="2_jex5s"]
-[ext_resource type="Texture2D" uid="uid://djssridcjnrkn" path="res://TypingGame/Worker2.png" id="3_5n8ro"]
+[ext_resource type="Texture2D" uid="uid://cccqqiwh5p8sq" path="res://TypingGame/WorkerIdle.png" id="2_mais2"]
+[ext_resource type="Texture2D" uid="uid://bju0gah6ktbtb" path="res://TypingGame/NewPackage4.png" id="3_sgfvb"]
+[ext_resource type="Texture2D" uid="uid://df6a6ujjyhq2h" path="res://TypingGame/NewPackage1.png" id="4_hj4bq"]
+[ext_resource type="Texture2D" uid="uid://36uokuqfpj6n" path="res://TypingGame/NewPackage2.png" id="5_w2115"]
+[ext_resource type="Texture2D" uid="uid://cgr02p1uyltmp" path="res://TypingGame/WorkerWork1.png" id="6_hj4bq"]
+[ext_resource type="Texture2D" uid="uid://dx4eq73o6rfky" path="res://TypingGame/WorkerWork2.png" id="7_w2115"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jex5s"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_jex5s")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_5n8ro")
+"texture": ExtResource("2_mais2")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Idle",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 0.6,
+"texture": ExtResource("2_mais2")
+}, {
+"duration": 0.6,
+"texture": ExtResource("3_sgfvb")
+}, {
+"duration": 0.5,
+"texture": ExtResource("4_hj4bq")
+}, {
+"duration": 0.8,
+"texture": ExtResource("5_w2115")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_mais2")
+}],
+"loop": false,
+"name": &"NewPackage",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_hj4bq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_w2115")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hj4bq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_w2115")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hj4bq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_w2115")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hj4bq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_w2115")
+}],
+"loop": true,
+"name": &"Work",
+"speed": 30.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
 }]
 
 [node name="TypingGameLayer" type="CanvasLayer"]
@@ -50,3 +105,5 @@ offset_bottom = 420.0
 [node name="Worker" type="AnimatedSprite2D" parent="."]
 position = Vector2(250, 750)
 sprite_frames = SubResource("SpriteFrames_jex5s")
+animation = &"Work"
+autoplay = "Idle"
