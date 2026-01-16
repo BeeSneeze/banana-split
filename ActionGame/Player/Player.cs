@@ -22,6 +22,9 @@ public partial class Player : CharacterBody2D
     private const float DODGE_SPEED_BONUS = 50;
     private const int DODGE_BUFFER_FRAMES = 20;
     private const float BULLET_SPREAD = 0.07f;
+    private const uint COLLISIONS_NORMAL = (uint)CollisionLayerDefs.WALLS + (uint)CollisionLayerDefs.ENEMY + (uint)CollisionLayerDefs.OBSTACLES;
+    private const uint COLLISIONS_NO_DODGE = (uint)CollisionLayerDefs.ENEMY_BULLETS + (uint)CollisionLayerDefs.DODGEABLE;
+    private const int MOVEMENT_DIRECTIONS = 16;
 
     private int BulletsInChamber = MAX_BULLETS_IN_CHAMBER;
     private float TemporarySpeed;
@@ -32,8 +35,6 @@ public partial class Player : CharacterBody2D
     private State ActiveState = State.IDLE;
     private Vector2 DodgeDirection = new Vector2(0, 0);
     private Area2D AutoAimArea;
-    private const uint COLLISIONS_NORMAL = (uint)CollisionLayerDefs.WALLS + (uint)CollisionLayerDefs.ENEMY + (uint)CollisionLayerDefs.OBSTACLES;
-    private const uint COLLISIONS_NO_DODGE = (uint)CollisionLayerDefs.ENEMY_BULLETS + (uint)CollisionLayerDefs.DODGEABLE;
 
     public Vector2 GetPositionRelativeToRoom()
     {
@@ -93,7 +94,7 @@ public partial class Player : CharacterBody2D
         DodgeCountdown--;
         if (DodgeCountdown > 0)
         {
-            Velocity = DodgeDirection * (PLAYER_SPEED + TemporarySpeed);
+            Velocity = QuantizeVector(DodgeDirection * (PLAYER_SPEED + TemporarySpeed), MOVEMENT_DIRECTIONS);
             MoveAndSlide();
             return; // You can't perform any actions in the middle of a dodge
         }
@@ -146,6 +147,14 @@ public partial class Player : CharacterBody2D
         }
 
         MoveAndSlide();
+    }
+
+    private Vector2 QuantizeVector(Vector2 inVector, int numberOfDirections)
+    {
+        var angle = Mathf.Atan2(inVector.Y, inVector.X);
+        var quantizedAngle = (float)((Mathf.Tau / numberOfDirections) * Mathf.Round((numberOfDirections / Mathf.Tau) * angle));
+
+        return inVector.Rotated(-angle).Rotated(quantizedAngle);
     }
 
     private Vector2 ApplyAutoAim(Vector2 inputVector)
