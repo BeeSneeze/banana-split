@@ -32,7 +32,8 @@ public partial class Player : CharacterBody2D
     private State ActiveState = State.IDLE;
     private Vector2 DodgeDirection = new Vector2(0, 0);
     private Area2D AutoAimArea;
-    private uint normalCollisions = (uint)CollisionLayerDefs.WALLS + (uint)CollisionLayerDefs.ENEMY + (uint)CollisionLayerDefs.OBSTACLES;
+    private const uint COLLISIONS_NORMAL = (uint)CollisionLayerDefs.WALLS + (uint)CollisionLayerDefs.ENEMY + (uint)CollisionLayerDefs.OBSTACLES;
+    private const uint COLLISIONS_NO_DODGE = (uint)CollisionLayerDefs.ENEMY_BULLETS + (uint)CollisionLayerDefs.DODGEABLE;
 
     public Vector2 GetPositionRelativeToRoom()
     {
@@ -100,7 +101,7 @@ public partial class Player : CharacterBody2D
         {
             ReloadCountdown = -1; // Always reload after a dodge roll
             BulletsInChamber = MAX_BULLETS_IN_CHAMBER;
-            CollisionMask = normalCollisions + (uint)CollisionLayerDefs.ENEMY_BULLETS;
+            CollisionMask = COLLISIONS_NORMAL + COLLISIONS_NO_DODGE;
             TemporarySpeed = 0;
             DodgeBuffer = DODGE_BUFFER_FRAMES;
         }
@@ -263,7 +264,7 @@ public partial class Player : CharacterBody2D
                 TemporarySpeed += DODGE_SPEED_BONUS;
                 InvincibilityFrames = DODGE_FRAME_COUNT;
                 DodgeCountdown = DODGE_FRAME_COUNT;
-                CollisionMask = normalCollisions;
+                CollisionMask = COLLISIONS_NORMAL;
                 Visual.Animation = "Dodge";
                 break;
             case State.IDLE:

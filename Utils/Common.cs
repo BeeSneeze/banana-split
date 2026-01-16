@@ -30,6 +30,8 @@ namespace Common
         ENEMY_BULLETS = 16,
         WALLS = 32,
         OBSTACLES = 64,
-        PICKUPS = 128
+        ROOM_TELEPORTS = 128,
+        PICKUPS = 256,
+        DODGEABLE = 512,
     }
 }
