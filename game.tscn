@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://xbsm7dgj3745" path="res://Game.cs" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://ju5xdgsp4x80" path="res://ActionGame/action_game.tscn" id="2_feb5d"]
 [ext_resource type="PackedScene" uid="uid://c5dhnqbeerg6b" path="res://TypingGame/TypingGame.tscn" id="3_feb5d"]
-[ext_resource type="PackedScene" uid="uid://bad3ow8kqh0y4" path="res://dialogue_layer.tscn" id="4_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://bad3ow8kqh0y4" path="res://Dialogue/dialogue_layer.tscn" id="4_fc0e3"]
 
 [node name="Game" type="Control"]
 layout_mode = 3

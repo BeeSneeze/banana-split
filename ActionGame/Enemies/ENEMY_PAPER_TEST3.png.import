@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mi60tvknaq64"
-path="res://.godot/imported/ENEMY_PAPER_TEST1.png-b36569eaa1464c0ef051d7b4eaf85ec1.ctex"
+uid="uid://c7gc50cs1olmy"
+path="res://.godot/imported/ENEMY_PAPER_TEST3.png-a6ebe61cf9650ad584f8e9a8eae1041f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ActionGame/Characters/ENEMY_PAPER_TEST1.png"
-dest_files=["res://.godot/imported/ENEMY_PAPER_TEST1.png-b36569eaa1464c0ef051d7b4eaf85ec1.ctex"]
+source_file="res://ActionGame/Enemies/ENEMY_PAPER_TEST3.png"
+dest_files=["res://.godot/imported/ENEMY_PAPER_TEST3.png-a6ebe61cf9650ad584f8e9a8eae1041f.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvdaiw627q2pr"
-path="res://.godot/imported/LightMask.png-e2a56e91c9a01c8bef32589c9e7330ee.ctex"
+uid="uid://dagyujr2i82hd"
+path="res://.godot/imported/CHAT_BOX.png-5661206d6fe2f2028ea7ebc04d5cdac6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ActionGame/Characters/LightMask.png"
-dest_files=["res://.godot/imported/LightMask.png-e2a56e91c9a01c8bef32589c9e7330ee.ctex"]
+source_file="res://CHAT_BOX.png"
+dest_files=["res://.godot/imported/CHAT_BOX.png-5661206d6fe2f2028ea7ebc04d5cdac6.ctex"]
 
 [params]
 

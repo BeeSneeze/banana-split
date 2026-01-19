@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://cf6tb1ciuxej8"]
 
-[ext_resource type="Script" uid="uid://c5dyygabwqjux" path="res://ActionGame/Characters/EnemyBlaster.cs" id="1_oid0x"]
-[ext_resource type="Texture2D" uid="uid://mi60tvknaq64" path="res://ActionGame/Characters/ENEMY_PAPER_TEST1.png" id="2_n7vu1"]
-[ext_resource type="Texture2D" uid="uid://7mm1m38r5m7r" path="res://ActionGame/Characters/ENEMY_PAPER_TEST2.png" id="3_dgoky"]
-[ext_resource type="PackedScene" uid="uid://melmaj6ma46q" path="res://ActionGame/Characters/personal_space.tscn" id="4_egc0s"]
-[ext_resource type="Texture2D" uid="uid://c7gc50cs1olmy" path="res://ActionGame/Characters/ENEMY_PAPER_TEST3.png" id="4_epylg"]
+[ext_resource type="Script" uid="uid://c5dyygabwqjux" path="res://ActionGame/Enemies/EnemyBlaster.cs" id="1_oid0x"]
+[ext_resource type="Texture2D" uid="uid://mi60tvknaq64" path="res://ActionGame/Enemies/ENEMY_PAPER_TEST1.png" id="2_n7vu1"]
+[ext_resource type="Texture2D" uid="uid://7mm1m38r5m7r" path="res://ActionGame/Enemies/ENEMY_PAPER_TEST2.png" id="3_dgoky"]
+[ext_resource type="PackedScene" uid="uid://melmaj6ma46q" path="res://ActionGame/Enemies/personal_space.tscn" id="4_egc0s"]
+[ext_resource type="Texture2D" uid="uid://c7gc50cs1olmy" path="res://ActionGame/Enemies/ENEMY_PAPER_TEST3.png" id="4_epylg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p40wr"]
 size = Vector2(50, 50)

@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://cv8es1nly5ed8"]
 
-[ext_resource type="Script" uid="uid://vyh7odqib4g4" path="res://ActionGame/Characters/EnemyWimp.cs" id="1_neigc"]
-[ext_resource type="Texture2D" uid="uid://b486xnqg20a4s" path="res://ActionGame/Characters/ENEMY_WIMP_TEST1.png" id="1_rkt1j"]
-[ext_resource type="Texture2D" uid="uid://cgt6sad3k7cjn" path="res://ActionGame/Characters/ENEMY_WIMP_TEST2.png" id="2_neigc"]
-[ext_resource type="PackedScene" uid="uid://melmaj6ma46q" path="res://ActionGame/Characters/personal_space.tscn" id="4_p40wr"]
+[ext_resource type="Script" uid="uid://vyh7odqib4g4" path="res://ActionGame/Enemies/EnemyWimp.cs" id="1_neigc"]
+[ext_resource type="Texture2D" uid="uid://b486xnqg20a4s" path="res://ActionGame/Enemies/ENEMY_WIMP_TEST1.png" id="1_rkt1j"]
+[ext_resource type="Texture2D" uid="uid://cgt6sad3k7cjn" path="res://ActionGame/Enemies/ENEMY_WIMP_TEST2.png" id="2_neigc"]
+[ext_resource type="PackedScene" uid="uid://melmaj6ma46q" path="res://ActionGame/Enemies/personal_space.tscn" id="4_p40wr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p40wr"]
 size = Vector2(50, 50)

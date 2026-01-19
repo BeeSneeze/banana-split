@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxq0n8qw3pmin"
-path="res://.godot/imported/ENEMY_GRUNT_TEST2.png-6ec9a585c09234831a79224aa8fc4942.ctex"
+uid="uid://cgt6sad3k7cjn"
+path="res://.godot/imported/ENEMY_WIMP_TEST2.png-4078db092163e17579b66c5c44da194c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ActionGame/Characters/ENEMY_GRUNT_TEST2.png"
-dest_files=["res://.godot/imported/ENEMY_GRUNT_TEST2.png-6ec9a585c09234831a79224aa8fc4942.ctex"]
+source_file="res://ActionGame/Enemies/ENEMY_WIMP_TEST2.png"
+dest_files=["res://.godot/imported/ENEMY_WIMP_TEST2.png-4078db092163e17579b66c5c44da194c.ctex"]
 
 [params]
 

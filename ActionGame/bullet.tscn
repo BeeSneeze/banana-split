@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://uuh0fvsqcrm0"]
 
-[ext_resource type="Texture2D" uid="uid://ccjyagegmwska" path="res://ActionGame/Characters/BulletRound.png" id="1_v7oki"]
+[ext_resource type="Texture2D" uid="uid://ccjyagegmwska" path="res://ActionGame/Enemies/BulletRound.png" id="1_v7oki"]
 [ext_resource type="Script" uid="uid://k6lye3yjr8p4" path="res://ActionGame/Bullet.cs" id="1_v8qja"]
 [ext_resource type="Texture2D" uid="uid://cxxjtjehccsvc" path="res://ActionGame/Player/Player_Bullet_1.png" id="2_0g0bc"]
-[ext_resource type="Texture2D" uid="uid://ccjyagegmwska" path="res://ActionGame/Characters/BulletRound.png" id="2_0iu8t"]
+[ext_resource type="Texture2D" uid="uid://ccjyagegmwska" path="res://ActionGame/Enemies/BulletRound.png" id="2_0iu8t"]
 [ext_resource type="Texture2D" uid="uid://caxs5hc5kjsmu" path="res://ActionGame/Player/Player_Bullet_2.png" id="3_0iu8t"]
-[ext_resource type="Texture2D" uid="uid://dvdaiw627q2pr" path="res://ActionGame/Characters/LightMask.png" id="6_h0p42"]
+[ext_resource type="Texture2D" uid="uid://dvdaiw627q2pr" path="res://ActionGame/Enemies/LightMask.png" id="6_h0p42"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rtl8c"]
 radius = 11.0

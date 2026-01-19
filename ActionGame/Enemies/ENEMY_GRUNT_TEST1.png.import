@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccjyagegmwska"
-path="res://.godot/imported/BulletRound.png-68f5b3d7ca17693e23300fcdbcc0b043.ctex"
+uid="uid://cnniegbkcpdjk"
+path="res://.godot/imported/ENEMY_GRUNT_TEST1.png-07c2ae2c2ca7cffd48512186f83ed364.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ActionGame/Characters/BulletRound.png"
-dest_files=["res://.godot/imported/BulletRound.png-68f5b3d7ca17693e23300fcdbcc0b043.ctex"]
+source_file="res://ActionGame/Enemies/ENEMY_GRUNT_TEST1.png"
+dest_files=["res://.godot/imported/ENEMY_GRUNT_TEST1.png-07c2ae2c2ca7cffd48512186f83ed364.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://diy4i2yfdqpt0"
-path="res://.godot/imported/ENEMY_BLAST_TEST1.png-1b0e2bcfbb44f220a9fa225e1d90799f.ctex"
+uid="uid://ccjyagegmwska"
+path="res://.godot/imported/BulletRound.png-f89284880e4d7d7d64b576aac3e45f05.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ActionGame/Characters/ENEMY_BLAST_TEST1.png"
-dest_files=["res://.godot/imported/ENEMY_BLAST_TEST1.png-1b0e2bcfbb44f220a9fa225e1d90799f.ctex"]
+source_file="res://ActionGame/Enemies/BulletRound.png"
+dest_files=["res://.godot/imported/BulletRound.png-f89284880e4d7d7d64b576aac3e45f05.ctex"]
 
 [params]
 

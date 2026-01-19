@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ttcuexnrmwev"
-path="res://.godot/imported/ENEMY_BLAST_TEST2.png-bddf9ea786e276c58fb240ce51b3f16b.ctex"
+path="res://.godot/imported/ENEMY_BLAST_TEST2.png-7ba4a6b6951f3c58827ee931b948a430.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ActionGame/Characters/ENEMY_BLAST_TEST2.png"
-dest_files=["res://.godot/imported/ENEMY_BLAST_TEST2.png-bddf9ea786e276c58fb240ce51b3f16b.ctex"]
+source_file="res://ActionGame/Enemies/ENEMY_BLAST_TEST2.png"
+dest_files=["res://.godot/imported/ENEMY_BLAST_TEST2.png-7ba4a6b6951f3c58827ee931b948a430.ctex"]
 
 [params]
 

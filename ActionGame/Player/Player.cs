@@ -51,6 +51,8 @@ public partial class Player : CharacterBody2D
         Crosshair = GetNode<AnimatedSprite2D>("Crosshair");
         BulletScene = GD.Load<PackedScene>("res://ActionGame/bullet.tscn");
         AutoAimArea = GetNode<Area2D>("AutoAimArea");
+        CustomEvents.Instance.DialogueStarted += (_string) => SetPhysicsProcess(false);
+        CustomEvents.Instance.DialogueEnded += () => SetPhysicsProcess(true);
     }
 
     public override void _PhysicsProcess(double delta)
