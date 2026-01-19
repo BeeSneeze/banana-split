@@ -61,6 +61,11 @@ GameDodge={
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":5,"axis_value":1.0,"script":null)
 ]
 }
+InteractButton={
+"deadzone": 0.2,
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":11,"pressure":0.0,"pressed":true,"script":null)
+]
+}
 
 [layer_names]
 
@@ -73,6 +78,7 @@ GameDodge={
 2d_physics/layer_8="RoomTeleports"
 2d_physics/layer_9="Pickup"
 2d_physics/layer_10="Dodgeable obstacle"
+2d_physics/layer_11="Interactable"
 
 [rendering]
 

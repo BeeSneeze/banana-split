@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bad3ow8kqh0y4"]
+
+[ext_resource type="Script" uid="uid://b6gt7ky7lkiaw" path="res://DialogueSystem.cs" id="1_sasex"]
+
+[node name="DialogueLayer" type="CanvasLayer"]
+script = ExtResource("1_sasex")

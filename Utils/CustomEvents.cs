@@ -1,3 +1,4 @@
+using Common;
 using Godot;
 
 public partial class CustomEvents : Node
@@ -10,6 +11,10 @@ public partial class CustomEvents : Node
     public delegate void GameOverEventHandler();
     [Signal]
     public delegate void GameWonEventHandler();
+    [Signal]
+    public delegate void DialogueStartedEventHandler(string npc);
+    [Signal]
+    public delegate void DialogueEndedEventHandler();
 
     public static CustomEvents Instance { get; private set; }
     public override void _Ready()

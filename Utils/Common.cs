@@ -21,6 +21,13 @@ namespace Common
         Numbers
     }
 
+    public enum NPCName
+    {
+        Jenny,
+        Katelyn,
+        Steve
+    }
+
     public enum CollisionLayerDefs : uint
     {
         DEFAULT = 1,
