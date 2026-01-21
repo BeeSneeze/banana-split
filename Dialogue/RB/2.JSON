@@ -1,0 +1,9 @@
+{
+    "Speakers": [{"Name": "Lefty"}, {"Name": "RB"}],
+    "Lines":
+    [
+        {"Speaker": {"Name": "RB"}, "Text": " [RB] This is a test"},
+        {"Speaker": {"Name": "Lefty"}, "Text": " [LEFTY] To see that we talk in the right order"},
+        {"Speaker": {"Name": "RB"}, "Text": " [RB] Back and forth"}
+    ]
+}

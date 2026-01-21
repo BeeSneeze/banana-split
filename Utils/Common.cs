@@ -21,12 +21,7 @@ namespace Common
         Numbers
     }
 
-    public enum NPCName
-    {
-        Jenny,
-        Katelyn,
-        Steve
-    }
+    public record struct NPCName(string Name);
 
     public enum CollisionLayerDefs : uint
     {

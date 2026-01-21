@@ -1,35 +1,26 @@
 using Common;
 using Godot;
+using Godot.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.Json;
 
 public partial class DialogueSystem : CanvasLayer
 {
-    private record struct ConversationLine(NPCName speaker, string text);
+    private record struct ConversationLine(NPCName Speaker, string Text);
     private Queue<ConversationLine> ActiveConversation = new Queue<ConversationLine>();
     private PackedScene DialogueTextBox;
     private VBoxContainer TextContainer;
+    private int RB_COUNT = 0;
+    private bool ConversationActive = false;
 
     public override void _Ready()
     {
-
+        Visible = false;
         TextContainer = GetNode<VBoxContainer>("TextContainer");
         DialogueTextBox = GD.Load<PackedScene>("res://Dialogue/dialogue_text_box.tscn");
-        ActiveConversation.Enqueue(new ConversationLine(NPCName.Jenny, "Hello!"));
-        ActiveConversation.Enqueue(new ConversationLine(NPCName.Jenny, "Goodbye!"));
-        this.Visible = false;
         CustomEvents.Instance.DialogueStarted += StartDialogue;
-    }
-
-    private void StartDialogue(string npc)
-    {
-        this.Visible = true;
-        // TODO: Fix constant string stuff for NPC names
-        switch (npc)
-        {
-            case "Jenny":
-                GD.Print("Jenny starts talking");
-                break;
-        }
+        //LoadConversation("RB/1");
     }
 
     public override void _PhysicsProcess(double delta)
@@ -40,6 +31,57 @@ public partial class DialogueSystem : CanvasLayer
         }
     }
 
+    private string LoadFromFile(string url)
+    {
+        var file = FileAccess.Open(url, FileAccess.ModeFlags.Read);
+        string content = file.GetAsText();
+        return content;
+    }
+
+    private record struct Conversation(NPCName[] Speakers, ConversationLine[] Lines);
+
+    private void LoadConversation(string DialogueName)
+    {
+        var jsonObject = new Json();
+        var parsedJson = jsonObject.Parse(LoadFromFile("res://Dialogue/" + DialogueName + ".JSON"));
+
+        if (parsedJson == Error.Ok)
+        {
+            var conversation = JsonSerializer.Deserialize<Conversation>(Json.Stringify(jsonObject.Data));
+
+            foreach (var line in conversation.Lines)
+            {
+                GD.Print(line.Speaker);
+                ActiveConversation.Enqueue(line);
+            }
+        }
+        else
+        {
+            throw new System.Exception("Json failed to load");
+        }
+    }
+
+    private void StartDialogue(string npc)
+    {
+        if (ConversationActive)
+        {
+            return; // Never interrupt an already ongoing conversation
+        }
+
+        ConversationActive = true;
+
+        this.Visible = true;
+        // TODO: Fix constant string stuff for NPC names
+        switch (npc)
+        {
+            case "Jenny":
+                RB_COUNT++;
+                LoadConversation("RB/" + RB_COUNT.ToString());
+                GD.Print("Jenny starts talking");
+                break;
+        }
+
+    }
 
     private void AdvanceDialogue()
     {
@@ -47,8 +89,8 @@ public partial class DialogueSystem : CanvasLayer
         {
             var line = ActiveConversation.Dequeue();
             var newBox = DialogueTextBox.Instantiate<DialogueTextBox>();
-            newBox.Speaker = line.speaker;
-            newBox.Text = line.text;
+            newBox.Speaker = line.Speaker.Name;
+            newBox.Text = line.Text;
             TextContainer.AddChild(newBox);
         }
         else
@@ -59,8 +101,15 @@ public partial class DialogueSystem : CanvasLayer
 
     private void EndDialogue()
     {
+        ConversationActive = false;
         GD.Print("Dialogue ended");
         this.Visible = false;
         CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.DialogueEnded);
+
+        var allChildren = TextContainer.GetChildren();
+        for (int i = 0; i < allChildren.Count; i++)
+        {
+            allChildren[i].QueueFree();
+        }
     }
 }

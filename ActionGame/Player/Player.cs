@@ -1,16 +1,13 @@
 using Godot;
 using System;
 using Common;
-using System.Security.AccessControl;
-using Microsoft.VisualBasic;
 
 public partial class Player : CharacterBody2D
 {
     public Room CurrentRoom;
 
     private PackedScene BulletScene;
-    private AnimatedSprite2D Visual;
-    private AnimatedSprite2D Crosshair;
+    private AnimatedSprite2D Visual, Crosshair;
 
     private const float PLAYER_SPEED = 350.0f;
     private const float BULLET_SPEED = 13.0f;
@@ -39,6 +36,18 @@ public partial class Player : CharacterBody2D
     public Vector2 GetPositionRelativeToRoom()
     {
         return GlobalPosition - CurrentRoom.GlobalPosition;
+    }
+
+    public void TakeDamage(int amount)
+    {
+        if (InvincibilityFrames > 0)
+        {
+            return;
+        }
+        Input.StartJoyVibration(0, 0.9f, 0.9f, 0.4f);
+
+        InvincibilityFrames = I_FRAME_COUNT;
+        CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.PlayerTookDamage, amount);
     }
 
     public override void _Ready()
@@ -232,18 +241,6 @@ public partial class Player : CharacterBody2D
         newBullet.Room = CurrentRoom;
         CurrentRoom.Spawn(newBullet, GlobalPosition - CurrentRoom.GlobalPosition);
         CurrentRoom.SpawnParticle(ParticleNames.Dust, GlobalPosition - CurrentRoom.GlobalPosition);
-    }
-
-    public void TakeDamage(int amount)
-    {
-        if (InvincibilityFrames > 0)
-        {
-            return;
-        }
-        Input.StartJoyVibration(0, 0.9f, 0.9f, 0.4f);
-
-        InvincibilityFrames = I_FRAME_COUNT;
-        CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.PlayerTookDamage, amount);
     }
 
     private enum State
