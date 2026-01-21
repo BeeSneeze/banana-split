@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bad3ow8kqh0y4"]
+[gd_scene load_steps=6 format=3 uid="uid://bad3ow8kqh0y4"]
 
 [ext_resource type="Script" uid="uid://bp7uko7w0snes" path="res://Dialogue/DialogueSystem.cs" id="1_sasex"]
-[ext_resource type="PackedScene" uid="uid://b3vcalpe145ga" path="res://Dialogue/dialogue_text_box.tscn" id="2_vpqk3"]
 [ext_resource type="Texture2D" uid="uid://co6b78lffj33q" path="res://UI/Lefty2.png" id="3_watxt"]
 [ext_resource type="Texture2D" uid="uid://6mfpl5mskq41" path="res://UI/Lefty.png" id="4_ix3kb"]
 [ext_resource type="Texture2D" uid="uid://q4ou2qbwq4xl" path="res://UI/RB.png" id="5_ix3kb"]
@@ -31,55 +30,34 @@ animations = [{
 [node name="DialogueLayer" type="CanvasLayer"]
 script = ExtResource("1_sasex")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(500, 750)
+[node name="TextContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(600, 750)
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -920.0
-offset_top = -780.0
-offset_right = -420.0
-offset_bottom = -56.0
+offset_left = -1520.0
+offset_top = -963.0
+offset_right = -920.0
+offset_bottom = -213.0
 grow_horizontal = 0
 grow_vertical = 0
 alignment = 2
 
-[node name="DialogueTextBox" parent="VBoxContainer" instance=ExtResource("2_vpqk3")]
-layout_mode = 2
-
-[node name="DialogueTextBox2" parent="VBoxContainer" instance=ExtResource("2_vpqk3")]
-layout_mode = 2
-
-[node name="DialogueTextBox3" parent="VBoxContainer" instance=ExtResource("2_vpqk3")]
-layout_mode = 2
-
-[node name="DialogueTextBox4" parent="VBoxContainer" instance=ExtResource("2_vpqk3")]
-layout_mode = 2
-
-[node name="DialogueTextBox5" parent="VBoxContainer" instance=ExtResource("2_vpqk3")]
-layout_mode = 2
-
-[node name="DialogueTextBox6" parent="VBoxContainer" instance=ExtResource("2_vpqk3")]
-layout_mode = 2
-
-[node name="DialogueTextBox7" parent="VBoxContainer" instance=ExtResource("2_vpqk3")]
-layout_mode = 2
-
 [node name="LeftAnimation" type="AnimatedSprite2D" parent="."]
-position = Vector2(806, 872)
+position = Vector2(200, 767)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_jdfph")
 animation = &"Lefty"
 autoplay = "Lefty"
-frame_progress = 0.06523763
+frame_progress = 0.9137574
 
 [node name="RightAnimation" type="AnimatedSprite2D" parent="."]
-position = Vector2(1713, 845)
+position = Vector2(1200, 767)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_jdfph")
 animation = &"RB"
 autoplay = "RB"
-frame_progress = 0.25653788
+frame_progress = 0.1050728
 flip_h = true

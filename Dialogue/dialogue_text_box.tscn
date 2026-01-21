@@ -1,27 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3vcalpe145ga"]
+[gd_scene load_steps=4 format=3 uid="uid://b3vcalpe145ga"]
 
 [ext_resource type="Theme" uid="uid://0kdxekgod83" path="res://Game.tres" id="1_k7bku"]
-[ext_resource type="Texture2D" uid="uid://dagyujr2i82hd" path="res://CHAT_BOX.png" id="1_t706g"]
+[ext_resource type="Texture2D" uid="uid://cec6vedoqnr2n" path="res://Dialogue/TextBubble.png" id="1_q1i0j"]
+[ext_resource type="Script" uid="uid://bnsl5cv2e1w4s" path="res://Dialogue/DialogueTextBox.cs" id="2_q1i0j"]
 
 [node name="DialogueTextBox" type="TextureRect"]
 clip_contents = true
-custom_minimum_size = Vector2(200, 100)
+custom_minimum_size = Vector2(600, 150)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1720.0
-offset_bottom = -980.0
+offset_right = -1320.0
+offset_bottom = -930.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_t706g")
+texture = ExtResource("1_q1i0j")
+script = ExtResource("2_q1i0j")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_k7bku")
-theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/normal_font_size = 50
 text = "The quick brown fox jumped over the lazy dog"
+horizontal_alignment = 1
+vertical_alignment = 1

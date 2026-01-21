@@ -1,16 +1,19 @@
 using Common;
 using Godot;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 public partial class DialogueSystem : CanvasLayer
 {
     private record struct ConversationLine(NPCName speaker, string text);
     private Queue<ConversationLine> ActiveConversation = new Queue<ConversationLine>();
+    private PackedScene DialogueTextBox;
+    private VBoxContainer TextContainer;
 
     public override void _Ready()
     {
+
+        TextContainer = GetNode<VBoxContainer>("TextContainer");
+        DialogueTextBox = GD.Load<PackedScene>("res://Dialogue/dialogue_text_box.tscn");
         ActiveConversation.Enqueue(new ConversationLine(NPCName.Jenny, "Hello!"));
         ActiveConversation.Enqueue(new ConversationLine(NPCName.Jenny, "Goodbye!"));
         this.Visible = false;
@@ -43,10 +46,12 @@ public partial class DialogueSystem : CanvasLayer
         if (ActiveConversation.Count > 0)
         {
             var line = ActiveConversation.Dequeue();
-            GD.Print(line.text);
+            var newBox = DialogueTextBox.Instantiate<DialogueTextBox>();
+            newBox.Speaker = line.speaker;
+            newBox.Text = line.text;
+            TextContainer.AddChild(newBox);
         }
-
-        if (ActiveConversation.Count == 0)
+        else
         {
             EndDialogue();
         }

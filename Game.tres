@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" uid="uid://buoaap43wlm1k" path="res://ActionGame/Assets/Drybrush-KV2wD.ttf" id="1_lpjdn"]
 
 [resource]
-Label/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_color = Color(0.20784314, 0.16078432, 0.10980392, 1)
 Label/font_sizes/font_size = 100
 Label/fonts/font = ExtResource("1_lpjdn")
 RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
