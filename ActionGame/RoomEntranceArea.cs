@@ -9,7 +9,7 @@ public partial class RoomEntranceArea : Area2D
     {
         if (body is Player)
         {
-            CustomEvents.Instance.EmitSignal("PlayerChangedRoom", Room.RoomID);
+            CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.PlayerChangedRoom, Room.RoomID);
         }
     }
 }

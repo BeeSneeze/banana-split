@@ -13,6 +13,7 @@ public partial class Room : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        GetNode<CanvasItem>("EntityMap").Visible = false;
         ParticleScene = GD.Load<PackedScene>("res://ActionGame/Particles/particle.tscn");
         CustomEvents.Instance.PlayerChangedRoom += PlayerChangedRoom;
     }
@@ -38,6 +39,8 @@ public partial class Room : Node2D
     {
         if (roomID == RoomID)
         {
+            GetNode<CanvasItem>("EntityMap").Visible = true;
+
             foreach (var entity in GetNode("EntityMap").GetChildren())
             {
                 if (entity is Enemy enemy)

@@ -104,6 +104,15 @@ public partial class ActionGame : Control
 
         CurrentRoom = (Room)GetChildren().Where(x => x is Room).First(x => ((Room)x).RoomID == roomID);
 
+        if (CurrentRoom is BreakRoom)
+        {
+            MusicManager.SwitchTrack("BreakRoom");
+        }
+        else
+        {
+            MusicManager.SwitchTrack("Level");
+        }
+
         GD.Print("Changed to room: " + CurrentRoomID.ToString());
         if (Player.CurrentRoom != CurrentRoom)
         {
@@ -114,7 +123,7 @@ public partial class ActionGame : Control
 
             var playerCamera = Player.GetNode<Camera2D>("%Camera");
 
-            var zoomAmount = (float)Mathf.Clamp(30 / roomRectangle.Size.Length(), 1, 1.3);
+            var zoomAmount = (float)Mathf.Clamp(30 / roomRectangle.Size.Length(), 1, 1.3) + 0.1f;
             playerCamera.Zoom = Vector2.One * zoomAmount;
 
 

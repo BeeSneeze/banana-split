@@ -25,7 +25,7 @@ public partial class DialogueSystem : CanvasLayer
 
     public override void _PhysicsProcess(double delta)
     {
-        if (Input.IsActionJustPressed("InteractButton"))
+        if (Input.IsActionJustPressed("InteractButton") && ConversationActive)
         {
             AdvanceDialogue();
         }
@@ -51,7 +51,6 @@ public partial class DialogueSystem : CanvasLayer
 
             foreach (var line in conversation.Lines)
             {
-                GD.Print(line.Speaker);
                 ActiveConversation.Enqueue(line);
             }
         }
@@ -74,10 +73,13 @@ public partial class DialogueSystem : CanvasLayer
         // TODO: Fix constant string stuff for NPC names
         switch (npc)
         {
-            case "Jenny":
+            case NPCName.RB:
                 RB_COUNT++;
                 LoadConversation("RB/" + RB_COUNT.ToString());
-                GD.Print("Jenny starts talking");
+                break;
+            case NPCName.JENNY:
+                RB_COUNT++;
+                LoadConversation("RB/" + RB_COUNT.ToString());
                 break;
         }
 
@@ -89,7 +91,7 @@ public partial class DialogueSystem : CanvasLayer
         {
             var line = ActiveConversation.Dequeue();
             var newBox = DialogueTextBox.Instantiate<DialogueTextBox>();
-            newBox.Speaker = line.Speaker.Name;
+            newBox.Speaker = line.Speaker;
             newBox.Text = line.Text;
             TextContainer.AddChild(newBox);
         }
@@ -102,7 +104,6 @@ public partial class DialogueSystem : CanvasLayer
     private void EndDialogue()
     {
         ConversationActive = false;
-        GD.Print("Dialogue ended");
         this.Visible = false;
         CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.DialogueEnded);
 
