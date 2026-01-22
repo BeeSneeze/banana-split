@@ -3,13 +3,6 @@
 [ext_resource type="Script" uid="uid://da602lmfqghm6" path="res://ActionGame/Npc.cs" id="1_av2q6"]
 [ext_resource type="Texture2D" uid="uid://qphi5kjp7iry" path="res://ActionGame/NPC_TEST.png" id="1_bcmk1"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_av2q6"]
-radius = 20.0
-height = 74.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_8rlun"]
-radius = 100.0
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_15oih"]
 animations = [{
 "frames": [{
@@ -26,12 +19,24 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_av2q6"]
+radius = 17.0
+height = 60.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8rlun"]
+radius = 100.0
+
 [node name="NPC" type="StaticBody2D"]
 z_index = -1
 y_sort_enabled = true
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("1_av2q6")
+
+[node name="Visual" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -20)
+sprite_frames = SubResource("SpriteFrames_15oih")
+animation = &"Jenny"
 
 [node name="CollisionBody" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_av2q6")
@@ -42,6 +47,3 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("CircleShape2D_8rlun")
-
-[node name="Visual" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_15oih")
