@@ -26,6 +26,7 @@ public partial class ActionGame : Control
         CustomEvents.Instance.GameWon += GameWon;
 
         AddNewRoom();
+        AdjustPlayerCamera();
     }
 
     private void AddNewRoom()
@@ -117,20 +118,25 @@ public partial class ActionGame : Control
         if (Player.CurrentRoom != CurrentRoom)
         {
             Player.CurrentRoom = CurrentRoom;
+            AdjustPlayerCamera();
 
-            var roomRectangle = CurrentRoom.GetNode<TileMapLayer>("TerrainMap").GetUsedRect();
-            var cellsize = CurrentRoom.GetNode<TileMapLayer>("TerrainMap").TileSet.TileSize;
-            var zoomAmount = (float)Mathf.Clamp(30 / roomRectangle.Size.Length(), 1, 1.3) + 0.2f;
-            var playerCamera = Player.GetNode<Camera2D>("%Camera");
-
-            playerCamera.Zoom = Vector2.One * zoomAmount;
-            playerCamera.LimitLeft = (int)CurrentRoom.Position.X + (roomRectangle.Position.X - 1) * cellsize.X - 500;
-            playerCamera.LimitTop = (int)CurrentRoom.Position.Y + (roomRectangle.Position.Y - 1) * cellsize.Y - 120;
-            playerCamera.LimitRight = (int)CurrentRoom.Position.X + (roomRectangle.End.X + 1) * cellsize.X;
-            playerCamera.LimitBottom = (int)CurrentRoom.Position.Y + (roomRectangle.End.Y + 1) * cellsize.Y;
         }
 
         AddNewRoom();
+    }
+
+    private void AdjustPlayerCamera()
+    {
+        var roomRectangle = CurrentRoom.GetNode<TileMapLayer>("TerrainMap").GetUsedRect();
+        var cellsize = CurrentRoom.GetNode<TileMapLayer>("TerrainMap").TileSet.TileSize;
+        var zoomAmount = (float)Mathf.Clamp(30 / roomRectangle.Size.Length(), 1, 1.3) + 0.2f;
+        var playerCamera = Player.GetNode<Camera2D>("%Camera");
+
+        playerCamera.Zoom = Vector2.One * zoomAmount;
+        playerCamera.LimitLeft = (int)CurrentRoom.Position.X + (roomRectangle.Position.X - 1) * cellsize.X - 500;
+        playerCamera.LimitTop = (int)CurrentRoom.Position.Y + (roomRectangle.Position.Y - 1) * cellsize.Y - 120;
+        playerCamera.LimitRight = (int)CurrentRoom.Position.X + (roomRectangle.End.X + 1) * cellsize.X;
+        playerCamera.LimitBottom = (int)CurrentRoom.Position.Y + (roomRectangle.End.Y + 1) * cellsize.Y;
     }
 
 }

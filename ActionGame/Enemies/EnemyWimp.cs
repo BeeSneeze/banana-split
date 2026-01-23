@@ -4,7 +4,7 @@ public partial class EnemyWimp : Enemy
 {
     protected override float MAX_SPEED => 100f;
     protected override float BULLET_SPEED => 7f;
-    protected override int MAX_HEALTH => 5;
+    protected override int MAX_HEALTH => 4;
     protected override int MAX_KNOCKBACK_FRAMES => 20;
 
     private const float WIMP_DISTANCE = 400f;

@@ -5,7 +5,7 @@ public partial class EnemyBlaster : Enemy
 {
     protected override float MAX_SPEED => 150f;
     protected override float BULLET_SPEED => 3f;
-    protected override int MAX_HEALTH => 4;
+    protected override int MAX_HEALTH => 7;
     protected override int MAX_KNOCKBACK_FRAMES => 15;
 
     public override void _Ready()
