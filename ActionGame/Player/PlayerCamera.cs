@@ -16,7 +16,7 @@ public partial class PlayerCamera : Camera2D
     {
         OldZoom = new Vector2(Zoom.X, Zoom.Y);
         var tween = GetTree().CreateTween();
-        tween.TweenProperty(this, "zoom", new Vector2(1.5f, 1.5f), 0.3);
+        tween.TweenProperty(this, "zoom", new Vector2(Zoom.X + 0.2f, Zoom.Y + 0.2f), 0.3);
     }
 
     private void EndDialogue()

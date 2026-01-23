@@ -6,7 +6,7 @@ public partial class Npc : StaticBody2D
 {
     public NPCName CharacterName = NPCName.Jenny;
     private Area2D InteractionArea;
-    private bool ReadyForDialogue = false;
+    private bool ReadyForDialogue = true;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -19,8 +19,9 @@ public partial class Npc : StaticBody2D
     {
         foreach (var body in InteractionArea.GetOverlappingBodies())
         {
-            if (body is Player player && Input.IsActionJustPressed("InteractButton"))
+            if (body is Player player && Input.IsActionJustPressed("InteractButton") && ReadyForDialogue)
             {
+                ReadyForDialogue = false;
                 CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.DialogueStarted, CharacterName.Name);
             }
         }

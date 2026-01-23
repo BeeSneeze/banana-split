@@ -38,7 +38,7 @@ public partial class ActionGame : Control
             roomScene = GD.Load<PackedScene>("res://ActionGame/Rooms/break_room.tscn").Instantiate<Room>();
         }
 
-        roomScene.RoomID = CurrentRoomID + 1000;
+        roomScene.RoomID = (CurrentRoomID - CurrentRoomID % 1000) + 1000 + roomScene.RoomID;
         AddChild(roomScene);
         MoveRooms();
     }
