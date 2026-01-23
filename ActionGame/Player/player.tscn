@@ -44,15 +44,16 @@ sprite_frames = SubResource("SpriteFrames_tmsbd")
 
 [node name="Camera" type="Camera2D" parent="Crosshair"]
 unique_name_in_owner = true
-offset = Vector2(-240, -80)
+position = Vector2(-240, -80)
 process_callback = 0
-limit_left = 0
+limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 2.5
 drag_left_margin = 0.1
 drag_top_margin = 0.07
 drag_right_margin = 0.1
 drag_bottom_margin = 0.07
+editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource("4_x3qpf")
 
