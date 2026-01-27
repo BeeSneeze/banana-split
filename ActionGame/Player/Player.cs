@@ -11,7 +11,7 @@ public partial class Player : CharacterBody2D
 
     private const float PLAYER_SPEED = 350.0f;
     private const float BULLET_SPEED = 13.0f;
-    private const int I_FRAME_COUNT = 60;
+    private const int I_FRAME_COUNT = 90;
     private const int BULLET_SPAWN_TIME = 10;
     private const double RELOAD_TIME = 1.0;
     private const int MAX_BULLETS_IN_CHAMBER = 6;
@@ -38,7 +38,7 @@ public partial class Player : CharacterBody2D
         return GlobalPosition - CurrentRoom.GlobalPosition;
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(int amount, MinigameBoxType damageType)
     {
         if (InvincibilityFrames > 0)
         {
@@ -47,7 +47,7 @@ public partial class Player : CharacterBody2D
         Input.StartJoyVibration(0, 0.9f, 0.9f, 0.4f);
 
         InvincibilityFrames = I_FRAME_COUNT;
-        CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.PlayerTookDamage, amount);
+        CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.PlayerTookDamage, [amount, damageType.ToString()]);
     }
 
     public override void _Ready()
@@ -147,12 +147,12 @@ public partial class Player : CharacterBody2D
             {
                 if (body.CollisionLayer == (uint)CollisionLayerDefs.ENEMY)
                 {
-                    TakeDamage(1);
+                    TakeDamage(2, MinigameBoxType.Text);
                 }
                 if (body.CollisionLayer == (uint)CollisionLayerDefs.ENEMY_BULLETS)
                 {
                     ((Bullet)body).ExplodeBullet();
-                    TakeDamage(1);
+                    TakeDamage(1, MinigameBoxType.Text);
                 }
             }
         }

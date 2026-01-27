@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://oog84yvlkm6v"]
+
+[ext_resource type="Texture2D" uid="uid://djxx6fwy0w76w" path="res://TypingGame/InventoryBox.png" id="1_7eiwv"]
+[ext_resource type="Script" uid="uid://bo5qudd844knp" path="res://TypingGame/InventoryBox.cs" id="2_i7wng"]
+[ext_resource type="Texture2D" uid="uid://b27ii8ynimkdv" path="res://TypingGame/1.png" id="3_i7wng"]
+[ext_resource type="Texture2D" uid="uid://4lk4rmbbvh1w" path="res://TypingGame/2.png" id="4_a8hnl"]
+[ext_resource type="Texture2D" uid="uid://cvg8tkmkai1hw" path="res://TypingGame/3.png" id="5_bdrtj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7eiwv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_i7wng")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_a8hnl")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_bdrtj")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}]
+
+[node name="InventoryBox" type="TextureRect"]
+custom_minimum_size = Vector2(110, 110)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = -55.0
+offset_right = 55.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_7eiwv")
+script = ExtResource("2_i7wng")
+
+[node name="Number" type="AnimatedSprite2D" parent="."]
+position = Vector2(55, 55)
+sprite_frames = SubResource("SpriteFrames_7eiwv")
+animation = &"1"

@@ -17,9 +17,9 @@ namespace Common
         Sparkle
     }
 
-    public enum TextBoxType
+    public enum MinigameBoxType
     {
-        Normal,
+        Text,
         Numbers
     }
 

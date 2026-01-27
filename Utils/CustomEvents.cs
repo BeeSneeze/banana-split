@@ -4,7 +4,7 @@ using Godot;
 public partial class CustomEvents : Node
 {
     [Signal]
-    public delegate void PlayerTookDamageEventHandler(int HP);
+    public delegate void PlayerTookDamageEventHandler(int HP, string DamageType);
     [Signal]
     public delegate void PlayerChangedRoomEventHandler(int roomID);
     [Signal]

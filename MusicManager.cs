@@ -20,13 +20,9 @@ public partial class MusicManager : Node
         SwitchTrack("Level");
     }
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
-        if (ActiveSongName != "BreakRoom")
-        {
-            SongTimers[ActiveSongName] += delta;
-        }
-
+        SongTimers[ActiveSongName] += delta;
     }
 
     public static void SwitchTrack(string trackName)

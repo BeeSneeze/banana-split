@@ -81,7 +81,7 @@ public abstract partial class Enemy : CharacterBody2D
 
             if (collider is Player player)
             {
-                player.TakeDamage(1);
+                player.TakeDamage(2, MinigameBoxType.Text);
             }
         }
     }

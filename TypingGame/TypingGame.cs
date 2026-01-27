@@ -9,7 +9,7 @@ public partial class TypingGame : CanvasLayer
     private Queue<InventoryBox> InventoryBoxes = new Queue<InventoryBox>(); // The boxes at the top of the screen
     private Queue<TextBox> ActiveBoxes = new Queue<TextBox>(); // The boxes in the minigame area
     private string HeldString = "";
-    private int CharacterIndex = 0;
+    private int CharacterIndex;
     private string[] WordList;
     private PackedScene TextBoxScene;
     private PackedScene InventoryBoxScene;
@@ -29,7 +29,7 @@ public partial class TypingGame : CanvasLayer
         CustomEvents.Instance.PlayerTookDamage += AddBoxToInventory;
         WordList = LoadFromFile("res://TypingGame/LeftWords.txt").Split(" ");
         TextBoxScene = GD.Load<PackedScene>("res://TypingGame/TextBox.tscn");
-        InventoryBoxScene = GD.Load<PackedScene>("res://TypingGame/queue_box.tscn");
+        InventoryBoxScene = GD.Load<PackedScene>("res://TypingGame/InventoryBox.tscn");
 
         for (int i = 0; i < 3; i++)
         {
@@ -65,13 +65,17 @@ public partial class TypingGame : CanvasLayer
         }
     }
 
-    private void AddBoxToInventory(int amount)
+    private void AddBoxToInventory(int amount, string damageTypeName)
     {
         GD.Print("Took damage, adding box to inventory");
         var InventoryBar = GetNode("InventoryBar");
         var newBox = InventoryBoxScene.Instantiate<InventoryBox>();
+        newBox.Damage = amount;
+
+        // TODO: SWITCH STATEMENT OVER DAMAGE TYPE
+
+        newBox.Minigame = MinigameBoxType.Text;
         InventoryBar.AddChild(newBox);
-        InventoryBar.MoveChild(newBox, 0);
         InventoryBoxes.Enqueue(newBox);
 
         if (InventoryBoxes.Count > 7)
@@ -79,7 +83,7 @@ public partial class TypingGame : CanvasLayer
             CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.GameOver);
         }
 
-        if (ActiveBoxes.Count < 3)
+        if (ActiveBoxes.Count == 0)
         {
             RemoveBoxFromInventory();
         }
@@ -89,13 +93,17 @@ public partial class TypingGame : CanvasLayer
     {
         var inventoryBox = InventoryBoxes.Dequeue();
         inventoryBox.QueueFree();
-        CreateNewActiveBox(GD.RandRange(0, WordList.Length - 1));
+        for (int i = 0; i < inventoryBox.Damage; i++)
+        {
+            CreateNewActiveBox(GD.RandRange(0, WordList.Length - 1));
+        }
+
     }
 
     private void CreateNewActiveBox(int wordIndex)
     {
         var newBox = TextBoxScene.Instantiate<TextBox>();
-        newBox.Initialize(WordList[wordIndex], TextBoxType.Normal);
+        newBox.Initialize(WordList[wordIndex], MinigameBoxType.Text);
 
         var TypeScreen = GetNode("TypingScreen");
 
@@ -111,7 +119,7 @@ public partial class TypingGame : CanvasLayer
         foreach (var box in ActiveBoxes)
         {
             box.SetIntensity(intensity);
-            intensity -= 0.2f;
+            intensity -= 0.3f;
         }
     }
 
@@ -129,7 +137,7 @@ public partial class TypingGame : CanvasLayer
         finishedBox.CompleteAnswer();
         ResetActiveBox();
         UpdateIntensity();
-        if (InventoryBoxes.Count > 0)
+        if (InventoryBoxes.Count > 0 && ActiveBoxes.Count == 0)
         {
             RemoveBoxFromInventory();
         }
