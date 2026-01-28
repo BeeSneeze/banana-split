@@ -12,7 +12,6 @@ public partial class InventoryBox : Control
     public override void _Ready()
     {
         GetTree().ProcessFrame += Initialize;
-
     }
 
     private void Initialize()
