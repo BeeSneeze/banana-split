@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://chja7sv73hhak"]
+[gd_scene load_steps=31 format=3 uid="uid://chja7sv73hhak"]
 
 [ext_resource type="Texture2D" uid="uid://n3f6hxfqsynd" path="res://ActionGame/Assets/TEST_WALLS.png" id="1_02ayl"]
 [ext_resource type="Script" uid="uid://dimqfrt0pmmmq" path="res://ActionGame/Room.cs" id="1_4pryp"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://gqai34v1p45x" path="res://ActionGame/flower.tscn" id="8_um5ve"]
 [ext_resource type="PackedScene" uid="uid://w03bsvuthx2y" path="res://ActionGame/room_exit_area.tscn" id="10_jjne7"]
 [ext_resource type="PackedScene" uid="uid://ddvcnfwvb1qfw" path="res://ActionGame/room_spawn_marker.tscn" id="11_1ppml"]
+[ext_resource type="PackedScene" uid="uid://bebk7mnhvcaa8" path="res://ActionGame/Decorations/water_cooler.tscn" id="14_fond7"]
 [ext_resource type="PackedScene" uid="uid://bygea8d7sqrvj" path="res://ActionGame/npc.tscn" id="16_8wpcf"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_5hite"]
@@ -481,6 +482,7 @@ scenes/4/scene = ExtResource("7_oc4rj")
 resource_name = "Other"
 scenes/1/scene = ExtResource("4_jpqgi")
 scenes/2/scene = ExtResource("8_um5ve")
+scenes/3/scene = ExtResource("14_fond7")
 scenes/4/scene = ExtResource("10_jjne7")
 scenes/5/scene = ExtResource("11_1ppml")
 

@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://6clggkfrxpr4"]
+
+[ext_resource type="Texture2D" uid="uid://cbpw3888giddf" path="res://ActionGame/Decorations/WaterCooler.png" id="1_c2myy"]
+[ext_resource type="Texture2D" uid="uid://dac0mw6pmdsws" path="res://ActionGame/Decorations/WaterCooler2.png" id="2_gb8wg"]
+[ext_resource type="Texture2D" uid="uid://c302ls5wroy4s" path="res://ActionGame/Decorations/WaterCooler3.png" id="3_dsbji"]
+[ext_resource type="Texture2D" uid="uid://ccud63mfpkhlj" path="res://ActionGame/Decorations/WaterCooler4.png" id="4_rwjlv"]
+[ext_resource type="Texture2D" uid="uid://d2gb3atb8p7lv" path="res://ActionGame/Decorations/WaterCooler5.png" id="5_w0dcm"]
+[ext_resource type="Texture2D" uid="uid://d05dnr020ybqo" path="res://ActionGame/Decorations/WaterCooler6.png" id="6_8euit"]
+[ext_resource type="Texture2D" uid="uid://cdicijge7njwu" path="res://ActionGame/Decorations/WaterCooler7.png" id="7_wp2ny"]
+[ext_resource type="Texture2D" uid="uid://c5d1equ4ck125" path="res://ActionGame/Decorations/WaterCooler8.png" id="8_l4xo2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i83cg"]
+animations = [{
+"frames": [{
+"duration": 15.0,
+"texture": ExtResource("1_c2myy")
+}, {
+"duration": 1.5,
+"texture": ExtResource("2_gb8wg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dsbji")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rwjlv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_w0dcm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8euit")
+}, {
+"duration": 1.1,
+"texture": ExtResource("7_wp2ny")
+}, {
+"duration": 1.2,
+"texture": ExtResource("8_l4xo2")
+}],
+"loop": true,
+"name": &"WaterCooler",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2myy"]
+size = Vector2(50, 50)
+
+[node name="Decoration" type="Node2D"]
+
+[node name="Visual" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -25)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_i83cg")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_c2myy")

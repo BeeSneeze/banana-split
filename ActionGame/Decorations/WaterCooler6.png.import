@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dagyujr2i82hd"
-path="res://.godot/imported/CHAT_BOX.png-5661206d6fe2f2028ea7ebc04d5cdac6.ctex"
+uid="uid://d05dnr020ybqo"
+path="res://.godot/imported/WaterCooler6.png-9c371a6707f85c5c9e4f575098584850.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CHAT_BOX.png"
-dest_files=["res://.godot/imported/CHAT_BOX.png-5661206d6fe2f2028ea7ebc04d5cdac6.ctex"]
+source_file="res://ActionGame/Decorations/WaterCooler6.png"
+dest_files=["res://.godot/imported/WaterCooler6.png-9c371a6707f85c5c9e4f575098584850.ctex"]
 
 [params]
 

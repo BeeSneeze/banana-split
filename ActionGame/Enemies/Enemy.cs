@@ -15,11 +15,17 @@ public abstract partial class Enemy : CharacterBody2D
     protected abstract int MAX_HEALTH { get; }
     protected abstract float MAX_SPEED { get; }
     protected abstract float BULLET_SPEED { get; }
+    protected abstract DamageType DAMAGETYPE { get; }
 
     protected virtual float ACCELERATION { get; } = 8.0f;
 
     private const int KNOCKBACK_DELAY = 3;
     private PackedScene BulletScene;
+
+    public DamageType GetDamageType()
+    {
+        return DAMAGETYPE;
+    }
 
     public override void _Ready()
     {
@@ -81,7 +87,7 @@ public abstract partial class Enemy : CharacterBody2D
 
             if (collider is Player player)
             {
-                player.TakeDamage(2, DamageType.Text);
+                player.TakeDamage(2, DAMAGETYPE);
             }
         }
     }
@@ -96,6 +102,7 @@ public abstract partial class Enemy : CharacterBody2D
     {
         var newBullet = BulletScene.Instantiate<Bullet>();
         newBullet.SetTeam(Team.ENEMY);
+        newBullet.damageType = DAMAGETYPE;
 
         var random = new RandomNumberGenerator();
         random.Randomize();

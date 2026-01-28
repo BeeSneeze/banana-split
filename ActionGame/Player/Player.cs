@@ -1,10 +1,12 @@
 using Godot;
 using System;
 using Common;
+using System.Collections.Generic;
 
 public partial class Player : CharacterBody2D
 {
     public Room CurrentRoom;
+    public Dictionary<string, double> PowerupModifierValues = new Dictionary<string, double>();
 
     private PackedScene BulletScene;
     private AnimatedSprite2D Visual, Crosshair;
@@ -56,6 +58,9 @@ public partial class Player : CharacterBody2D
         {
             throw new Exception("PLAYER WAS NOT INITIATED!");
         }
+
+        PowerupModifierValues["MoveSpeed"] = 0;
+
         Visual = GetNode<AnimatedSprite2D>("Visual");
         Crosshair = GetNode<AnimatedSprite2D>("Crosshair");
         BulletScene = GD.Load<PackedScene>("res://ActionGame/bullet.tscn");
@@ -105,7 +110,7 @@ public partial class Player : CharacterBody2D
         DodgeCountdown--;
         if (DodgeCountdown > 0)
         {
-            Velocity = QuantizeVector(DodgeDirection * (PLAYER_SPEED + TemporarySpeed), MOVEMENT_DIRECTIONS);
+            Velocity = QuantizeVector(DodgeDirection * (PLAYER_SPEED + (float)PowerupModifierValues["MoveSpeed"] + TemporarySpeed), MOVEMENT_DIRECTIONS);
             MoveAndSlide();
             return; // You can't perform any actions in the middle of a dodge
         }
@@ -132,7 +137,7 @@ public partial class Player : CharacterBody2D
         }
         else
         {
-            Velocity = direction * (PLAYER_SPEED + TemporarySpeed);
+            Velocity = direction * (PLAYER_SPEED + (float)PowerupModifierValues["MoveSpeed"] + TemporarySpeed);
             var newState = (direction != Vector2.Zero) ? State.RUNNING : State.IDLE;
             SetState(newState);
         }
@@ -147,12 +152,15 @@ public partial class Player : CharacterBody2D
             {
                 if (body.CollisionLayer == (uint)CollisionLayerDefs.ENEMY)
                 {
-                    TakeDamage(2, DamageType.Text);
+                    var enemy = (Enemy)body;
+
+                    TakeDamage(2, enemy.GetDamageType());
                 }
                 if (body.CollisionLayer == (uint)CollisionLayerDefs.ENEMY_BULLETS)
                 {
-                    ((Bullet)body).ExplodeBullet();
-                    TakeDamage(1, DamageType.Scramble);
+                    var bullet = ((Bullet)body);
+                    TakeDamage(1, bullet.damageType);
+                    bullet.ExplodeBullet();
                 }
             }
         }

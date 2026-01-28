@@ -116,7 +116,6 @@ public partial class TypingGame : CanvasLayer
                 break;
         }
 
-
         var TypeScreen = GetNode("TypingScreen");
 
         TypeScreen.AddChild(newBox);

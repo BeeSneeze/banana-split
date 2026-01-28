@@ -7,7 +7,7 @@ using System.Text.Json;
 
 public partial class DialogueSystem : CanvasLayer
 {
-    private record struct ConversationLine(NPCName Speaker, string Text);
+    private record struct ConversationLine(NPCSpeaker Speaker, string Text);
     private Queue<ConversationLine> ActiveConversation = new Queue<ConversationLine>();
     private PackedScene DialogueTextBox;
     private VBoxContainer TextContainer;
@@ -38,7 +38,7 @@ public partial class DialogueSystem : CanvasLayer
         return content;
     }
 
-    private record struct Conversation(NPCName[] Speakers, ConversationLine[] Lines);
+    private record struct Conversation(NPCSpeaker[] Speakers, ConversationLine[] Lines);
 
     private void LoadConversation(string DialogueName)
     {
@@ -73,11 +73,11 @@ public partial class DialogueSystem : CanvasLayer
         // TODO: Fix constant string stuff for NPC names
         switch (npc)
         {
-            case NPCName.RB:
+            case NPCSpeaker.RB:
                 RB_COUNT++;
                 LoadConversation("RB/" + RB_COUNT.ToString());
                 break;
-            case NPCName.JENNY:
+            case NPCSpeaker.JENNY:
                 RB_COUNT++;
                 LoadConversation("RB/" + RB_COUNT.ToString());
                 break;

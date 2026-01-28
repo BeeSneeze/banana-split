@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bebk7mnhvcaa8"]
+
+[ext_resource type="PackedScene" uid="uid://6clggkfrxpr4" path="res://ActionGame/Decorations/decoration.tscn" id="1_qca3m"]
+
+[node name="WaterCooler" instance=ExtResource("1_qca3m")]
+
+[node name="Visual" parent="." index="0"]
+animation = &"WaterCooler"
+autoplay = "WaterCooler"

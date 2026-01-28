@@ -2,8 +2,8 @@
     "Speakers": [{"Name": "RB"}],
     "Lines":
     [
-        {"Speaker": {"Name": "RB"}, "Text": "Hi! I'm Right Brain, but you can call me RB"},
-        {"Speaker": {"Name": "RB"}, "Text": "I'm the part of your brain that is perpetually bored"},
-        {"Speaker": {"Name": "RB"}, "Text": "So let's see if we can change that, eh?"}
+        {"Speaker": {"Name": "RB", "Emotion": "Happy"}, "Text": "Hi! I'm Right Brain, but you can call me RB"},
+        {"Speaker": {"Name": "RB", "Emotion": "Happy"}, "Text": "I'm the part of your brain that is perpetually bored"},
+        {"Speaker": {"Name": "RB", "Emotion": "Happy"}, "Text": "So let's see if we can change that, eh?"}
     ]
 }

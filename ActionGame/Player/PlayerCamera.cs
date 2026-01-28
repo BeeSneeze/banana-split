@@ -3,7 +3,6 @@ using System;
 
 public partial class PlayerCamera : Camera2D
 {
-    private bool skipFrame = false;
     private Vector2 OldZoom;
 
     public override void _Ready()

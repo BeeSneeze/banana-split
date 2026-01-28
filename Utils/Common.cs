@@ -24,14 +24,14 @@ namespace Common
         Numbers
     }
 
-    public readonly record struct NPCName(string Name, string Emotion)
+    public readonly record struct NPCSpeaker(string Name, string Emotion)
     {
         public const string JENNY = "Jenny";
-        public static NPCName Jenny = new NPCName(JENNY, UNDEFINED);
+        public static NPCSpeaker Jenny = new NPCSpeaker(JENNY, UNDEFINED);
         public const string RB = "RB";
-        public static NPCName Rb = new NPCName(RB, UNDEFINED);
+        public static NPCSpeaker Rb = new NPCSpeaker(RB, UNDEFINED);
         public const string LEFTY = "Lefty";
-        public static NPCName Lefty = new NPCName(LEFTY, UNDEFINED);
+        public static NPCSpeaker Lefty = new NPCSpeaker(LEFTY, UNDEFINED);
 
         public const string HAPPY = "Happy";
         public const string SAD = "Sad";
@@ -39,11 +39,6 @@ namespace Common
         public const string CONFUSED = "Confused";
         public const string UNDEFINED = "Undefined";
     };
-
-    public readonly record struct Emotion(string Name)
-    {
-
-    }
 
     public enum CollisionLayerDefs : uint
     {

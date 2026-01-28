@@ -1,4 +1,5 @@
 using System;
+using Common;
 using Godot;
 
 public partial class EnemyBlaster : Enemy
@@ -7,6 +8,7 @@ public partial class EnemyBlaster : Enemy
     protected override float BULLET_SPEED => 3f;
     protected override int MAX_HEALTH => 7;
     protected override int MAX_KNOCKBACK_FRAMES => 15;
+    protected override DamageType DAMAGETYPE => DamageType.Text;
 
     public override void _Ready()
     {

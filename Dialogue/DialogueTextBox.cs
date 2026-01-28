@@ -4,7 +4,7 @@ using System;
 
 public partial class DialogueTextBox : TextureRect
 {
-    public NPCName Speaker;
+    public NPCSpeaker Speaker;
     public string Text;
 
     // Called when the node enters the scene tree for the first time.

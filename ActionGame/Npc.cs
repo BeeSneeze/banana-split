@@ -3,7 +3,7 @@ using Common;
 
 public partial class Npc : StaticBody2D
 {
-    public NPCName CharacterName = NPCName.Jenny;
+    public NPCSpeaker CharacterName = NPCSpeaker.Jenny;
     private Area2D InteractionArea;
     private bool ReadyForDialogue = true;
 

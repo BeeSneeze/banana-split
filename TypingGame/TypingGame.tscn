@@ -113,7 +113,7 @@ offset_right = 1920.0
 offset_bottom = 120.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 40
+theme_override_constants/separation = 50
 
 [node name="TypingBackground" type="ColorRect" parent="."]
 offset_top = 120.0
