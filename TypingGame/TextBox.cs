@@ -69,7 +69,6 @@ public partial class TextBox : ColorRect
         }
     }
 
-
     public void Initialize(string textName, DamageType type)
     {
         TypeText = textName.ToUpper();

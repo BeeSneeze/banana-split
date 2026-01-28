@@ -46,6 +46,5 @@ public partial class MusicManager : Node
             ActiveSong.Play((float)SongTimers[ActiveSongName]);
         }
 
-
     }
 }

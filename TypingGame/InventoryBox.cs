@@ -3,7 +3,7 @@ using Godot;
 using System;
 using System.Threading.Tasks;
 
-public partial class InventoryBox : Control
+public partial class InventoryBox : TextureRect
 {
     public int Damage;
     public DamageType damageType;
@@ -11,6 +11,7 @@ public partial class InventoryBox : Control
 
     public override void _Ready()
     {
+        // Delay by one frame
         GetTree().ProcessFrame += Initialize;
     }
 
@@ -28,6 +29,11 @@ public partial class InventoryBox : Control
             tween2.TweenProperty(this, "scale", new Vector2(1.1f, 1.1f), 0.03);
             tween2.TweenProperty(this, "scale", new Vector2(1, 1), 0.02);
             GetNode<AnimatedSprite2D>("Number").Animation = Damage.ToString();
+
+            if (damageType == DamageType.Scramble)
+            {
+                Texture = GD.Load<Texture2D>("res://TypingGame/ScrambleBox.png");
+            }
         }
 
     }
