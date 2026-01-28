@@ -11,29 +11,22 @@ public partial class TypingGame : CanvasLayer
     private string HeldString = "";
     private int CharacterIndex;
     private string[] WordList;
-    private PackedScene TextBoxScene;
-    private PackedScene InventoryBoxScene;
+    private PackedScene TextBoxScene, InventoryBoxScene;
     private AnimatedSprite2D WorkerAnimation;
-
-    private string LoadFromFile(string url)
-    {
-        var file = FileAccess.Open(url, FileAccess.ModeFlags.Read);
-        string content = file.GetAsText();
-        return content;
-    }
 
     public override void _Ready()
     {
         WorkerAnimation = GetNode<AnimatedSprite2D>("Worker");
         WorkerAnimation.AnimationFinished += () => WorkerAnimation.Animation = "Idle";
         CustomEvents.Instance.PlayerTookDamage += AddBoxToInventory;
-        WordList = LoadFromFile("res://TypingGame/LeftWords.txt").Split(" ");
+        var file = FileAccess.Open("res://TypingGame/LeftWords.txt", FileAccess.ModeFlags.Read);
+        WordList = file.GetAsText().Split(" ");
         TextBoxScene = GD.Load<PackedScene>("res://TypingGame/TextBox.tscn");
         InventoryBoxScene = GD.Load<PackedScene>("res://TypingGame/InventoryBox.tscn");
 
         for (int i = 0; i < 3; i++)
         {
-            CreateNewActiveBox(GD.RandRange(0, WordList.Length - 1));
+            CreateNewActiveBox(GD.RandRange(0, WordList.Length - 1), DamageType.Text);
         }
     }
 
@@ -72,38 +65,58 @@ public partial class TypingGame : CanvasLayer
         var newBox = InventoryBoxScene.Instantiate<InventoryBox>();
         newBox.Damage = amount;
 
-        // TODO: SWITCH STATEMENT OVER DAMAGE TYPE
+        switch (damageTypeName)
+        {
+            case "Text":
+                newBox.damageType = DamageType.Text;
+                break;
+            case "Scramble":
+                newBox.damageType = DamageType.Scramble;
+                break;
+        }
 
-        newBox.Minigame = MinigameBoxType.Text;
         InventoryBar.AddChild(newBox);
         InventoryBoxes.Enqueue(newBox);
 
         if (InventoryBoxes.Count > 7)
-        {
             CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.GameOver);
-        }
 
         if (ActiveBoxes.Count == 0)
-        {
             RemoveBoxFromInventory();
-        }
     }
 
     private void RemoveBoxFromInventory()
     {
         var inventoryBox = InventoryBoxes.Dequeue();
-        inventoryBox.QueueFree();
+
         for (int i = 0; i < inventoryBox.Damage; i++)
         {
-            CreateNewActiveBox(GD.RandRange(0, WordList.Length - 1));
+            CreateNewActiveBox(GD.RandRange(0, WordList.Length - 1), inventoryBox.damageType);
         }
+        inventoryBox.QueueFree();
 
     }
 
-    private void CreateNewActiveBox(int wordIndex)
+    private void CreateNewActiveBox(int wordIndex, DamageType damageType)
     {
         var newBox = TextBoxScene.Instantiate<TextBox>();
-        newBox.Initialize(WordList[wordIndex], MinigameBoxType.Text);
+
+        switch (damageType)
+        {
+            case DamageType.Text:
+                newBox.Initialize(WordList[wordIndex], DamageType.Text);
+                break;
+            case DamageType.Scramble:
+                string[] characterList = { "q", "w", "e", "a", "s", "d", "z", "x", "c" };
+                var newWord = "";
+                for (int i = 0; i < 6; i++)
+                {
+                    newWord += characterList[GD.RandRange(0, 8)];
+                }
+                newBox.Initialize(newWord, DamageType.Text);
+                break;
+        }
+
 
         var TypeScreen = GetNode("TypingScreen");
 

@@ -17,9 +17,10 @@ namespace Common
         Sparkle
     }
 
-    public enum MinigameBoxType
+    public enum DamageType
     {
         Text,
+        Scramble,
         Numbers
     }
 

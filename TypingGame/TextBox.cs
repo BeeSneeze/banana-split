@@ -5,7 +5,7 @@ using Common;
 public partial class TextBox : ColorRect
 {
     public string TypeText = "UNINITIALIZED";
-    private MinigameBoxType Type;
+    private DamageType Type;
     private const double BOX_SHAKE_TIME = 0.3;
     private double BoxShakeCountdown;
     private Vector2 BasePosition;
@@ -70,7 +70,7 @@ public partial class TextBox : ColorRect
     }
 
 
-    public void Initialize(string textName, MinigameBoxType type)
+    public void Initialize(string textName, DamageType type)
     {
         TypeText = textName.ToUpper();
         Type = type;

@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using Common;
 
 public partial class Npc : StaticBody2D

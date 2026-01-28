@@ -38,7 +38,7 @@ public partial class Player : CharacterBody2D
         return GlobalPosition - CurrentRoom.GlobalPosition;
     }
 
-    public void TakeDamage(int amount, MinigameBoxType damageType)
+    public void TakeDamage(int amount, DamageType damageType)
     {
         if (InvincibilityFrames > 0)
         {
@@ -147,12 +147,12 @@ public partial class Player : CharacterBody2D
             {
                 if (body.CollisionLayer == (uint)CollisionLayerDefs.ENEMY)
                 {
-                    TakeDamage(2, MinigameBoxType.Text);
+                    TakeDamage(2, DamageType.Text);
                 }
                 if (body.CollisionLayer == (uint)CollisionLayerDefs.ENEMY_BULLETS)
                 {
                     ((Bullet)body).ExplodeBullet();
-                    TakeDamage(1, MinigameBoxType.Text);
+                    TakeDamage(1, DamageType.Scramble);
                 }
             }
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 public partial class InventoryBox : Control
 {
     public int Damage;
-    public MinigameBoxType Minigame;
+    public DamageType damageType;
     private bool Initiated = false;
 
     public override void _Ready()
