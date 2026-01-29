@@ -77,7 +77,7 @@ public partial class DialogueSystem : CanvasLayer
                 RB_COUNT++;
                 LoadConversation("RB/" + RB_COUNT.ToString());
                 break;
-            case NPCSpeaker.JENNY:
+            case NPCSpeaker.LIZ:
                 RB_COUNT++;
                 LoadConversation("RB/" + RB_COUNT.ToString());
                 break;

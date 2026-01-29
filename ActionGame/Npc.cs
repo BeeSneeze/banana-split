@@ -3,7 +3,7 @@ using Common;
 
 public partial class Npc : StaticBody2D
 {
-    public NPCSpeaker CharacterName = NPCSpeaker.Jenny;
+    public NPCSpeaker CharacterName = NPCSpeaker.Liz;
     private Area2D InteractionArea;
     private bool ReadyForDialogue = true;
 
@@ -12,6 +12,7 @@ public partial class Npc : StaticBody2D
     {
         InteractionArea = GetNode<Area2D>("InteractionArea");
         GetNode<AnimatedSprite2D>("Visual").Animation = CharacterName.Name;
+        GetNode<AnimatedSprite2D>("SpeechBubble").SpeedScale = (float)GD.RandRange(0.8, 1.2); ;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -21,6 +22,7 @@ public partial class Npc : StaticBody2D
             if (body is Player player && Input.IsActionJustPressed("InteractButton") && ReadyForDialogue)
             {
                 ReadyForDialogue = false;
+                GetNode<CanvasItem>("SpeechBubble").Visible = false;
                 CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.DialogueStarted, CharacterName.Name);
             }
         }

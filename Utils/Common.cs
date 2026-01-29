@@ -26,8 +26,8 @@ namespace Common
 
     public readonly record struct NPCSpeaker(string Name, string Emotion)
     {
-        public const string JENNY = "Jenny";
-        public static NPCSpeaker Jenny = new NPCSpeaker(JENNY, UNDEFINED);
+        public const string LIZ = "Liz";
+        public static NPCSpeaker Liz = new NPCSpeaker(LIZ, UNDEFINED);
         public const string RB = "RB";
         public static NPCSpeaker Rb = new NPCSpeaker(RB, UNDEFINED);
         public const string LEFTY = "Lefty";
