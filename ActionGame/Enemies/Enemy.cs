@@ -1,3 +1,4 @@
+using System;
 using Common;
 using Godot;
 
@@ -35,10 +36,12 @@ public abstract partial class Enemy : CharacterBody2D
         Room = GetParent().GetParent<Room>();
         Level = Room.GetParent<ActionGame>();
         SetPhysicsProcess(false);
+        ResetBulletCountdown();
     }
 
     private void TakeHit(Vector2 incomingVelocity)
     {
+        ResetBulletCountdown();
         KnockBackVelocity = incomingVelocity * 25;
         Knockbackframes = MAX_KNOCKBACK_FRAMES;
         HealthPoints--;
@@ -52,6 +55,11 @@ public abstract partial class Enemy : CharacterBody2D
         newTween.TweenProperty(this, "modulate", new Color(1, 1, 1), 0.12);
         var newTween2 = GetTree().CreateTween();
         newTween2.TweenProperty(this, "scale", new Vector2(1, 1), 0.12);
+    }
+
+    protected virtual void ResetBulletCountdown()
+    {
+        BulletCountdown = 0;
     }
 
     protected void ResolveKnockback()

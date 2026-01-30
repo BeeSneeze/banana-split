@@ -10,10 +10,9 @@ public partial class EnemyBlaster : Enemy
     protected override int MAX_KNOCKBACK_FRAMES => 15;
     protected override DamageType DAMAGETYPE => DamageType.Text;
 
-    public override void _Ready()
+    protected override void ResetBulletCountdown()
     {
         BulletCountdown = 20;
-        base._Ready();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -29,7 +28,7 @@ public partial class EnemyBlaster : Enemy
         {
             SpawnBullet(direction);
             SpawnBullet(direction.Rotated(Mathf.Pi));
-            BulletCountdown = 20;
+            ResetBulletCountdown();
         }
 
         if (Knockbackframes > 0)

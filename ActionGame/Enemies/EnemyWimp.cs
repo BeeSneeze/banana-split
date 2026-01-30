@@ -11,10 +11,9 @@ public partial class EnemyWimp : Enemy
 
     private const float WIMP_DISTANCE = 400f;
 
-    public override void _Ready()
+    protected override void ResetBulletCountdown()
     {
         BulletCountdown = 150 + GD.RandRange(-100, 0);
-        base._Ready();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -33,7 +32,7 @@ public partial class EnemyWimp : Enemy
         else
         {
             SpawnBullet(direction.Rotated((float)GD.RandRange(-0.2, 0.2)));
-            BulletCountdown = 150 + GD.RandRange(-100, 0);
+            ResetBulletCountdown();
         }
 
         if (Knockbackframes > 0)
@@ -58,5 +57,7 @@ public partial class EnemyWimp : Enemy
 
         ResolveMovement();
     }
+
+
 
 }
