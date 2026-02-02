@@ -107,6 +107,12 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.4725194, 0.37469634, 0.2925193, 0.8627451)
 
+[node name="ActiveBoxContainer" type="CenterContainer" parent="."]
+offset_left = 52.0
+offset_top = 51.0
+offset_right = 92.0
+offset_bottom = 91.0
+
 [node name="InventoryBar" type="HBoxContainer" parent="."]
 offset_left = 190.0
 offset_right = 1920.0

@@ -27,11 +27,17 @@ namespace Common
     public readonly record struct NPCSpeaker(string Name, string Emotion)
     {
         public const string LIZ = "Liz";
-        public static NPCSpeaker Liz = new NPCSpeaker(LIZ, UNDEFINED);
+        public readonly static NPCSpeaker Liz = new NPCSpeaker(LIZ, UNDEFINED);
+        public const string VINCENT = "Vincent";
+        public readonly static NPCSpeaker Vincent = new NPCSpeaker(VINCENT, UNDEFINED);
+        public const string ELLIE = "Ellie";
+        public readonly static NPCSpeaker Ellie = new NPCSpeaker(ELLIE, UNDEFINED);
+        public const string ALEX = "Alex";
+        public readonly static NPCSpeaker Alex = new NPCSpeaker(ALEX, UNDEFINED);
         public const string RB = "RB";
-        public static NPCSpeaker Rb = new NPCSpeaker(RB, UNDEFINED);
+        public readonly static NPCSpeaker Rb = new NPCSpeaker(RB, UNDEFINED);
         public const string LEFTY = "Lefty";
-        public static NPCSpeaker Lefty = new NPCSpeaker(LEFTY, UNDEFINED);
+        public readonly static NPCSpeaker Lefty = new NPCSpeaker(LEFTY, UNDEFINED);
 
         public const string HAPPY = "Happy";
         public const string SAD = "Sad";
