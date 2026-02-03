@@ -82,6 +82,7 @@ public partial class ActionGame : Control
     private void GameOver()
     {
         GD.Print("GAME OVER!");
+        Player.QueueFree();
     }
 
     private void GameWon()

@@ -75,7 +75,7 @@ public partial class TypingGame : CanvasLayer
         InventoryBar.AddChild(newBox);
         InventoryBoxes.Enqueue(newBox);
 
-        if (InventoryBoxes.Count > 7)
+        if (InventoryBoxes.Count > 9)
             CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.GameOver);
 
         if (ActiveMinigames.Count == 0)
@@ -91,9 +91,11 @@ public partial class TypingGame : CanvasLayer
         tween.TweenProperty(ActiveBox, "scale", new Vector2(1.0f, 0.95f), 0.01f);
         ActiveBoxContainer.Position = new Vector2(-200, 830);
         tween.TweenProperty(ActiveBoxContainer, "position", new Vector2(175, 830), 0.3);
-        tween.TweenProperty(ActiveBox, "rotation", 0.2f, 0.1);
+        tween.TweenProperty(ActiveBox, "rotation", 0.3f, 0.1);
         tween.TweenProperty(ActiveBox, "scale", Vector2.One, 0.01f);
         tween.TweenProperty(ActiveBox, "rotation", 0f, 0.1);
+        tween.TweenProperty(ActiveBox, "scale", new Vector2(0.9f, 1.1f), 0.06f);
+        tween.TweenProperty(ActiveBox, "scale", Vector2.One, 0.06f);
 
 
         for (int i = 0; i < box.Damage; i++)
