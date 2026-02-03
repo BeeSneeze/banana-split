@@ -27,10 +27,10 @@ public partial class InventoryBox : TextureRect
         {
             Initiated = true;
             var tween = GetTree().CreateTween();
+            tween.TweenProperty(this, "rotation", 0.2f, 0.1);
+            tween.TweenProperty(this, "rotation", 0f, 0.1);
             var tween2 = GetTree().CreateTween();
             Scale = new Vector2(0.1f, 0.1f);
-            PivotOffset = new Vector2(100, 100);
-            tween.TweenProperty(this, "pivot_offset", new Vector2(0, 0), 0.11);
             tween2.TweenProperty(this, "scale", new Vector2(1, 1), 0.11);
             tween2.TweenProperty(this, "scale", new Vector2(1.1f, 1.1f), 0.03);
             tween2.TweenProperty(this, "scale", new Vector2(1, 1), 0.02);

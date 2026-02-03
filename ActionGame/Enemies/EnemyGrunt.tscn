@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbuofob75nj4r"]
+[gd_scene load_steps=8 format=3 uid="uid://bbuofob75nj4r"]
 
 [ext_resource type="Script" uid="uid://dhb686x7oml1d" path="res://ActionGame/Enemies/EnemyGrunt.cs" id="1_51me4"]
 [ext_resource type="Texture2D" uid="uid://cnniegbkcpdjk" path="res://ActionGame/Enemies/ENEMY_GRUNT_TEST1.png" id="2_51me4"]
+[ext_resource type="Texture2D" uid="uid://caju8d5arnegf" path="res://ActionGame/Enemies/ENEMY_GRUNT_TEST3.png" id="3_jkx5b"]
 [ext_resource type="Texture2D" uid="uid://bxq0n8qw3pmin" path="res://ActionGame/Enemies/ENEMY_GRUNT_TEST2.png" id="3_vngqb"]
 [ext_resource type="PackedScene" uid="uid://melmaj6ma46q" path="res://ActionGame/Enemies/personal_space.tscn" id="4_vngqb"]
 
@@ -15,11 +16,17 @@ animations = [{
 "texture": ExtResource("2_51me4")
 }, {
 "duration": 1.0,
+"texture": ExtResource("3_jkx5b")
+}, {
+"duration": 1.0,
 "texture": ExtResource("3_vngqb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jkx5b")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [node name="EnemyGrunt" type="CharacterBody2D"]
@@ -36,6 +43,7 @@ shape = SubResource("RectangleShape2D_51me4")
 [node name="Visual" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_x6xrf")
 autoplay = "default"
+frame_progress = 0.45254385
 offset = Vector2(0, -25)
 
 [node name="PersonalSpace" parent="." instance=ExtResource("4_vngqb")]

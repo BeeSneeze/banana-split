@@ -88,10 +88,13 @@ public partial class TypingGame : CanvasLayer
         box.Reparent(ActiveBoxContainer);
 
         var tween = GetTree().CreateTween();
+        tween.TweenProperty(ActiveBox, "scale", new Vector2(1.0f, 0.95f), 0.01f);
         ActiveBoxContainer.Position = new Vector2(-200, 830);
-        tween.TweenProperty(ActiveBoxContainer, "position", new Vector2(175, 830), 0.35);
-        tween.TweenProperty(ActiveBoxContainer, "scale", new Vector2(1.6f, 1.6f), 0.03);
-        tween.TweenProperty(ActiveBoxContainer, "scale", new Vector2(1.5f, 1.5f), 0.02);
+        tween.TweenProperty(ActiveBoxContainer, "position", new Vector2(175, 830), 0.3);
+        tween.TweenProperty(ActiveBox, "rotation", 0.2f, 0.1);
+        tween.TweenProperty(ActiveBox, "scale", Vector2.One, 0.01f);
+        tween.TweenProperty(ActiveBox, "rotation", 0f, 0.1);
+
 
         for (int i = 0; i < box.Damage; i++)
         {
