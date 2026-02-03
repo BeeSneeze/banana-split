@@ -13,13 +13,14 @@ public partial class TypingGame : CanvasLayer
     private int CharacterIndex;
     private string[] WordList;
     private PackedScene TextBoxScene, InventoryBoxScene;
-    private AnimatedSprite2D WorkerAnimation;
+    private AnimatedSprite2D WorkerAnimation, WorkerAnimationArms;
 
     public override void _Ready()
     {
         ActiveBoxContainer = GetNode<CenterContainer>("ActiveBoxContainer");
         WorkerAnimation = GetNode<AnimatedSprite2D>("Worker");
-        WorkerAnimation.AnimationFinished += () => WorkerAnimation.Animation = "Idle";
+        WorkerAnimationArms = GetNode("Worker").GetNode<AnimatedSprite2D>("Arms");
+        WorkerAnimation.AnimationFinished += () => AnimateWorker("Idle");
         CustomEvents.Instance.PlayerTookDamage += AddBoxToInventory;
         TextBoxScene = GD.Load<PackedScene>("res://TypingGame/TextBox.tscn");
         InventoryBoxScene = GD.Load<PackedScene>("res://TypingGame/InventoryBox.tscn");
@@ -41,8 +42,7 @@ public partial class TypingGame : CanvasLayer
                 ActiveMinigames.First().SetHighlight(HeldString);
                 ActiveMinigames.First().RightAnswer();
                 CharacterIndex++;
-                WorkerAnimation.Animation = "Work";
-                WorkerAnimation.Play();
+                AnimateWorker("Work");
                 if (CharacterIndex == ActiveMinigames.First().TypeText.Length)
                 {
                     FinishMinigame();
@@ -87,6 +87,12 @@ public partial class TypingGame : CanvasLayer
         ActiveBox = box;
         box.Reparent(ActiveBoxContainer);
 
+        var tween = GetTree().CreateTween();
+        ActiveBoxContainer.Position = new Vector2(-200, 830);
+        tween.TweenProperty(ActiveBoxContainer, "position", new Vector2(175, 830), 0.35);
+        tween.TweenProperty(ActiveBoxContainer, "scale", new Vector2(1.6f, 1.6f), 0.03);
+        tween.TweenProperty(ActiveBoxContainer, "scale", new Vector2(1.5f, 1.5f), 0.02);
+
         for (int i = 0; i < box.Damage; i++)
         {
             var newBox = TextBoxScene.Instantiate<TextBox>();
@@ -128,8 +134,7 @@ public partial class TypingGame : CanvasLayer
 
     private void FinishMinigame()
     {
-        WorkerAnimation.Animation = "NewPackage";
-        WorkerAnimation.Play();
+        ActiveBox.OneLessDamage();
         var finishedBox = ActiveMinigames.Dequeue();
         finishedBox.CompleteAnswer();
         CharacterIndex = 0;
@@ -138,10 +143,18 @@ public partial class TypingGame : CanvasLayer
         if (ActiveMinigames.Count == 0)
         {
             ActiveBox?.QueueFree();
+            AnimateWorker("NewPackage");
         }
 
         if (InventoryBoxes.Count > 0 && ActiveMinigames.Count == 0)
             ActivateInventoryBox(InventoryBoxes.Dequeue());
+    }
+
+    private void AnimateWorker(string animationName)
+    {
+        WorkerAnimation.Animation = animationName;
+        WorkerAnimationArms.Animation = animationName;
+        WorkerAnimation.Play();
     }
 
 }

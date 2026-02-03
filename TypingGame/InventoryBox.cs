@@ -15,6 +15,12 @@ public partial class InventoryBox : TextureRect
         GetTree().ProcessFrame += Initialize;
     }
 
+    public void OneLessDamage()
+    {
+        Damage--;
+        GetNode<AnimatedSprite2D>("Number").Animation = Damage.ToString();
+    }
+
     private void Initialize()
     {
         if (!Initiated)

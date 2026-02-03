@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnog3dr8nnqqr"
-path="res://.godot/imported/NewPackage3.png-b37749dbfe77ec967d7fed9b08a0903a.ctex"
+uid="uid://b3sqk8xvohuxx"
+path="res://.godot/imported/WorkerEmpty1.png-30042b380d824916bd9440b970d6033d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TypingGame/NewPackage3.png"
-dest_files=["res://.godot/imported/NewPackage3.png-b37749dbfe77ec967d7fed9b08a0903a.ctex"]
+source_file="res://TypingGame/WorkerEmpty1.png"
+dest_files=["res://.godot/imported/WorkerEmpty1.png-30042b380d824916bd9440b970d6033d.ctex"]
 
 [params]
 

@@ -10,6 +10,14 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("3_i7wng")
 }],
 "loop": true,
@@ -54,4 +62,4 @@ script = ExtResource("2_i7wng")
 [node name="Number" type="AnimatedSprite2D" parent="."]
 position = Vector2(55, 55)
 sprite_frames = SubResource("SpriteFrames_7eiwv")
-animation = &"1"
+animation = &"0"

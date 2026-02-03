@@ -1,12 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5dhnqbeerg6b"]
+[gd_scene load_steps=12 format=3 uid="uid://c5dhnqbeerg6b"]
 
 [ext_resource type="Script" uid="uid://ck0whjdcuambk" path="res://TypingGame/TypingGame.cs" id="1_nb7c1"]
 [ext_resource type="Texture2D" uid="uid://cccqqiwh5p8sq" path="res://TypingGame/WorkerIdle.png" id="2_mais2"]
-[ext_resource type="Texture2D" uid="uid://bju0gah6ktbtb" path="res://TypingGame/NewPackage4.png" id="3_sgfvb"]
-[ext_resource type="Texture2D" uid="uid://df6a6ujjyhq2h" path="res://TypingGame/NewPackage1.png" id="4_hj4bq"]
-[ext_resource type="Texture2D" uid="uid://36uokuqfpj6n" path="res://TypingGame/NewPackage2.png" id="5_w2115"]
+[ext_resource type="Texture2D" uid="uid://b3sqk8xvohuxx" path="res://TypingGame/WorkerEmpty1.png" id="3_hj4bq"]
+[ext_resource type="Texture2D" uid="uid://tg21fgpotnva" path="res://TypingGame/WorkerEmpty2.png" id="4_w2115"]
+[ext_resource type="Texture2D" uid="uid://do8cgvcp8jwqd" path="res://TypingGame/WorkerEmpty3.png" id="5_hp7n6"]
 [ext_resource type="Texture2D" uid="uid://cgr02p1uyltmp" path="res://TypingGame/WorkerWork1.png" id="6_hj4bq"]
 [ext_resource type="Texture2D" uid="uid://dx4eq73o6rfky" path="res://TypingGame/WorkerWork2.png" id="7_w2115"]
+[ext_resource type="Texture2D" uid="uid://cvm2lbarmsp65" path="res://TypingGame/WorkerWorkArms1.png" id="8_hp7n6"]
+[ext_resource type="Texture2D" uid="uid://b5sjqy0ytdxob" path="res://TypingGame/WorkerWorkArms2.png" id="9_edktn"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jex5s"]
 animations = [{
@@ -19,24 +21,27 @@ animations = [{
 "speed": 10.0
 }, {
 "frames": [{
-"duration": 0.6,
-"texture": ExtResource("2_mais2")
-}, {
-"duration": 0.6,
-"texture": ExtResource("3_sgfvb")
-}, {
-"duration": 0.5,
-"texture": ExtResource("4_hj4bq")
-}, {
-"duration": 0.8,
-"texture": ExtResource("5_w2115")
+"duration": 1.0,
+"texture": ExtResource("3_hj4bq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_mais2")
+"texture": ExtResource("4_w2115")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hp7n6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hj4bq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_w2115")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hp7n6")
 }],
 "loop": false,
 "name": &"NewPackage",
-"speed": 6.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -97,6 +102,86 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_hj4bq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"NewPackage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_hp7n6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_edktn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hp7n6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_edktn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hp7n6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_edktn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hp7n6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_edktn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hp7n6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_edktn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hp7n6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_edktn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hp7n6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_edktn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hp7n6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_edktn")
+}],
+"loop": false,
+"name": &"Work",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="TypingGameLayer" type="CanvasLayer"]
 script = ExtResource("1_nb7c1")
 
@@ -108,10 +193,12 @@ grow_vertical = 2
 color = Color(0.4725194, 0.37469634, 0.2925193, 0.8627451)
 
 [node name="ActiveBoxContainer" type="CenterContainer" parent="."]
-offset_left = 52.0
-offset_top = 51.0
-offset_right = 92.0
-offset_bottom = 91.0
+z_index = 5
+offset_left = 175.0
+offset_top = 830.0
+offset_right = 175.0
+offset_bottom = 830.0
+scale = Vector2(1.5, 1.5)
 
 [node name="InventoryBar" type="HBoxContainer" parent="."]
 offset_left = 190.0
@@ -137,5 +224,11 @@ offset_bottom = 450.0
 [node name="Worker" type="AnimatedSprite2D" parent="."]
 position = Vector2(250, 750)
 sprite_frames = SubResource("SpriteFrames_jex5s")
+animation = &"Work"
+autoplay = "Idle"
+
+[node name="Arms" type="AnimatedSprite2D" parent="Worker"]
+z_index = 10
+sprite_frames = SubResource("SpriteFrames_hj4bq")
 animation = &"Work"
 autoplay = "Idle"
