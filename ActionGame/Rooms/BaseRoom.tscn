@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://chja7sv73hhak"]
+[gd_scene load_steps=33 format=3 uid="uid://chja7sv73hhak"]
 
 [ext_resource type="Texture2D" uid="uid://n3f6hxfqsynd" path="res://ActionGame/Assets/TEST_WALLS.png" id="1_02ayl"]
 [ext_resource type="Script" uid="uid://dimqfrt0pmmmq" path="res://ActionGame/Room.cs" id="1_4pryp"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://1ygy0ircr48y" path="res://ActionGame/Assets/WATER_TERRAIN.png" id="6_lbwnk"]
 [ext_resource type="PackedScene" uid="uid://cf6tb1ciuxej8" path="res://ActionGame/Enemies/enemy_blaster.tscn" id="7_oc4rj"]
 [ext_resource type="Texture2D" uid="uid://6surho4l5usc" path="res://ActionGame/Assets/BreakRoomWalls.png" id="7_x3pib"]
+[ext_resource type="Texture2D" uid="uid://3estkytlcyfy" path="res://ActionGame/Assets/TallBox.png" id="8_k5p6y"]
 [ext_resource type="PackedScene" uid="uid://gqai34v1p45x" path="res://ActionGame/flower.tscn" id="8_um5ve"]
 [ext_resource type="PackedScene" uid="uid://w03bsvuthx2y" path="res://ActionGame/room_exit_area.tscn" id="10_jjne7"]
 [ext_resource type="PackedScene" uid="uid://ddvcnfwvb1qfw" path="res://ActionGame/room_spawn_marker.tscn" id="11_1ppml"]
@@ -439,6 +440,15 @@ texture_region_size = Vector2i(50, 50)
 3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-25, 25, -25, -25, 25, -25, 25, 25)
 3:3/0/terrains_peering_bit/left_side = 5
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lmupm"]
+texture = ExtResource("8_k5p6y")
+texture_region_size = Vector2i(50, 50)
+0:0/size_in_atlas = Vector2i(1, 2)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 25)
+0:0/0/z_index = 1
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-25, 25, -25, -25, 25, -25, 25, 25, -25, 25)
+
 [sub_resource type="TileSet" id="TileSet_y0cuo"]
 tile_layout = 5
 tile_offset_axis = 1
@@ -468,6 +478,7 @@ sources/0 = SubResource("TileSetAtlasSource_815yh")
 sources/1 = SubResource("TileSetAtlasSource_lbwnk")
 sources/4 = SubResource("TileSetAtlasSource_x3pib")
 sources/5 = SubResource("TileSetAtlasSource_8wpcf")
+sources/6 = SubResource("TileSetAtlasSource_lmupm")
 pattern_0 = SubResource("TileMapPattern_5hite")
 pattern_1 = SubResource("TileMapPattern_jjne7")
 
@@ -502,7 +513,8 @@ script = ExtResource("1_4pryp")
 RoomID = 55
 
 [node name="TerrainMap" type="TileMapLayer" parent="."]
-z_index = -10
+z_index = -1
+y_sort_enabled = true
 tile_set = SubResource("TileSet_y0cuo")
 
 [node name="EntityMap" type="TileMapLayer" parent="."]

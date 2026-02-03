@@ -152,7 +152,6 @@ animations = [{
 }]
 
 [node name="NPC" type="StaticBody2D"]
-z_index = -1
 y_sort_enabled = true
 collision_layer = 32
 collision_mask = 0
