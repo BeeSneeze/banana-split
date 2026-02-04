@@ -8,8 +8,7 @@ public abstract partial class Enemy : CharacterBody2D
     public ActionGame Level;
 
     protected int Knockbackframes = 0;
-    protected int HealthPoints;
-    protected int BulletCountdown;
+    protected int HealthPoints, BulletCountdown;
     protected Vector2 KnockBackVelocity;
 
     protected abstract int MAX_KNOCKBACK_FRAMES { get; }
@@ -18,7 +17,10 @@ public abstract partial class Enemy : CharacterBody2D
     protected abstract float BULLET_SPEED { get; }
     protected abstract DamageType DAMAGETYPE { get; }
 
+    public virtual int DAMAGE_CONTACT { get; protected set; } = 2;
+    protected virtual int DAMAGE_BULLET { get; } = 1;
     protected virtual float ACCELERATION { get; } = 8.0f;
+    protected virtual void ResetBulletCountdown() { }
 
     private const int KNOCKBACK_DELAY = 3;
     private PackedScene BulletScene;
@@ -39,27 +41,23 @@ public abstract partial class Enemy : CharacterBody2D
         ResetBulletCountdown();
     }
 
-    private void TakeHit(Vector2 incomingVelocity)
+    private void TakeHit(Vector2 incomingVelocity, int damage)
     {
-        ResetBulletCountdown();
-        KnockBackVelocity = incomingVelocity * 25;
-        Knockbackframes = MAX_KNOCKBACK_FRAMES;
-        HealthPoints--;
+        HealthPoints -= damage;
         if (HealthPoints < 1)
         {
             QueueFree();
         }
+
+        ResetBulletCountdown();
+        KnockBackVelocity = incomingVelocity * 25;
+        Knockbackframes = MAX_KNOCKBACK_FRAMES;
         Modulate = new Color(0.5f, 1.5f, 5.0f);
         Scale = new Vector2(0.8f, 0.8f);
         var newTween = GetTree().CreateTween();
         newTween.TweenProperty(this, "modulate", new Color(1, 1, 1), 0.12);
         var newTween2 = GetTree().CreateTween();
         newTween2.TweenProperty(this, "scale", new Vector2(1, 1), 0.12);
-    }
-
-    protected virtual void ResetBulletCountdown()
-    {
-        BulletCountdown = 0;
     }
 
     protected void ResolveKnockback()
@@ -89,13 +87,13 @@ public abstract partial class Enemy : CharacterBody2D
             var collider = collision.GetCollider();
             if (collider is Bullet bullet)
             {
-                TakeHit(bullet.Velocity);
+                TakeHit(bullet.Velocity, bullet.DamageAmount);
                 bullet.ExplodeBullet();
             }
 
             if (collider is Player player)
             {
-                player.TakeDamage(2, DAMAGETYPE);
+                player.TakeDamage(DAMAGE_CONTACT, DAMAGETYPE);
             }
         }
     }
@@ -111,6 +109,7 @@ public abstract partial class Enemy : CharacterBody2D
         var newBullet = BulletScene.Instantiate<Bullet>();
         newBullet.SetTeam(Team.ENEMY);
         newBullet.damageType = DAMAGETYPE;
+        newBullet.DamageAmount = DAMAGE_BULLET;
 
         var random = new RandomNumberGenerator();
         random.Randomize();

@@ -7,6 +7,7 @@ public partial class Bullet : StaticBody2D
     public Room Room;
     public Vector2 Velocity = new Vector2(0, 0);
     public DamageType damageType;
+    public int DamageAmount;
 
     private Team Team;
 
@@ -53,13 +54,13 @@ public partial class Bullet : StaticBody2D
         if (Team == Team.ENEMY)
         {
             visual.Animation = "Enemy";
-            CollisionLayer = ((uint)CollisionLayerDefs.ENEMY_BULLETS);
+            CollisionLayer = (uint)CollisionLayerDefs.ENEMY_BULLETS;
         }
         else if (Team == Team.PLAYER)
         {
             GetNode<PointLight2D>("Light").Visible = false;
             visual.Animation = "Player";
-            CollisionLayer = ((uint)CollisionLayerDefs.PLAYER_BULLETS);
+            CollisionLayer = (uint)CollisionLayerDefs.PLAYER_BULLETS;
         }
         visual.Play();
     }

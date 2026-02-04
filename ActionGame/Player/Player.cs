@@ -24,6 +24,7 @@ public partial class Player : CharacterBody2D
     private const uint COLLISIONS_NORMAL = (uint)CollisionLayerDefs.WALLS + (uint)CollisionLayerDefs.ENEMY + (uint)CollisionLayerDefs.OBSTACLES;
     private const uint COLLISIONS_NO_DODGE = (uint)CollisionLayerDefs.ENEMY_BULLETS + (uint)CollisionLayerDefs.DODGEABLE;
     private const int MOVEMENT_DIRECTIONS = 16;
+    private const int BULLET_DAMAGE = 10;
 
     private int BulletsInChamber = MAX_BULLETS_IN_CHAMBER;
     private float TemporarySpeed;
@@ -153,13 +154,12 @@ public partial class Player : CharacterBody2D
                 if (body.CollisionLayer == (uint)CollisionLayerDefs.ENEMY)
                 {
                     var enemy = (Enemy)body;
-
-                    TakeDamage(2, enemy.GetDamageType());
+                    TakeDamage(enemy.DAMAGE_CONTACT, enemy.GetDamageType());
                 }
                 if (body.CollisionLayer == (uint)CollisionLayerDefs.ENEMY_BULLETS)
                 {
-                    var bullet = ((Bullet)body);
-                    TakeDamage(1, bullet.damageType);
+                    var bullet = (Bullet)body;
+                    TakeDamage(bullet.DamageAmount, bullet.damageType);
                     bullet.ExplodeBullet();
                 }
             }
@@ -241,6 +241,7 @@ public partial class Player : CharacterBody2D
 
         var newBullet = BulletScene.Instantiate<Bullet>();
         newBullet.SetTeam(Team.PLAYER);
+        newBullet.DamageAmount = BULLET_DAMAGE;
 
         var random = new RandomNumberGenerator();
         random.Randomize();
