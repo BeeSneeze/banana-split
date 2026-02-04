@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://uuh0fvsqcrm0"]
+[gd_scene load_steps=8 format=3 uid="uid://uuh0fvsqcrm0"]
 
-[ext_resource type="Texture2D" uid="uid://ccjyagegmwska" path="res://ActionGame/Enemies/BulletRound.png" id="1_v7oki"]
 [ext_resource type="Script" uid="uid://k6lye3yjr8p4" path="res://ActionGame/Bullet.cs" id="1_v8qja"]
 [ext_resource type="Texture2D" uid="uid://cxxjtjehccsvc" path="res://ActionGame/Player/Player_Bullet_1.png" id="2_0g0bc"]
 [ext_resource type="Texture2D" uid="uid://ccjyagegmwska" path="res://ActionGame/Enemies/BulletRound.png" id="2_0iu8t"]
@@ -33,7 +32,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_v7oki")
+"texture": ExtResource("2_0iu8t")
 }],
 "loop": true,
 "name": &"default",
@@ -41,6 +40,7 @@ animations = [{
 }]
 
 [node name="Bullet" type="StaticBody2D"]
+z_index = 1
 collision_layer = 0
 collision_mask = 32
 collision_priority = 0.1
@@ -56,7 +56,6 @@ sprite_frames = SubResource("SpriteFrames_v7oki")
 animation = &"Enemy"
 
 [node name="Light" type="PointLight2D" parent="."]
-z_index = 5
 color = Color(1, 0.43181998, 0.36313254, 1)
 blend_mode = 2
 range_layer_max = 2048

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://byjcp4v0qnfm7" path="res://ActionGame/Rooms/StartingRoom.tscn" id="6_5hite"]
 
 [node name="ActionGame" type="Control"]
+y_sort_enabled = true
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_mmdi0")

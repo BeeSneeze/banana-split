@@ -173,6 +173,7 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_8rlun")
 
 [node name="SpeechBubble" type="AnimatedSprite2D" parent="."]
+z_index = 1
 position = Vector2(48, -74)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_sovks")
