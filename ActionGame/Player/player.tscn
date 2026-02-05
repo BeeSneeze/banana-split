@@ -39,6 +39,7 @@ animation = &"Running"
 offset = Vector2(0, -30)
 
 [node name="Crosshair" type="AnimatedSprite2D" parent="."]
+z_index = 1
 position = Vector2(200, 0)
 sprite_frames = SubResource("SpriteFrames_tmsbd")
 
