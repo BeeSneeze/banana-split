@@ -70,6 +70,9 @@ public partial class TypingGame : CanvasLayer
             case "Scramble":
                 newBox.damageType = DamageType.Scramble;
                 break;
+            case "Arrows":
+                newBox.damageType = DamageType.Arrows;
+                break;
         }
 
         InventoryBar.AddChild(newBox);
@@ -101,23 +104,30 @@ public partial class TypingGame : CanvasLayer
         for (int i = 0; i < box.Damage; i++)
         {
             var newBox = TextBoxScene.Instantiate<TextBox>();
+            var newText = "";
 
             switch (box.damageType)
             {
                 case DamageType.Text:
-                    newBox.Initialize(WordList[GD.RandRange(0, WordList.Length - 1)], DamageType.Text);
+                    newText = WordList[GD.RandRange(0, WordList.Length - 1)];
+                    break;
+                case DamageType.Arrows:
+                    string[] characterList1 = ["w", "a", "s", "d"];
+                    for (int k = 0; k < 8; k++)
+                    {
+                        newText += characterList1[GD.RandRange(0, 3)];
+                    }
                     break;
                 case DamageType.Scramble:
                     string[] characterList = ["q", "w", "e", "a", "s", "d", "z", "x", "c"];
-                    var newWord = "";
                     for (int k = 0; k < 6; k++)
                     {
-                        newWord += characterList[GD.RandRange(0, 8)];
+                        newText += characterList[GD.RandRange(0, 8)];
                     }
-                    newBox.Initialize(newWord, DamageType.Text);
                     break;
             }
 
+            newBox.Initialize(newText, box.damageType);
             var TypeScreen = GetNode("TypingScreen");
             TypeScreen.AddChild(newBox);
             TypeScreen.MoveChild(newBox, 0);

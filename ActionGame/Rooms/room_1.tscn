@@ -15,4 +15,4 @@ tile_map_data = PackedByteArray("AAABAPv/AgABAAAAAAABAPz/AgAAAAIAAAABAP3/AgAAAAI
 tile_map_data = PackedByteArray("AAABAAAAAQAAAAAAAQABAAEAAQAAAAAAAQD/////AQAAAAAABAD//wAAAQAAAAAABAD//wEAAQAAAAAABAD//wIAAQAAAAAABAAJAP3/AAAAAAAAAwAJAAAAAAAAAAAAAwAJAAQAAAAAAAAAAwAQAP3/AAAAAAAABAAQAAQAAAAAAAAABAAeAP//AQAAAAAABQA=")
 
 [connection signal="body_entered" from="EntityMap/RoomEntranceArea" to="EntityMap/RoomEntranceArea" method="OnBodyEntered"]
-[connection signal="body_entered" from="EntityMap/@Area2D@160612" to="EntityMap/@Area2D@160612" method="OnBodyEntered"]
+[connection signal="body_entered" from="EntityMap/@Area2D@176197" to="EntityMap/@Area2D@176197" method="OnBodyEntered"]

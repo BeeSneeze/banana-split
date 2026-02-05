@@ -97,13 +97,8 @@ public partial class ActionGame : Control
             return; // Don't keep changing to the same room
         }
 
-        if (CurrentRoom != null)
-        {
-            CurrentRoom.DeactivateRoom();
-        }
-
+        CurrentRoom?.DeactivateRoom();
         CurrentRoomID = roomID;
-
         CurrentRoom = (Room)GetChildren().Where(x => x is Room).First(x => ((Room)x).RoomID == roomID);
 
         if (CurrentRoom is BreakRoom)

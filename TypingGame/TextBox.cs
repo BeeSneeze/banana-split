@@ -15,12 +15,55 @@ public partial class TextBox : ColorRect
     public override void _Ready()
     {
         Particle = GD.Load<PackedScene>("res://ActionGame/Particles/particle.tscn");
-        GetNode<RichTextLabel>("Label").Text = TypeText;
+        if (Type == DamageType.Arrows)
+        {
+            GetNode<RichTextLabel>("Label").Text = TranslateToArrows(TypeText);
+        }
+        else
+        {
+            GetNode<RichTextLabel>("Label").Text = TypeText;
+        }
+
     }
 
     public void SetHighlight(string highlight)
     {
-        GetNode<RichTextLabel>("Label").Text = "[b]" + highlight + "[/b]" + TypeText.Right(highlight.Length);
+        if (Type == DamageType.Arrows)
+        {
+            GetNode<RichTextLabel>("Label").Text = "[b]" + TranslateToArrows(highlight) + "[/b]" + TranslateToArrows(TypeText.Right(highlight.Length));
+        }
+        else
+        {
+            GetNode<RichTextLabel>("Label").Text = "[b]" + highlight + "[/b]" + TypeText.Right(highlight.Length);
+        }
+
+    }
+
+    private string TranslateToArrows(string arrowString)
+    {
+        string outString = "";
+        foreach (var character in arrowString)
+        {
+            switch (character)
+            {
+                case 'W':
+                    outString += "↑";
+                    break;
+                case 'A':
+                    outString += "←";
+                    break;
+                case 'S':
+                    outString += "↓";
+                    break;
+                case 'D':
+                    outString += "→";
+                    break;
+                default:
+                    outString += character;
+                    break;
+            }
+        }
+        return outString;
     }
 
     public void WrongAnswer()
@@ -42,7 +85,15 @@ public partial class TextBox : ColorRect
 
     public void CompleteAnswer()
     {
-        GetNode<RichTextLabel>("Label").Text = "[b]" + TypeText + "[/b]";
+        if (Type == DamageType.Arrows)
+        {
+            GetNode<RichTextLabel>("Label").Text = "[b]" + TranslateToArrows(TypeText) + "[/b]";
+        }
+        else
+        {
+            GetNode<RichTextLabel>("Label").Text = "[b]" + TypeText + "[/b]";
+        }
+
         var finishParticle = Particle.Instantiate<Particle>();
         finishParticle.Animation = "Sparkle";
         finishParticle.Position = Position + new Vector2(Size.X, Size.Y) * 0.5f;

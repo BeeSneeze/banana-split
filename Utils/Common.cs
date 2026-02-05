@@ -21,7 +21,7 @@ namespace Common
     {
         Text,
         Scramble,
-        Numbers
+        Arrows
     }
 
     public readonly record struct NPCSpeaker(string Name, string Emotion)

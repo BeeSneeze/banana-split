@@ -11,7 +11,7 @@ public partial class InventoryBox : TextureRect
 
     public override void _Ready()
     {
-        // Delay by one frame
+        // Delay by one frame due to being a control node
         GetTree().ProcessFrame += Initialize;
     }
 
@@ -36,9 +36,19 @@ public partial class InventoryBox : TextureRect
             tween2.TweenProperty(this, "scale", new Vector2(1, 1), 0.02);
             GetNode<AnimatedSprite2D>("Number").Animation = Damage.ToString();
 
+            switch (damageType)
+            {
+                case DamageType.Scramble:
+                    Texture = GD.Load<Texture2D>("res://TypingGame/ScrambleBox.png");
+                    break;
+                case DamageType.Arrows:
+                    Texture = GD.Load<Texture2D>("res://TypingGame/ArrowBox.png");
+                    break;
+            }
+
             if (damageType == DamageType.Scramble)
             {
-                Texture = GD.Load<Texture2D>("res://TypingGame/ScrambleBox.png");
+
             }
         }
 

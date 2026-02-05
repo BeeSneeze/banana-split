@@ -7,7 +7,7 @@ public partial class EnemyWimp : Enemy
     protected override float BULLET_SPEED => 7f;
     protected override int MAX_HEALTH => 4;
     protected override int MAX_KNOCKBACK_FRAMES => 20;
-    protected override DamageType DAMAGETYPE => DamageType.Text;
+    protected override DamageType DAMAGETYPE => DamageType.Arrows;
 
     private const float WIMP_DISTANCE = 400f;
 

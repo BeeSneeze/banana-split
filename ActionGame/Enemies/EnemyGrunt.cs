@@ -8,7 +8,7 @@ public partial class EnemyGrunt : Enemy
     protected override int MAX_HEALTH => 5;
     protected override int MAX_KNOCKBACK_FRAMES => 15;
     protected override DamageType DAMAGETYPE => DamageType.Scramble;
-    public override int DAMAGE_CONTACT { get; protected set; } = 1;
+    public override int DAMAGE_CONTACT { get; protected set; } = 2;
 
     public override void _PhysicsProcess(double delta)
     {

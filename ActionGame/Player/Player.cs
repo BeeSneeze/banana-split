@@ -24,7 +24,7 @@ public partial class Player : CharacterBody2D
     private const uint COLLISIONS_NORMAL = (uint)CollisionLayerDefs.WALLS + (uint)CollisionLayerDefs.ENEMY + (uint)CollisionLayerDefs.OBSTACLES;
     private const uint COLLISIONS_NO_DODGE = (uint)CollisionLayerDefs.ENEMY_BULLETS + (uint)CollisionLayerDefs.DODGEABLE;
     private const int MOVEMENT_DIRECTIONS = 16;
-    private const int BULLET_DAMAGE = 10;
+    private const int BULLET_DAMAGE = 1;
 
     private int BulletsInChamber = MAX_BULLETS_IN_CHAMBER;
     private float TemporarySpeed;
