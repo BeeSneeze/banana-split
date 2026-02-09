@@ -4,11 +4,10 @@ using Common;
 
 public partial class Bullet : StaticBody2D
 {
-    public Room Room;
-    public Vector2 Velocity = new Vector2(0, 0);
-    public DamageType damageType;
-    public int DamageAmount;
-
+    public Room Room { get; private set; }
+    public Vector2 Velocity { get; private set; }
+    public DamageType damageType { get; private set; }
+    public int DamageAmount { get; private set; }
     private Team Team;
 
     public override void _Ready()
@@ -19,6 +18,15 @@ public partial class Bullet : StaticBody2D
         }
 
         GetNode<AnimatedSprite2D>("Visual").Rotation = Mathf.Atan2(Velocity.Y, Velocity.X);
+    }
+
+    public void Initialize(Room room, Vector2 velocity, DamageType damagetype, int damage, Team team)
+    {
+        SetTeam(team);
+        Room = room;
+        Velocity = velocity;
+        damageType = damagetype;
+        DamageAmount = damage;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -46,7 +54,7 @@ public partial class Bullet : StaticBody2D
         QueueFree();
     }
 
-    public void SetTeam(Team setAllegiance)
+    private void SetTeam(Team setAllegiance)
     {
 
         var visual = GetNode<AnimatedSprite2D>("Visual");

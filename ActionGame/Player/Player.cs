@@ -239,15 +239,10 @@ public partial class Player : CharacterBody2D
 
         Input.StartJoyVibration(0, 0.2f, 0.2f, 0.06f);
 
+        var velocity = BULLET_SPEED * direction.Normalized().Rotated((float)GD.RandRange(-BULLET_SPREAD, BULLET_SPREAD));
         var newBullet = BulletScene.Instantiate<Bullet>();
-        newBullet.SetTeam(Team.PLAYER);
-        newBullet.DamageAmount = BULLET_DAMAGE;
+        newBullet.Initialize(CurrentRoom, velocity, DamageType.Text, BULLET_DAMAGE, Team.PLAYER);
 
-        var random = new RandomNumberGenerator();
-        random.Randomize();
-
-        newBullet.Velocity = BULLET_SPEED * direction.Normalized().Rotated(random.RandfRange(-BULLET_SPREAD, BULLET_SPREAD));
-        newBullet.Room = CurrentRoom;
         CurrentRoom.Spawn(newBullet, GlobalPosition - CurrentRoom.GlobalPosition);
         CurrentRoom.SpawnParticle(ParticleNames.Dust, GlobalPosition - CurrentRoom.GlobalPosition);
     }

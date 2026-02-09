@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.Tracing;
 using Common;
 using Godot;
 
@@ -46,6 +47,10 @@ public abstract partial class Enemy : CharacterBody2D
         HealthPoints -= damage;
         if (HealthPoints < 1)
         {
+            if (Room.GetEnemyCount() == 1)
+            {
+                CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.PlayerClearedRoom, Room.RoomID);
+            }
             QueueFree();
         }
 
@@ -106,16 +111,9 @@ public abstract partial class Enemy : CharacterBody2D
 
     protected void SpawnBullet(Vector2 direction)
     {
+        var velocity = BULLET_SPEED * direction.Normalized().Rotated((float)GD.RandRange(-0.05, 0.05));
         var newBullet = BulletScene.Instantiate<Bullet>();
-        newBullet.SetTeam(Team.ENEMY);
-        newBullet.damageType = DAMAGETYPE;
-        newBullet.DamageAmount = DAMAGE_BULLET;
-
-        var random = new RandomNumberGenerator();
-        random.Randomize();
-
-        newBullet.Velocity = BULLET_SPEED * direction.Normalized().Rotated(random.RandfRange(-0.05f, 0.05f));
-        newBullet.Room = Room;
+        newBullet.Initialize(Room, velocity, DAMAGETYPE, DAMAGE_BULLET, Team.ENEMY);
         Room.Spawn(newBullet, Position);
     }
 }

@@ -17,6 +17,6 @@ tile_map_data = PackedByteArray("AAAFAPz/BgAAAAAAAAAGAPz/BgAAAAAAAAAHAPz/BgAAAAA
 tile_map_data = PackedByteArray("AAAUAP//AQAAAAAABQAKAPv/AgAAAAAAAQARAP7/AgAAAAAAAQACAAEAAQAAAAAAAQACAAIAAQAAAAAAAQACAP//AQAAAAAAAQACAAAAAQAAAAAAAQAAAAAAAQAAAAAABAAAAAEAAQAAAAAABAAIAAEAAgAAAAAAAQAPAAMAAQAAAAAAAwA=")
 
 [connection signal="body_entered" from="EntityMap/RoomEntranceArea" to="EntityMap/RoomEntranceArea" method="OnBodyEntered"]
-[connection signal="body_entered" from="EntityMap/@Area2D@164020" to="EntityMap/@Area2D@164020" method="OnBodyEntered"]
-[connection signal="body_entered" from="EntityMap/@Area2D@164021" to="EntityMap/@Area2D@164021" method="OnBodyEntered"]
-[connection signal="body_entered" from="EntityMap/@Area2D@164022" to="EntityMap/@Area2D@164022" method="OnBodyEntered"]
+[connection signal="body_entered" from="EntityMap/@Area2D@21274" to="EntityMap/@Area2D@21274" method="OnBodyEntered"]
+[connection signal="body_entered" from="EntityMap/@Area2D@21275" to="EntityMap/@Area2D@21275" method="OnBodyEntered"]
+[connection signal="body_entered" from="EntityMap/@Area2D@21276" to="EntityMap/@Area2D@21276" method="OnBodyEntered"]

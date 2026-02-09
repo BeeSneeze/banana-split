@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using Common;
+using System.Linq;
 
 public partial class Room : Node2D
 {
@@ -68,8 +69,17 @@ public partial class Room : Node2D
             {
                 roomExit.Room = this;
             }
+            if (entity is RoomDoor roomDoor)
+            {
+                roomDoor.Room = this;
+            }
         }
         Initiated = true;
+    }
+
+    public int GetEnemyCount()
+    {
+        return GetNode("EntityMap").GetChildren().Where(x => x is Enemy).ToArray().Length;
     }
 
 

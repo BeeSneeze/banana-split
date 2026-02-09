@@ -15,6 +15,8 @@ public partial class CustomEvents : Node
     public delegate void DialogueStartedEventHandler(string npc);
     [Signal]
     public delegate void DialogueEndedEventHandler();
+    [Signal]
+    public delegate void PlayerClearedRoomEventHandler(int roomID);
 
     public static CustomEvents Instance { get; private set; }
     public override void _Ready()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccbo7w1hf3ppx"]
+[gd_scene load_steps=8 format=3 uid="uid://ccbo7w1hf3ppx"]
 
 [ext_resource type="Script" uid="uid://cewc0m0uvh0wk" path="res://ActionGame/Player/Player.cs" id="1_r7jum"]
 [ext_resource type="SpriteFrames" uid="uid://jn13xj3pxrru" path="res://ActionGame/Player/PlayerSpriteFrames.tres" id="2_x3qpf"]
@@ -6,8 +6,11 @@
 [ext_resource type="Script" uid="uid://crnarwd4goahb" path="res://ActionGame/Player/PlayerCamera.cs" id="4_x3qpf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x3qpf"]
-radius = 13.0
-height = 42.0
+radius = 14.0
+height = 46.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_87mhb"]
+size = Vector2(27, 15)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tmsbd"]
 animations = [{
@@ -28,8 +31,12 @@ motion_mode = 1
 script = ExtResource("1_r7jum")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
+position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_x3qpf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -14.5)
+shape = SubResource("RectangleShape2D_87mhb")
 
 [node name="Visual" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true

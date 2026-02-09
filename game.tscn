@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://6ho0dfxec8r3"]
+[gd_scene format=3 uid="uid://6ho0dfxec8r3"]
 
 [ext_resource type="Script" uid="uid://xbsm7dgj3745" path="res://Game.cs" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://ju5xdgsp4x80" path="res://ActionGame/action_game.tscn" id="2_feb5d"]
@@ -6,19 +6,19 @@
 [ext_resource type="PackedScene" uid="uid://bad3ow8kqh0y4" path="res://Dialogue/dialogue_layer.tscn" id="4_fc0e3"]
 [ext_resource type="AudioStream" uid="uid://dh4yko0rpeul6" path="res://Endless_inventory.mp3" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://bleu8qyvb5clv" path="res://MusicManager.cs" id="5_eow3j"]
-[ext_resource type="AudioStream" uid="uid://hwvda06k1pyp" path="res://No_rest_for_the_wickedly_underpaid.mp3" id="6_ryrav"]
+[ext_resource type="AudioStream" uid="uid://bl4018cia77mk" path="res://No_rest_for_the_wickedly_underpaid.mp3" id="6_ryrav"]
 
-[node name="Game" type="Control"]
+[node name="Game" type="Control" unique_id=144734873]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 script = ExtResource("1_80nbo")
 
-[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+[node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=1719499918]
 layer = -1
 
-[node name="ColorRect" type="ColorRect" parent="BackgroundLayer"]
+[node name="ColorRect" type="ColorRect" parent="BackgroundLayer" unique_id=712248111]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -26,11 +26,11 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.9098039, 0.61960787, 0.2, 1)
 
-[node name="ActionGameLayer" type="CanvasLayer" parent="."]
+[node name="ActionGameLayer" type="CanvasLayer" parent="." unique_id=766042958]
 layer = 0
 follow_viewport_enabled = true
 
-[node name="ActionGame" parent="ActionGameLayer" instance=ExtResource("2_feb5d")]
+[node name="ActionGame" parent="ActionGameLayer" unique_id=931940359 instance=ExtResource("2_feb5d")]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -44,21 +44,21 @@ grow_horizontal = 0
 grow_vertical = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="TypingGameLayer" parent="." instance=ExtResource("3_feb5d")]
+[node name="TypingGameLayer" parent="." unique_id=484959580 instance=ExtResource("3_feb5d")]
 
-[node name="DialogueLayer" parent="." instance=ExtResource("4_fc0e3")]
+[node name="DialogueLayer" parent="." unique_id=825669455 instance=ExtResource("4_fc0e3")]
 offset = Vector2(500, 120)
 transform = Transform2D(1, 0, 0, 1, 500, 120)
 
-[node name="Background Music" type="Node" parent="."]
+[node name="Background Music" type="Node" parent="." unique_id=2034869486]
 script = ExtResource("5_eow3j")
 
-[node name="Level" type="AudioStreamPlayer" parent="Background Music"]
+[node name="Level" type="AudioStreamPlayer" parent="Background Music" unique_id=2113599457]
 stream = ExtResource("5_7jktm")
 parameters/looping = true
 
-[node name="BreakRoom" type="AudioStreamPlayer" parent="Background Music"]
+[node name="BreakRoom" type="AudioStreamPlayer" parent="Background Music" unique_id=1832715215]
 stream = ExtResource("6_ryrav")
 parameters/looping = true
 
-[node name="Silence" type="AudioStreamPlayer" parent="Background Music"]
+[node name="Silence" type="AudioStreamPlayer" parent="Background Music" unique_id=1423292995]
