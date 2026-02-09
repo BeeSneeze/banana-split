@@ -9,6 +9,10 @@ public partial class RoomDoor : StaticBody2D
     public override void _Ready()
     {
         CustomEvents.Instance.PlayerClearedRoom += PlayerClearedRoom;
+        if (GlobalVariables.Cheat.DOORS_ALWAYS_OPEN)
+        {
+            QueueFree();
+        }
     }
 
     private void PlayerClearedRoom(int roomID)

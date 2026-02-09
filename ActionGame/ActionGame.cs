@@ -82,7 +82,11 @@ public partial class ActionGame : Control
     private void GameOver()
     {
         GD.Print("GAME OVER!");
-        Player.QueueFree();
+        if (!GlobalVariables.Cheat.NEVER_DIE)
+        {
+            Player.QueueFree();
+        }
+
     }
 
     private void GameWon()

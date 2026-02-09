@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ccbo7w1hf3ppx"]
+[gd_scene format=3 uid="uid://ccbo7w1hf3ppx"]
 
 [ext_resource type="Script" uid="uid://cewc0m0uvh0wk" path="res://ActionGame/Player/Player.cs" id="1_r7jum"]
 [ext_resource type="SpriteFrames" uid="uid://jn13xj3pxrru" path="res://ActionGame/Player/PlayerSpriteFrames.tres" id="2_x3qpf"]
@@ -23,34 +23,34 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=1338775658]
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 632
 motion_mode = 1
 script = ExtResource("1_r7jum")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1897465480]
 position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_x3qpf")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=823167151]
 position = Vector2(0.5, -14.5)
 shape = SubResource("RectangleShape2D_87mhb")
 
-[node name="Visual" type="AnimatedSprite2D" parent="."]
+[node name="Visual" type="AnimatedSprite2D" parent="." unique_id=1831860321]
 y_sort_enabled = true
 scale = Vector2(0.35, 0.35)
 sprite_frames = ExtResource("2_x3qpf")
 animation = &"Running"
-offset = Vector2(0, -30)
+offset = Vector2(0, -25)
 
-[node name="Crosshair" type="AnimatedSprite2D" parent="."]
+[node name="Crosshair" type="AnimatedSprite2D" parent="." unique_id=1565472880]
 z_index = 1
 position = Vector2(200, 0)
 sprite_frames = SubResource("SpriteFrames_tmsbd")
 
-[node name="Camera" type="Camera2D" parent="Crosshair"]
+[node name="Camera" type="Camera2D" parent="Crosshair" unique_id=1003825518]
 unique_name_in_owner = true
 position = Vector2(-240, -80)
 process_callback = 0
@@ -65,10 +65,10 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource("4_x3qpf")
 
-[node name="AutoAimArea" type="Area2D" parent="."]
+[node name="AutoAimArea" type="Area2D" parent="." unique_id=203482487]
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AutoAimArea"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AutoAimArea" unique_id=683202993]
 position = Vector2(124, -5)
 polygon = PackedVector2Array(-123, 3, 678, -109, 678, 107)

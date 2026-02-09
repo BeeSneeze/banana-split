@@ -98,7 +98,7 @@ public abstract partial class Enemy : CharacterBody2D
 
             if (collider is Player player)
             {
-                player.TakeDamage(DAMAGE_CONTACT, DAMAGETYPE);
+                player.TakeDamage(DAMAGE_CONTACT + GlobalVariables.Game.ENEMY_BONUS_DAMAGE, DAMAGETYPE);
             }
         }
     }
@@ -113,7 +113,7 @@ public abstract partial class Enemy : CharacterBody2D
     {
         var velocity = BULLET_SPEED * direction.Normalized().Rotated((float)GD.RandRange(-0.05, 0.05));
         var newBullet = BulletScene.Instantiate<Bullet>();
-        newBullet.Initialize(Room, velocity, DAMAGETYPE, DAMAGE_BULLET, Team.ENEMY);
+        newBullet.Initialize(Room, velocity, DAMAGETYPE, DAMAGE_BULLET + GlobalVariables.Game.ENEMY_BONUS_DAMAGE, Team.ENEMY);
         Room.Spawn(newBullet, Position);
     }
 }
