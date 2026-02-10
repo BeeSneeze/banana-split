@@ -149,16 +149,17 @@ public partial class Player : CharacterBody2D
             var collision = MoveAndCollide(Velocity, true).GetCollider();
             if (collision is PhysicsBody2D body)
             {
-                if (body.CollisionLayer == (uint)CollisionLayerDefs.ENEMY)
+                switch (body.CollisionLayer)
                 {
-                    var enemy = (Enemy)body;
-                    TakeDamage(enemy.DAMAGE_CONTACT, enemy.GetDamageType());
-                }
-                if (body.CollisionLayer == (uint)CollisionLayerDefs.ENEMY_BULLETS)
-                {
-                    var bullet = (Bullet)body;
-                    TakeDamage(bullet.DamageAmount, bullet.damageType);
-                    bullet.ExplodeBullet();
+                    case (uint)CollisionLayerDefs.ENEMY:
+                        var enemy = (Enemy)body;
+                        TakeDamage(enemy.DAMAGE_CONTACT, enemy.GetDamageType());
+                        break;
+                    case (uint)CollisionLayerDefs.ENEMY_BULLETS:
+                        var bullet = (Bullet)body;
+                        TakeDamage(bullet.DamageAmount, bullet.damageType);
+                        bullet.ExplodeBullet();
+                        break;
                 }
             }
         }

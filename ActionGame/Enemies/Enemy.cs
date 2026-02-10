@@ -22,6 +22,7 @@ public abstract partial class Enemy : CharacterBody2D
     protected virtual int DAMAGE_BULLET { get; } = 1;
     protected virtual float ACCELERATION { get; } = 8.0f;
     protected virtual void ResetBulletCountdown() { }
+    protected virtual float KNOCKBACK_MULTIPLIER { get; } = 25;
 
     private const int KNOCKBACK_DELAY = 3;
     private PackedScene BulletScene;
@@ -55,7 +56,7 @@ public abstract partial class Enemy : CharacterBody2D
         }
 
         ResetBulletCountdown();
-        KnockBackVelocity = incomingVelocity * 25;
+        KnockBackVelocity = incomingVelocity * KNOCKBACK_MULTIPLIER;
         Knockbackframes = MAX_KNOCKBACK_FRAMES;
         Modulate = new Color(0.5f, 1.5f, 5.0f);
         Scale = new Vector2(0.8f, 0.8f);
