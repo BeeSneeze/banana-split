@@ -14,7 +14,8 @@ namespace Common
         Explosion,
         Dust,
         Splash,
-        Sparkle
+        Sparkle,
+        DeadWood
     }
 
     public enum DamageType

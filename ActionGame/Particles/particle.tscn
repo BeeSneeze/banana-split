@@ -1,7 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://ccjcvc61wq03i"]
+[gd_scene format=3 uid="uid://ccjcvc61wq03i"]
 
+[ext_resource type="Texture2D" uid="uid://dl1y3f0j3ad5l" path="res://ActionGame/Particles/BoxDeath1.png" id="1_ha1wp"]
 [ext_resource type="Texture2D" uid="uid://jb5rp0xnmiot" path="res://ActionGame/Particles/Dust1.png" id="1_m3m3g"]
 [ext_resource type="Texture2D" uid="uid://chepxtctswn70" path="res://ActionGame/Particles/Dust2.png" id="2_dvt0t"]
+[ext_resource type="Texture2D" uid="uid://dcb1ll2fq5cij" path="res://ActionGame/Particles/BoxDeath2.png" id="2_fr6n4"]
 [ext_resource type="Texture2D" uid="uid://kf7m5faqrg22" path="res://ActionGame/Particles/Dust3.png" id="3_m6xhv"]
 [ext_resource type="Script" uid="uid://coj7bxwlvhcap" path="res://ActionGame/Particles/Particle.cs" id="4_osap4"]
 [ext_resource type="Texture2D" uid="uid://clo5x6x5yxpv1" path="res://ActionGame/Particles/Dust4.png" id="4_qqyiu"]
@@ -15,6 +17,20 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vjm4o"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ha1wp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fr6n4")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"DeadWood",
+"speed": 14.0
+}, {
 "frames": [{
 "duration": 0.8,
 "texture": ExtResource("1_m3m3g")
@@ -86,8 +102,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Particle" type="AnimatedSprite2D"]
+[node name="Particle" type="AnimatedSprite2D" unique_id=277572044]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_vjm4o")
-animation = &"Dust"
+animation = &"DeadWood"
+frame = 2
+frame_progress = 1.0
 script = ExtResource("4_osap4")

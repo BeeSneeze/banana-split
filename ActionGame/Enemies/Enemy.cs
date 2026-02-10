@@ -52,6 +52,7 @@ public abstract partial class Enemy : CharacterBody2D
             {
                 CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.PlayerClearedRoom, Room.RoomID);
             }
+            Room.SpawnParticle(ParticleNames.DeadWood, Position);
             QueueFree();
         }
 

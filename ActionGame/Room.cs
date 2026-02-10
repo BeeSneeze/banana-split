@@ -93,19 +93,7 @@ public partial class Room : Node2D
     {
         var newParticle = ParticleScene.Instantiate<AnimatedSprite2D>();
         newParticle.Position = pos;
-
-        switch (particleName)
-        {
-            case ParticleNames.Explosion:
-                newParticle.Animation = "Explosion";
-                break;
-            case ParticleNames.Dust:
-                newParticle.Animation = "Dust";
-                break;
-            case ParticleNames.Splash:
-                newParticle.Animation = "Splash";
-                break;
-        }
+        newParticle.Animation = particleName.ToString();
 
         AddChild(newParticle);
     }
