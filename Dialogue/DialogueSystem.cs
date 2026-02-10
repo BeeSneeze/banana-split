@@ -70,7 +70,6 @@ public partial class DialogueSystem : CanvasLayer
         ConversationActive = true;
 
         this.Visible = true;
-        // TODO: Fix constant string stuff for NPC names
         switch (npc)
         {
             case NPCSpeaker.RB:

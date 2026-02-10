@@ -55,12 +55,10 @@ script = ExtResource("5_eow3j")
 
 [node name="Level" type="AudioStreamPlayer" parent="Background Music" unique_id=2113599457]
 stream = ExtResource("5_7jktm")
-volume_db = -80.0
 parameters/looping = true
 
 [node name="BreakRoom" type="AudioStreamPlayer" parent="Background Music" unique_id=1832715215]
 stream = ExtResource("6_ryrav")
-volume_db = -80.0
 parameters/looping = true
 
 [node name="Silence" type="AudioStreamPlayer" parent="Background Music" unique_id=1423292995]

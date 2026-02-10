@@ -45,11 +45,6 @@ public partial class InventoryBox : TextureRect
                     Texture = GD.Load<Texture2D>("res://TypingGame/ArrowBox.png");
                     break;
             }
-
-            if (damageType == DamageType.Scramble)
-            {
-
-            }
         }
 
     }

@@ -5,7 +5,7 @@ public partial class EnemyWimp : Enemy
 {
     protected override float MAX_SPEED => 100f;
     protected override float BULLET_SPEED => 7f;
-    protected override int MAX_HEALTH => 4;
+    protected override int MAX_HEALTH => 3;
     protected override int MAX_KNOCKBACK_FRAMES => 20;
     protected override DamageType DAMAGETYPE => DamageType.Arrows;
 

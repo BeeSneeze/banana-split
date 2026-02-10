@@ -17,8 +17,14 @@ public partial class EnemyBlaster : Enemy
 
     public override void _PhysicsProcess(double delta)
     {
+
         Vector2 direction = new Vector2(1, 0);
-        direction = direction.Rotated(GD.Randf() * (float)Math.Tau);
+        if (Level.Player != null)
+        {
+            direction = Level.Player.GetPositionRelativeToRoom() - Position;
+            GetNode<AnimatedSprite2D>("Visual").FlipH = direction.X < 0;
+        }
+        direction = direction.Rotated((float)GD.RandRange(-0.6, 0.6));
 
         if (BulletCountdown > 0)
         {
@@ -27,7 +33,6 @@ public partial class EnemyBlaster : Enemy
         else
         {
             SpawnBullet(direction);
-            SpawnBullet(direction.Rotated(Mathf.Pi));
             ResetBulletCountdown();
         }
 

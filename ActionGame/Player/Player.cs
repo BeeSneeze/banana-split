@@ -143,7 +143,6 @@ public partial class Player : CharacterBody2D
         }
 
         // Player damage
-        // TODO: The player can completely avoid damage by standing still
         if (MoveAndCollide(Velocity * (float)delta, true) != null)
         {
             // Generally speaking, the player resolves collisions rather than other entities

@@ -8,9 +8,15 @@ namespace GlobalVariables
     // These are the numbers which powerups etc. should modify
     class Game()
     {
-        public const int PLAYER_DAMAGE = 1;
-        public const float PLAYER_BONUS_SPEED = 100f;
-        public const int ENEMY_BONUS_DAMAGE = 0;
+        public static int PLAYER_DAMAGE = 1;
+        public static float PLAYER_BONUS_SPEED = 100f;
+        public static int ENEMY_BONUS_DAMAGE = 0;
+    }
+
+    // These are the values that the settings menu should adjust
+    class Settings()
+    {
+        public static bool MUSIC_MUTED = false;
     }
 
     // These are just for me. Because I'm cool like that
@@ -19,4 +25,6 @@ namespace GlobalVariables
         public const bool NEVER_DIE = false;
         public const bool DOORS_ALWAYS_OPEN = false;
     }
+
+
 }
