@@ -56,7 +56,6 @@ public partial class Bullet : StaticBody2D
 
     private void SetTeam(Team setAllegiance)
     {
-
         var visual = GetNode<AnimatedSprite2D>("Visual");
         Team = setAllegiance;
         if (Team == Team.ENEMY)

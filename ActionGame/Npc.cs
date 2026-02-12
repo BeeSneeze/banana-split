@@ -26,8 +26,6 @@ public partial class Npc : StaticBody2D
                 CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.DialogueStarted, CharacterName.Name);
             }
         }
-
-
     }
 
 }

@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://crr1yxq3wgql7"]
+
+[ext_resource type="Script" uid="uid://cpk5i4mll2108" path="res://ActionGame/PowerupShop.cs" id="1_dssft"]
+[ext_resource type="Theme" uid="uid://0kdxekgod83" path="res://Game.tres" id="2_ig5ra"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rr1r7"]
+size = Vector2(275, 300)
+
+[node name="PowerupShop" type="Node2D" unique_id=981737143]
+z_index = 1
+script = ExtResource("1_dssft")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2078418257]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1607070324]
+position = Vector2(-50, 0)
+shape = SubResource("RectangleShape2D_rr1r7")
+
+[node name="ToolTip" type="ColorRect" parent="." unique_id=1038658426]
+self_modulate = Color(1, 1, 1, 0.78431374)
+z_index = 5
+custom_minimum_size = Vector2(200, 50)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 50.0
+offset_bottom = -150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ToolTip" unique_id=132245758]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_ig5ra")
+theme_override_font_sizes/font_size = 35
+text = "Buy?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="Area2D" to="." method="PlayerEnterOrExit"]
+[connection signal="body_exited" from="Area2D" to="." method="PlayerEnterOrExit"]

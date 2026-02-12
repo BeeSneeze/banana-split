@@ -19,9 +19,9 @@ public partial class EnemyWimp : Enemy
     public override void _PhysicsProcess(double delta)
     {
         Vector2 direction = new Vector2(0, 0);
-        if (Level.Player != null)
+        if (ActionGame.Player != null)
         {
-            direction = Level.Player.GetPositionRelativeToRoom() - Position;
+            direction = ActionGame.Player.GetPositionRelativeToRoom() - Position;
             GetNode<AnimatedSprite2D>("Visual").FlipH = direction.X < 0;
         }
 

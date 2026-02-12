@@ -6,7 +6,6 @@ using Godot;
 public abstract partial class Enemy : CharacterBody2D
 {
     public Room Room;
-    public ActionGame Level;
 
     protected int Knockbackframes = 0;
     protected int HealthPoints, BulletCountdown;
@@ -38,7 +37,6 @@ public abstract partial class Enemy : CharacterBody2D
         BulletScene = GD.Load<PackedScene>("res://ActionGame/bullet.tscn");
         // TODO: Fix references to room and level
         Room = GetParent().GetParent<Room>();
-        Level = Room.GetParent<ActionGame>();
         SetPhysicsProcess(false);
         ResetBulletCountdown();
     }

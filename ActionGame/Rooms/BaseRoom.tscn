@@ -19,9 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://bebk7mnhvcaa8" path="res://ActionGame/Decorations/water_cooler.tscn" id="14_fond7"]
 [ext_resource type="PackedScene" uid="uid://bygea8d7sqrvj" path="res://ActionGame/npc.tscn" id="16_8wpcf"]
 [ext_resource type="PackedScene" uid="uid://bqgdb4t6u1sl" path="res://ActionGame/DoorVertical.tscn" id="18_lmupm"]
-[ext_resource type="PackedScene" uid="uid://c820e4v3i560n" path="res://ActionGame/powerup_item.tscn" id="19_cs886"]
 [ext_resource type="PackedScene" uid="uid://cy1ukpald0lhw" path="res://ActionGame/DoorHorizontal.tscn" id="20_akpfh"]
-[ext_resource type="PackedScene" uid="uid://crr1yxq3wgql7" path="res://ActionGame/powerup_shop.tscn" id="21_m1ym0"]
+[ext_resource type="PackedScene" uid="uid://crr1yxq3wgql7" path="res://ActionGame/PowerupShop.tscn" id="21_m1ym0"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_5hite"]
 tile_data = PackedInt32Array(0, 65539, 0, 65536, 65539, 0, 131072, 65538, 3, 196608, 65539, 0, 262144, 65539, 0, 327680, 65538, 3, 393216, 65539, 0, 458752, 65539, 1, 1, 65538, 0, 65537, 2, 1, 131073, 196610, 2, 196609, 65539, 0, 262145, 3, 0, 327681, 196610, 0, 393217, 2, 1, 458753, 65538, 2, 2, 131074, 3, 65538, 65539, 0, 131074, 65539, 1, 196610, 65539, 1, 262146, 65539, 1, 327682, 65539, 0, 393218, 65539, 0, 458754, 131074, 3, 3, 131074, 3, 65539, 65539, 0, 131075, 65539, 0, 196611, 65539, 0, 262147, 65539, 0, 327683, 65539, 1, 393219, 65539, 0, 458755, 131074, 3, 4, 131074, 3, 65540, 65539, 0, 131076, 65539, 0, 196612, 65539, 0, 262148, 65539, 0, 327684, 65539, 0, 393220, 65539, 0, 458756, 131074, 3, 5, 131074, 3, 65541, 65539, 0, 131077, 65539, 0, 196613, 65539, 0, 262149, 65539, 0, 327685, 65539, 0, 393221, 65539, 0, 458757, 131074, 3, 6, 131074, 3, 65542, 65539, 0, 131078, 65539, 1, 196614, 65539, 0, 262150, 65539, 0, 327686, 65539, 0, 393222, 65539, 0, 458758, 131074, 3, 7, 196610, 0, 65543, 2, 1, 131079, 65538, 2, 196615, 65539, 0, 262151, 65539, 0, 327687, 65538, 0, 393223, 2, 1, 458759, 196610, 2, 8, 65539, 0, 65544, 65539, 0, 131080, 196610, 3, 196616, 3, 1, 262152, 3, 0, 327688, 196610, 3, 393224, 65539, 0, 458760, 3, 0)
@@ -535,7 +534,6 @@ scenes/3/scene = ExtResource("14_fond7")
 scenes/4/scene = ExtResource("10_jjne7")
 scenes/5/scene = ExtResource("11_1ppml")
 scenes/6/scene = ExtResource("18_lmupm")
-scenes/7/scene = ExtResource("19_cs886")
 scenes/8/scene = ExtResource("20_akpfh")
 scenes/9/scene = ExtResource("21_m1ym0")
 

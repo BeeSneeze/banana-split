@@ -7,8 +7,8 @@ using System.Xml.Schema;
 public partial class ActionGame : Control
 {
     private int CurrentRoomID = -1;
-    private Room CurrentRoom;
-    public Player Player { get; private set; }
+    public static Room CurrentRoom { get; private set; }
+    public static Player Player { get; private set; }
     private const int BREAK_ROOM_INTERVAL = 4;
     private int RoomsUntilBreak = BREAK_ROOM_INTERVAL;
 
@@ -119,7 +119,6 @@ public partial class ActionGame : Control
         {
             Player.CurrentRoom = CurrentRoom;
             AdjustPlayerCamera();
-
         }
 
         AddNewRoom();

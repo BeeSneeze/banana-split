@@ -1,14 +1,27 @@
 [gd_scene format=3 uid="uid://c820e4v3i560n"]
 
+[ext_resource type="Texture2D" uid="uid://cvd6l2x04ocxo" path="res://ActionGame/Flower.png" id="1_fnva7"]
 [ext_resource type="Script" uid="uid://bgkmfcau6pe7s" path="res://ActionGame/PowerupItem.cs" id="1_gowum"]
 [ext_resource type="Texture2D" uid="uid://c65q01i73wis2" path="res://ActionGame/ItemBubble.png" id="2_1d5je"]
+[ext_resource type="Texture2D" uid="uid://cfxiiuhekx0sq" path="res://ActionGame/Stick.png" id="2_uykfv"]
 [ext_resource type="Theme" uid="uid://0kdxekgod83" path="res://Game.tres" id="3_1d5je"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_spdmc"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_fnva7"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fnva7")
+}],
 "loop": true,
 "name": &"Banana",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_uykfv")
+}],
+"loop": true,
+"name": &"Stick",
 "speed": 5.0
 }, {
 "frames": [],
@@ -28,38 +41,41 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="PowerupItem" type="AnimatedSprite2D" unique_id=106284584]
-sprite_frames = SubResource("SpriteFrames_spdmc")
-animation = &"Banana"
+[node name="PowerupItem" type="Node2D" unique_id=451291545]
 script = ExtResource("1_gowum")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=23718386]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_fnva7")
+animation = &"Stick"
 
 [node name="ToolTip" type="AnimatedSprite2D" parent="." unique_id=230398920]
 self_modulate = Color(1, 1, 1, 0.78431374)
 z_index = 5
 position = Vector2(0, -100)
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_gowum")
 
 [node name="Title" type="Label" parent="ToolTip" unique_id=984945784]
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = -150.0
-offset_top = -105.0
-offset_right = -150.0
-offset_bottom = -70.0
+offset_left = -125.0
+offset_top = -109.0
+offset_right = -125.0
+offset_bottom = -74.0
 grow_horizontal = 2
 theme = ExtResource("3_1d5je")
 theme_override_font_sizes/font_size = 35
 text = "TITLE"
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="RichTextLabel" parent="ToolTip" unique_id=1707923979]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -150.0
-offset_top = -55.0
-offset_right = -150.0
+offset_left = -125.0
+offset_top = -36.0
+offset_right = -125.0
 offset_bottom = -125.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -68,4 +84,3 @@ theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
 text = "Has this effect"
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
