@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cy1ukpald0lhw"]
+
+[ext_resource type="Script" uid="uid://dq0cocq2kxomr" path="res://ActionGame/RoomDoor.cs" id="1_825jg"]
+[ext_resource type="Texture2D" uid="uid://bsot7qtbwu7qx" path="res://ActionGame/Assets/Door.png" id="1_k3y6f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gu2pb"]
+size = Vector2(100, 50)
+
+[node name="Node2D" type="StaticBody2D" unique_id=1043805905]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_825jg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=127493138]
+position = Vector2(-25, 0)
+shape = SubResource("RectangleShape2D_gu2pb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=5995211]
+position = Vector2(-50, 0)
+rotation = 1.5707964
+texture = ExtResource("1_k3y6f")
+offset = Vector2(0, -25)
+flip_v = true

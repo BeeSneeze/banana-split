@@ -17,9 +17,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_gowum"]
-radius = 200.0
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_gowum"]
 animations = [{
 "frames": [{
@@ -36,39 +33,34 @@ sprite_frames = SubResource("SpriteFrames_spdmc")
 animation = &"Banana"
 script = ExtResource("1_gowum")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=884102843]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1826887041]
-shape = SubResource("CircleShape2D_gowum")
-
 [node name="ToolTip" type="AnimatedSprite2D" parent="." unique_id=230398920]
 self_modulate = Color(1, 1, 1, 0.78431374)
 z_index = 5
+position = Vector2(0, -100)
 sprite_frames = SubResource("SpriteFrames_gowum")
 
 [node name="Title" type="Label" parent="ToolTip" unique_id=984945784]
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = -150.0
-offset_top = -130.0
+offset_top = -105.0
 offset_right = -150.0
-offset_bottom = -100.0
+offset_bottom = -70.0
 grow_horizontal = 2
 theme = ExtResource("3_1d5je")
 theme_override_font_sizes/font_size = 35
 text = "TITLE"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="RichTextLabel" parent="ToolTip" unique_id=1707923979]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -150.0
-offset_top = -80.0
+offset_top = -55.0
 offset_right = -150.0
-offset_bottom = -150.0
+offset_bottom = -125.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_1d5je")
@@ -76,6 +68,4 @@ theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
 text = "Has this effect"
 horizontal_alignment = 1
-
-[connection signal="body_entered" from="Area2D" to="." method="PlayerEnterOrExit"]
-[connection signal="body_exited" from="Area2D" to="." method="PlayerEnterOrExit"]
+metadata/_edit_use_anchors_ = true

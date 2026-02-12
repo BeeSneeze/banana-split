@@ -1,6 +1,5 @@
 using Common;
 using Godot;
-using System;
 
 public partial class PowerupItem : AnimatedSprite2D
 {
@@ -16,17 +15,8 @@ public partial class PowerupItem : AnimatedSprite2D
         ToolTip.GetNode<RichTextLabel>("Label").Text = Powerup.Label;
     }
 
-    private void ToggleToolTip()
+    public void ToggleToolTip()
     {
-        CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.PowerupCollected, Powerup.Name);
         ToolTip.Visible = !ToolTip.Visible;
-    }
-
-    public void PlayerEnterOrExit(Node2D body)
-    {
-        if (body is Player player)
-        {
-            ToggleToolTip();
-        }
     }
 }
