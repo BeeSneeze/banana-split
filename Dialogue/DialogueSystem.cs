@@ -20,7 +20,6 @@ public partial class DialogueSystem : CanvasLayer
         TextContainer = GetNode<VBoxContainer>("TextContainer");
         DialogueTextBox = GD.Load<PackedScene>("res://Dialogue/dialogue_text_box.tscn");
         CustomEvents.Instance.DialogueStarted += StartDialogue;
-        //LoadConversation("RB/1");
     }
 
     public override void _PhysicsProcess(double delta)
@@ -60,7 +59,7 @@ public partial class DialogueSystem : CanvasLayer
         }
     }
 
-    private void StartDialogue(string npc)
+    private void StartDialogue(string npcName)
     {
         if (ConversationActive)
         {
@@ -70,7 +69,7 @@ public partial class DialogueSystem : CanvasLayer
         ConversationActive = true;
 
         this.Visible = true;
-        switch (npc)
+        switch (npcName)
         {
             case NPCSpeaker.RB:
                 RB_COUNT++;

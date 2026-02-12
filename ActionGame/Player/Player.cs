@@ -110,7 +110,7 @@ public partial class Player : CharacterBody2D
         DodgeCountdown--;
         if (DodgeCountdown > 0)
         {
-            Velocity = QuantizeVector(DodgeDirection * (PLAYER_SPEED + (float)PowerupModifierValues["MoveSpeed"] + TemporarySpeed), MOVEMENT_DIRECTIONS);
+            Velocity = QuantizeVector(DodgeDirection * (GlobalVariables.Game.PLAYER_BONUS_SPEED + PLAYER_SPEED + (float)PowerupModifierValues["MoveSpeed"] + TemporarySpeed), MOVEMENT_DIRECTIONS);
             MoveAndSlide();
             return; // You can't perform any actions in the middle of a dodge
         }
@@ -137,7 +137,7 @@ public partial class Player : CharacterBody2D
         }
         else
         {
-            Velocity = direction * (PLAYER_SPEED + (float)PowerupModifierValues["MoveSpeed"] + TemporarySpeed);
+            Velocity = direction * (GlobalVariables.Game.PLAYER_BONUS_SPEED + PLAYER_SPEED + (float)PowerupModifierValues["MoveSpeed"] + TemporarySpeed);
             var newState = (direction != Vector2.Zero) ? State.RUNNING : State.IDLE;
             SetState(newState);
         }

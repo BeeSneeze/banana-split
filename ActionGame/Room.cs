@@ -14,7 +14,13 @@ public partial class Room : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        GetNode<CanvasItem>("EntityMap").Visible = false;
+        // Don't deactivate the starting room
+        // TODO: Make this look nicer
+        if (RoomID % 1000 != 0)
+        {
+            GetNode<CanvasItem>("EntityMap").Visible = false;
+        }
+
         ParticleScene = GD.Load<PackedScene>("res://ActionGame/Particles/particle.tscn");
         CustomEvents.Instance.PlayerChangedRoom += PlayerChangedRoom;
     }

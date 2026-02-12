@@ -61,19 +61,7 @@ public partial class TypingGame : CanvasLayer
         var InventoryBar = GetNode("InventoryBar");
         var newBox = InventoryBoxScene.Instantiate<InventoryBox>();
         newBox.Damage = amount;
-
-        switch (damageTypeName)
-        {
-            case "Text":
-                newBox.damageType = DamageType.Text;
-                break;
-            case "Scramble":
-                newBox.damageType = DamageType.Scramble;
-                break;
-            case "Arrows":
-                newBox.damageType = DamageType.Arrows;
-                break;
-        }
+        newBox.damageType = damageTypeName.ToDamageType();
 
         InventoryBar.AddChild(newBox);
         InventoryBoxes.Enqueue(newBox);
