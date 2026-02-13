@@ -24,6 +24,7 @@ public partial class Player : CharacterBody2D
     private const uint COLLISIONS_NORMAL = (uint)CollisionLayerDefs.WALLS + (uint)CollisionLayerDefs.ENEMY + (uint)CollisionLayerDefs.OBSTACLES;
     private const uint COLLISIONS_NO_DODGE = (uint)CollisionLayerDefs.ENEMY_BULLETS + (uint)CollisionLayerDefs.DODGEABLE;
     private const int MOVEMENT_DIRECTIONS = 16;
+    private readonly Vector2 BULLET_SPAWN_OFFSET = new Vector2(0, 10);
 
     private int BulletsInChamber = MAX_BULLETS_IN_CHAMBER;
     private float TemporarySpeed;
@@ -242,7 +243,7 @@ public partial class Player : CharacterBody2D
         var newBullet = BulletScene.Instantiate<Bullet>();
         newBullet.Initialize(CurrentRoom, velocity, DamageType.Text, GlobalVariables.Game.PLAYER_DAMAGE, Team.PLAYER);
 
-        CurrentRoom.Spawn(newBullet, GlobalPosition - CurrentRoom.GlobalPosition);
+        CurrentRoom.Spawn(newBullet, GlobalPosition - CurrentRoom.GlobalPosition + BULLET_SPAWN_OFFSET);
         CurrentRoom.SpawnParticle(ParticleNames.Dust, GlobalPosition - CurrentRoom.GlobalPosition);
     }
 

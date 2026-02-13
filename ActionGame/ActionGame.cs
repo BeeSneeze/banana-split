@@ -9,7 +9,7 @@ public partial class ActionGame : Control
     private int CurrentRoomID = -1;
     public static Room CurrentRoom { get; private set; }
     public static Player Player { get; private set; }
-    private const int BREAK_ROOM_INTERVAL = 4;
+    private const int BREAK_ROOM_INTERVAL = 2;
     private int RoomsUntilBreak = BREAK_ROOM_INTERVAL;
 
     private bool RoomsInitialized = false;

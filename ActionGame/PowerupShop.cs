@@ -1,6 +1,4 @@
 using Godot;
-using System;
-using System.Xml.Schema;
 using Common;
 
 public partial class PowerupShop : Node2D
@@ -16,8 +14,13 @@ public partial class PowerupShop : Node2D
         var scene = GD.Load<PackedScene>("res://ActionGame/powerup_item.tscn");
         LeftItem = scene.Instantiate<PowerupItem>();
         LeftItem.Position = new Vector2(-100, 0);
+        LeftItem.GetNode<Node2D>("ToolTip").Position += new Vector2(-55, 0);
+        LeftItem.GetNode<AnimatedSprite2D>("ToolTip").Play();
         AddChild(LeftItem);
         RightItem = scene.Instantiate<PowerupItem>();
+        RightItem.GetNode<Node2D>("ToolTip").Position += new Vector2(55, 0);
+        RightItem.GetNode<AnimatedSprite2D>("ToolTip").Animation = "Right";
+        RightItem.GetNode<AnimatedSprite2D>("ToolTip").Play();
         AddChild(RightItem);
         CustomEvents.Instance.PowerupCollected += ClearShop;
     }
@@ -34,7 +37,7 @@ public partial class PowerupShop : Node2D
 
     public override void _PhysicsProcess(double delta)
     {
-        if (Input.IsActionPressed("GameShoot") && ToolTipsVisible)
+        if (Input.IsActionPressed("BuyItem") && ToolTipsVisible)
         {
             CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.PowerupCollected, LeftItem.Powerup.Name);
             CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.PowerupCollected, RightItem.Powerup.Name);

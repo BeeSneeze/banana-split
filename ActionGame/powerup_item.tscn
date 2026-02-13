@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://c65q01i73wis2" path="res://ActionGame/ItemBubble.png" id="2_1d5je"]
 [ext_resource type="Texture2D" uid="uid://cfxiiuhekx0sq" path="res://ActionGame/Stick.png" id="2_uykfv"]
 [ext_resource type="Theme" uid="uid://0kdxekgod83" path="res://Game.tres" id="3_1d5je"]
+[ext_resource type="Texture2D" uid="uid://ksr320yqhksx" path="res://ActionGame/ItemBubble2.png" id="5_46dar"]
+[ext_resource type="Texture2D" uid="uid://ff7kmow01k6u" path="res://ActionGame/ItemBubbleR.png" id="5_otk4w"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fnva7"]
 animations = [{
@@ -35,9 +37,20 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_1d5je")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_46dar")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Left",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_otk4w")
+}],
+"loop": true,
+"name": &"Right",
 "speed": 5.0
 }]
 
@@ -45,16 +58,18 @@ animations = [{
 script = ExtResource("1_gowum")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=23718386]
+z_index = -1
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_fnva7")
 animation = &"Stick"
 
 [node name="ToolTip" type="AnimatedSprite2D" parent="." unique_id=230398920]
-self_modulate = Color(1, 1, 1, 0.78431374)
 z_index = 5
-position = Vector2(0, -100)
-scale = Vector2(0.5, 0.5)
+position = Vector2(0, -80)
+scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_gowum")
+animation = &"Left"
+frame_progress = 0.8743989
 
 [node name="Title" type="Label" parent="ToolTip" unique_id=984945784]
 anchors_preset = 10
@@ -74,9 +89,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -125.0
-offset_top = -36.0
+offset_top = -65.0
 offset_right = -125.0
-offset_bottom = -125.0
+offset_bottom = -212.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_1d5je")

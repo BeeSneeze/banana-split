@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://crnarwd4goahb" path="res://ActionGame/Player/PlayerCamera.cs" id="4_x3qpf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x3qpf"]
-radius = 12.0
-height = 34.0
+radius = 11.0
+height = 26.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tmsbd"]
 animations = [{
@@ -28,15 +28,16 @@ motion_mode = 1
 script = ExtResource("1_r7jum")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1897465480]
-position = Vector2(0, 6)
+position = Vector2(0, 9)
 shape = SubResource("CapsuleShape2D_x3qpf")
 
 [node name="Visual" type="AnimatedSprite2D" parent="." unique_id=1831860321]
 y_sort_enabled = true
+position = Vector2(0, 25)
 scale = Vector2(0.35, 0.35)
 sprite_frames = ExtResource("2_x3qpf")
 animation = &"Running"
-offset = Vector2(0, -25)
+offset = Vector2(0, -90)
 
 [node name="Crosshair" type="AnimatedSprite2D" parent="." unique_id=1565472880]
 z_index = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bygea8d7sqrvj"]
+[gd_scene format=3 uid="uid://bygea8d7sqrvj"]
 
 [ext_resource type="Script" uid="uid://da602lmfqghm6" path="res://ActionGame/Npc.cs" id="1_av2q6"]
 [ext_resource type="Texture2D" uid="uid://qphi5kjp7iry" path="res://ActionGame/NPC_TEST.png" id="1_bcmk1"]
@@ -151,28 +151,28 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="NPC" type="StaticBody2D"]
+[node name="NPC" type="StaticBody2D" unique_id=619835241]
 y_sort_enabled = true
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("1_av2q6")
 
-[node name="Visual" type="AnimatedSprite2D" parent="."]
+[node name="Visual" type="AnimatedSprite2D" parent="." unique_id=1904629947]
 position = Vector2(0, -20)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_15oih")
 
-[node name="CollisionBody" type="CollisionShape2D" parent="."]
+[node name="CollisionBody" type="CollisionShape2D" parent="." unique_id=172449306]
 shape = SubResource("CapsuleShape2D_av2q6")
 
-[node name="InteractionArea" type="Area2D" parent="."]
+[node name="InteractionArea" type="Area2D" parent="." unique_id=1701186406]
 collision_layer = 1024
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1789576222]
 shape = SubResource("CircleShape2D_8rlun")
 
-[node name="SpeechBubble" type="AnimatedSprite2D" parent="."]
+[node name="SpeechBubble" type="AnimatedSprite2D" parent="." unique_id=1862877623]
 z_index = 1
 position = Vector2(48, -74)
 scale = Vector2(0.5, 0.5)
