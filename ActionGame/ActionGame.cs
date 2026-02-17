@@ -129,6 +129,10 @@ public partial class ActionGame : Control
         var roomRectangle = CurrentRoom.GetNode<TileMapLayer>("TerrainMap").GetUsedRect();
         var cellsize = CurrentRoom.GetNode<TileMapLayer>("TerrainMap").TileSet.TileSize;
         var zoomAmount = (float)Mathf.Clamp(30 / roomRectangle.Size.Length(), 1, 1.3) + 0.2f;
+        if (CurrentRoom.RoomID % 1000 == 100)
+        {
+            zoomAmount += 0.1f;
+        }
         var playerCamera = Player.GetNode<Camera2D>("%Camera");
 
         playerCamera.Zoom = Vector2.One * zoomAmount;

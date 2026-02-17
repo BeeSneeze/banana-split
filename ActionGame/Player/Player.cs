@@ -8,9 +8,9 @@ public partial class Player : CharacterBody2D
     public Room CurrentRoom;
     public Dictionary<string, double> PowerupModifierValues = new Dictionary<string, double>();
 
-    private PackedScene BulletScene;
-    private AnimatedSprite2D Visual, Crosshair;
-
+    // These are the base values for the game as a whole
+    // When making powerups, DO NOT ADJUST THESE. They establish a baseline
+    // Instead make a global variable, and add that to the relevant equations
     private const float PLAYER_SPEED = 350.0f;
     private const float BULLET_SPEED = 13.0f;
     private const int I_FRAME_COUNT = 90;
@@ -26,6 +26,8 @@ public partial class Player : CharacterBody2D
     private const int MOVEMENT_DIRECTIONS = 16;
     private readonly Vector2 BULLET_SPAWN_OFFSET = new Vector2(0, 10);
 
+    private PackedScene BulletScene;
+    private AnimatedSprite2D Visual, Crosshair;
     private int BulletsInChamber = MAX_BULLETS_IN_CHAMBER;
     private float TemporarySpeed;
     private double ReloadCountdown;
@@ -84,13 +86,10 @@ public partial class Player : CharacterBody2D
 
         // Visuals
         Visual.FlipH = direction.X < 0;
-        if (InvincibilityFrames > 0)
+        InvincibilityFrames--;
+        if (InvincibilityFrames > 0 && DodgeCountdown <= 0)
         {
-            InvincibilityFrames--;
-            if (DodgeCountdown <= 0)
-            {
-                Visual.Visible = !Visual.Visible;
-            }
+            Visual.Visible = !Visual.Visible;
         }
         else if (InvincibilityFrames == 0)
         {
@@ -111,7 +110,7 @@ public partial class Player : CharacterBody2D
         DodgeCountdown--;
         if (DodgeCountdown > 0)
         {
-            Velocity = QuantizeVector(DodgeDirection * (GlobalVariables.Game.PLAYER_BONUS_SPEED + PLAYER_SPEED + (float)PowerupModifierValues["MoveSpeed"] + TemporarySpeed), MOVEMENT_DIRECTIONS);
+            Velocity = QuantizeVector(DodgeDirection * (GlobalVariables.Player.PLAYER_BONUS_SPEED + PLAYER_SPEED + (float)PowerupModifierValues["MoveSpeed"] + TemporarySpeed), MOVEMENT_DIRECTIONS);
             MoveAndSlide();
             return; // You can't perform any actions in the middle of a dodge
         }
@@ -138,7 +137,7 @@ public partial class Player : CharacterBody2D
         }
         else
         {
-            Velocity = direction * (GlobalVariables.Game.PLAYER_BONUS_SPEED + PLAYER_SPEED + (float)PowerupModifierValues["MoveSpeed"] + TemporarySpeed);
+            Velocity = direction * (GlobalVariables.Player.PLAYER_BONUS_SPEED + PLAYER_SPEED + (float)PowerupModifierValues["MoveSpeed"] + TemporarySpeed);
             var newState = (direction != Vector2.Zero) ? State.RUNNING : State.IDLE;
             SetState(newState);
         }
@@ -239,9 +238,11 @@ public partial class Player : CharacterBody2D
 
         Input.StartJoyVibration(0, 0.2f, 0.2f, 0.06f);
 
-        var velocity = BULLET_SPEED * direction.Normalized().Rotated((float)GD.RandRange(-BULLET_SPREAD, BULLET_SPREAD));
+        var velocity = BULLET_SPEED * direction.Normalized()
+        .Rotated(
+            (float)GD.RandRange(-(BULLET_SPREAD + GlobalVariables.Player.BONUS_BULLET_SPREAD), BULLET_SPREAD + GlobalVariables.Player.BONUS_BULLET_SPREAD));
         var newBullet = BulletScene.Instantiate<Bullet>();
-        newBullet.Initialize(CurrentRoom, velocity, DamageType.Text, GlobalVariables.Game.PLAYER_DAMAGE, Team.PLAYER);
+        newBullet.Initialize(CurrentRoom, velocity, DamageType.Text, GlobalVariables.Player.PLAYER_DAMAGE, Team.PLAYER);
 
         CurrentRoom.Spawn(newBullet, GlobalPosition - CurrentRoom.GlobalPosition + BULLET_SPAWN_OFFSET);
         CurrentRoom.SpawnParticle(ParticleNames.Dust, GlobalPosition - CurrentRoom.GlobalPosition);

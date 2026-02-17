@@ -1,5 +1,6 @@
 using Godot;
 using Common;
+using Powerups;
 
 public partial class PowerupShop : Node2D
 {
@@ -16,11 +17,13 @@ public partial class PowerupShop : Node2D
         LeftItem.Position = new Vector2(-100, 0);
         LeftItem.GetNode<Node2D>("ToolTip").Position += new Vector2(-55, 0);
         LeftItem.GetNode<AnimatedSprite2D>("ToolTip").Play();
+        LeftItem.Powerup = Powerup.AllPowerups[GD.RandRange(0, Powerup.AllPowerups.Length - 1)];
         AddChild(LeftItem);
         RightItem = scene.Instantiate<PowerupItem>();
         RightItem.GetNode<Node2D>("ToolTip").Position += new Vector2(55, 0);
         RightItem.GetNode<AnimatedSprite2D>("ToolTip").Animation = "Right";
         RightItem.GetNode<AnimatedSprite2D>("ToolTip").Play();
+        RightItem.Powerup = Powerup.AllPowerups[GD.RandRange(0, Powerup.AllPowerups.Length - 1)];
         AddChild(RightItem);
         CustomEvents.Instance.PowerupCollected += ClearShop;
     }
@@ -39,8 +42,8 @@ public partial class PowerupShop : Node2D
     {
         if (Input.IsActionPressed("BuyItem") && ToolTipsVisible)
         {
-            CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.PowerupCollected, LeftItem.Powerup.Name);
-            CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.PowerupCollected, RightItem.Powerup.Name);
+            CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.PowerupCollected, LeftItem.Powerup.ToString());
+            CustomEvents.Instance.EmitSignal(CustomEvents.SignalName.PowerupCollected, RightItem.Powerup.ToString());
         }
     }
 

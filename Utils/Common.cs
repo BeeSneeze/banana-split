@@ -19,28 +19,8 @@ namespace Common
         DeadWood
     }
 
-    // This only defines the names of the powerups. PowerupManager.CS contains the functionality
-    public record struct Powerup(string Name, string Label)
-    {
-        public readonly static Powerup BANANA = new("Banana", "This item gives you [b]UNLIMITED[/b] potassium!");
-        public readonly static Powerup STICK = new("Stick", "It's a really cool looking stick");
-    }
-
     public static class Extensions
     {
-        public static Powerup ToPowerup(this string str)
-        {
-            switch (str)
-            {
-                case "Banana":
-                    return Powerup.BANANA;
-                case "Stick":
-                    return Powerup.STICK;
-                default:
-                    throw new Exception("No possible powerup to convert to!");
-            }
-        }
-
         public static DamageType ToDamageType(this string str)
         {
             switch (str)

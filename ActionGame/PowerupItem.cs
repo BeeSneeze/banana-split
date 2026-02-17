@@ -1,5 +1,6 @@
 using Common;
 using Godot;
+using Powerups;
 
 public partial class PowerupItem : Node2D
 {
@@ -11,8 +12,8 @@ public partial class PowerupItem : Node2D
         ToolTip = GetNode<Node2D>("ToolTip");
         ToolTip.Visible = false;
         ToolTip.GetNode<Label>("Title").Text = Powerup.Name;
-        ToolTip.GetNode<RichTextLabel>("Label").Text = Powerup.Label;
-        GetNode<AnimatedSprite2D>("Sprite").Animation = Powerup.Name;
+        ToolTip.GetNode<RichTextLabel>("Label").Text = Powerup.FlavorText;
+        GetNode<AnimatedSprite2D>("Sprite").Animation = Powerup.ToString();
     }
 
     public void ToggleToolTip()

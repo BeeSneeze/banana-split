@@ -88,7 +88,6 @@ public partial class Room : Node2D
         return GetNode("EntityMap").GetChildren().Where(x => x is Enemy).ToArray().Length;
     }
 
-
     public void Spawn(Node2D levelObject, Vector2 pos)
     {
         levelObject.Position = pos;

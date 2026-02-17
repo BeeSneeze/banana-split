@@ -10,6 +10,11 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fnva7"]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"Agile dev.",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_fnva7")
@@ -18,12 +23,57 @@ animations = [{
 "name": &"Banana",
 "speed": 5.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"Finger Gun",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Form 22B",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Hair Dryer",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Memo",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"PVC Pipe",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Pen",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Pencil",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_uykfv")
 }],
 "loop": true,
 "name": &"Stick",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Unpaid overtime",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Uppercase L",
 "speed": 5.0
 }, {
 "frames": [],
@@ -61,7 +111,7 @@ script = ExtResource("1_gowum")
 z_index = -1
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_fnva7")
-animation = &"Stick"
+animation = &"Agile dev."
 
 [node name="ToolTip" type="AnimatedSprite2D" parent="." unique_id=230398920]
 z_index = 5
@@ -72,30 +122,35 @@ animation = &"Left"
 frame_progress = 0.8743989
 
 [node name="Title" type="Label" parent="ToolTip" unique_id=984945784]
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = -125.0
-offset_top = -109.0
-offset_right = -125.0
-offset_bottom = -74.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -225.0
+offset_top = -110.0
+offset_right = -25.0
+offset_bottom = -75.0
 grow_horizontal = 2
 theme = ExtResource("3_1d5je")
 theme_override_font_sizes/font_size = 35
 text = "TITLE"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Label" type="RichTextLabel" parent="ToolTip" unique_id=1707923979]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -125.0
-offset_top = -65.0
-offset_right = -125.0
-offset_bottom = -212.5
+custom_minimum_size = Vector2(220, 80)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -235.0
+offset_top = -175.0
+offset_right = -15.0
+offset_bottom = -95.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_1d5je")
-theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
 text = "Has this effect"
 horizontal_alignment = 1
